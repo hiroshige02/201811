@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  past_start_time: 2018-11-07 01:59:54
+  past_finish_time: 2018-11-07 01:59:54
+  past_title: MyString
+  past_content: MyText
+  past_name: MyString
+  past_user_mail_address: MyString
+  past_participant: 1
+  past_event_image_id: 1
+
+two:
+  past_start_time: 2018-11-07 01:59:54
+  past_finish_time: 2018-11-07 01:59:54
+  past_title: MyString
+  past_content: MyText
+  past_name: MyString
+  past_user_mail_address: MyString
+  past_participant: 1
+  past_event_image_id: 1

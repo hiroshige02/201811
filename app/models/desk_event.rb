@@ -1,0 +1,2 @@
+class DeskEvent < ApplicationRecord
+end

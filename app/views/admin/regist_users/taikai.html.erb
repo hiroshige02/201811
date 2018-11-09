@@ -1,0 +1,32 @@
+<div class="session-visual">
+  <div class="main-box">
+    <div class="account-box">
+
+      <h2 class="session-title">退会の理由を教えてください</h2>
+      <div style="color: white">
+      	<%# @equipments.each do |delivery_addre| %>
+
+        <%#= f.check_box :hoge_ids, { multiple: true, checked: hoge[:checked], disabled: hoge[:disabled], include_hidden: false }, hoge[:id] %>
+      <div class="column-top">
+        <%= radio_button "a", "b", {:checked => true} %>
+        <span>開催内容に対する設備が足りない</span><br>
+      </div>
+      <div class="column-top">
+        <%= radio_button "a", "c", {} %>
+        <span>立地の問題</span><br>
+      </div>
+      <div class="column-top">
+        <%= radio_button "a", "d", {} %>
+        <span>利用したい時間と合わない</span><br>
+      </div>
+      <div class="column-top"> 
+        <%= radio_button "a", "e", {} %>
+        <span>その他</span><br>
+      </div>
+
+      </div>
+      <%= link_to "退会する", regist_user_registration_path(current_user.id), data: { confirm: "本当によろしいですか?" }, class:"square_taikai_btn button-top", method: :delete %>
+
+    </div>
+  </div>
+</div>
