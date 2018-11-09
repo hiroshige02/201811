@@ -1,0 +1,42 @@
+<div class="session-visual2">
+  <div class="message-main-box">
+
+  	<!-- 検索バーを設ける -->
+    <div class="account-box">
+      <h2 class="session-title center">主催者ユーザー一覧</h2>
+
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">画像</th>
+            <th scope="col">名前</th>
+            <th scope="col">Eメールアドレス</th>
+            <th scope="col">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @regist_users.each do |regist_user| %>
+          <tr>
+            <!-- <th scope="row">1</th> -->
+              <td><%= attachment_image_tag regist_user, :profile_image, fallback: "no_image.jpg",size: '40x40' %></td>
+              <td><%= regist_user.regist_name %></td>
+              <td><%= regist_user.email %></td>
+              <td><%= link_to "詳細", admin_regist_user_path(regist_user.id), class:"square_btn" %>
+                <span>|</span>
+                <%= link_to "編集", edit_regist_user_registration_path(regist_user.id), class:"square_btn" %></td>
+          </tr>
+          <% end %>
+
+  </tbody>
+</table>
+
+<div class="column-top center">
+    <%= link_to "戻る", :back, class:"square_btn" %>
+  </div>
+
+
+
+
+    </div>
+  </div>
+</div>

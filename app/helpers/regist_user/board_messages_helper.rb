@@ -1,0 +1,2 @@
+module RegistUser::BoardMessagesHelper
+end

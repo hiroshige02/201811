@@ -1,0 +1,2 @@
+module RegistUser::AttendancesHelper
+end

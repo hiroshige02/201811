@@ -1,0 +1,445 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+  font-family: inherit;
+}
+
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+body {
+    line-height: 1.428571429;
+    color: #333333;
+    background-color: #fff;
+}
+main {
+	width:90%;
+	margin: 50px auto 0 auto;
+}
+
+* ヘッダー
+.nav {
+  width: 750px;
+  height: 40px;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+}
+.nav li {
+  position: relative;
+  list-style: none;
+  display: inline-block;
+}
+.nav li a {
+  display: block;
+  width: 150px;
+  height: 40px;
+  text-align: center;
+  color: #660000;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.5;
+/*  background-color: rgba(122,30,42,0.3);*/
+  text-decoration: none;
+  border-right: 1px solid #eee;
+  box-sizing: border-box;
+}
+.nav > li:hover > a {/*layer-1*/
+  color: orange;
+  background: #afc6e2;
+}
+.nav > li li:hover > a {/*layer-2*/
+  color: olive;
+  background: #afc6e2;
+}
+.nav li ul {
+  top: 40px;
+  left: -40px;
+  position: absolute;
+}
+.nav li ul li {
+  overflow: hidden;
+  height: 0;
+}
+.nav li ul li a {
+  border-top: 1px solid #eee;
+}
+.nav li:hover > ul > li {
+  overflow: visible;
+  height: 40px;
+}
+  .nav li ul li ul {
+    top: 0;
+    left: 110px;
+  }
+  .nav li ul li ul:before {/*layer-2▷*/
+    position: absolute;
+    content: "";
+    top: 15px;
+    left: 30px;
+    border: 5px solid transparent;
+    border-left: 5px solid #fff;
+  }
+  .nav li ul li ul li:hover > a {/*layer-3*/
+    color: pink;
+    background: #afc6e2;
+  }
+  .nav li ul li ul.left {
+    top: 0;
+    left: -190px;
+  }
+  .nav li ul li ul.left:before,/*layer-2-left▷*/
+  .nav li ul li ul li ul.left:before {/*layer-3-left▷*/
+    position: absolute;
+    content: "";
+    top: 15px;
+    left: 190px;
+    border: 5px solid transparent;
+    border-right: 5px solid #fff;
+  }
+  .nav li ul li ul.left li:hover > a {/*layer-2-left*/
+    color: pink;
+    background: #afc6e2;
+  }
+  .nav li ul li ul li ul.left li:hover > a {/*layer-3-left*/
+    color: purple;
+    background: #afc6e2;
+  }
+.content {
+  width: 750px;
+  height: 200px;
+  background: #eee;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+
+
+
+/*トップページ*/
+
+.main-visual {
+  width: 100%;
+  height: 400px;
+  background-image: image-url('komorebi.jpg');
+  background-size: cover;
+  background-position: bottom;
+}
+.main-information {
+  width: 100%;
+  margin: 0 auto;
+  background-color: rgba(242, 202, 170, 0.2)
+}
+.information-box{
+  width: 20%;
+  height:350px;
+  float: left;
+}
+
+.news-box {
+  width: 95%;
+  margin: 0 auto 10px auto;
+}
+.event-information-box{
+  width: 70%;
+  height: 350px;
+  float: left;
+}
+.sns-box{
+  width: 10%;
+  height:350px;
+  float: left;
+}
+.scroll-box {
+  margin: 0 auto;
+  width: 85%;
+  height: 200px;
+  background-color: pink;
+  overflow-y: scroll;
+}
+
+footer {
+  height: 60px;
+  width: 100%;
+  background-color: rgba(200, 80, 28, 0.4);
+}
+.footer-contents {
+  width: 70%;
+  margin: 0 auto;
+}
+
+
+
+/*イベント一覧*/
+
+.index-line-box1 {
+  width: 45%;
+  float:left;
+  margin-top: 20px;
+
+}
+.index-line-box2 {
+  width: 55%;
+  float:right;
+  margin-top: 20px;
+}
+
+
+
+
+
+.square_btn {
+    position: relative;
+    display: inline-block;
+    padding: 0.25em 0.5em;
+    text-decoration: none;
+    color: #FFF;
+    background: #fd9535;/*背景色*/
+    border-bottom: solid 2px #d27d00;/*少し濃い目の色に*/
+    border-radius: 4px;/*角の丸み*/
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.square_btn:hover {
+  text-decoration: none;
+  color: #FFF;
+}
+
+.square_taikai_btn {
+    position: relative;
+    display: inline-block;
+    padding: 0.25em 0.5em;
+    text-decoration: none;
+    color: #FFF;
+    background: #808080;/*背景色*/
+    border-bottom: solid 2px #d27d00;/*少し濃い目の色に*/
+    border-radius: 4px;/*角の丸み*/
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+    font-size: 16px;
+    font-weight: bold;
+}
+.square_taikai_btn:hover {
+  text-decoration: none;
+  color: #FFF;
+}
+
+.button-top {
+	margin-top: 15px;
+}
+
+
+.center {
+  text-align: center;
+}
+.bottom {
+  margin-bottom: 30px;
+}
+
+
+/* 新規登録等*/
+.session-visual {
+	width: 100%;
+  padding: 50px auto 50px auto;
+ 	background-image: image-url('main.jpeg');
+  background-size: cover;
+  background-position: left;
+}
+
+.session-visual2 {
+  width: 100%;
+  padding: 50px auto 50px auto;
+  background-image: image-url('20150209_fmPxucNk.jpg');
+  background-size: cover;
+  background-position: left;
+}
+
+
+.main-box {
+  background-color: rgba(211,211,211,0.7);
+  width: 50%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.edit-main-box {
+  background-color: rgba(211,211,211,0.7);
+  width: 80%;
+  margin: 0 auto;
+}
+.message-main-box {
+  background-color: rgba(255,255,255,0.7);
+  width: 80%;
+  margin: 0 auto;
+}
+
+.account-box {
+	width: 80%;
+	margin: 0 auto;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.edit-account-box1 {
+  width: 30%;
+  float:left;
+}
+.edit-account-box2 {
+  width: 70%;
+  float:left;
+}
+.edit_account-box2-kid{
+  width: 100%;
+  margin-top: 15px;
+  border-bottom: 1px solid;
+  border-color: rgb(121, 103, 126);
+}
+.first-message-box {
+  margin-top: 50px;
+}
+.block{
+  display: block;
+}
+
+.session-title {
+  color: #4B0082;
+  font-weight: bold;
+  /*-webkit-text-stroke: 1px #FFFFEE;*/
+}
+.session-columns{
+  color: #4B0082;
+  font-weight: bold;
+  font-size: 16px;
+  -webkit-text-stroke: 0.3px black;
+}
+
+.column-top {
+  margin-top: 20px;
+}
+
+.sign-up {
+  font-size: 20px;
+}
+
+.left {
+  margin-left: 30px;
+}
+
+/*以下マイページコマ割りなど*/
+
+.bottom-border {
+  border-bottom: 1px solid;
+  margin-bottom: 15px;
+  border-color: rgb(121, 103, 126);
+}
+
+.non-visual-box {
+  width: 100%;
+  padding: 50px auto 50px auto;
+}
+.arrow_box{
+    position:relative;
+    width:170px;
+    height:80px;
+    background:#FFF5C9;
+    text-align:center;
+    border:6px solid #FFF5C9;
+    color:#707070;
+    font-size:12px;
+    font-weight:bold;
+    border-radius:7px;
+    -webkit-border-radius:7px;
+    -moz-border-radius:7px;
+    margin: 28px auto 0 auto;
+}
+.arrow_box:after,.arrow_box:before{
+    border: solid transparent;
+    content:'';
+    height:0;
+    width:0;
+    pointer-events:none;
+    position:absolute;
+    bottom:100%;
+    left:50%;
+}
+.arrow_box:after{
+    border-color: rgba(255, 245, 201, 0);
+    border-top-width:20px;
+    border-bottom-width:20px;
+    border-left-width:18px;
+    border-right-width:18px;
+    margin-left: -18px;
+    border-bottom-color:#FFF5C9;
+}
+.arrow_box:before{
+    border-color: rgba(255, 245, 201, 0);
+    border-top-width:26px;
+    border-bottom-width:26px;
+    border-left-width:24px;
+    border-right-width:24px;
+    margin-left: -24px;
+    margin-bottom: 6px;
+    border-bottom-color:#FFF5C9;
+}
+
+
+.mypage-event-image {
+  height: 100px;
+  width: 150px;
+  background-image: image-url('20150209_fmPxucNk.jpg');
+  background-size: cover;
+  background-position: left;
+  margin: 0 auto;
+  box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.8);
+  border-radius: 10px 10px 10px 10px;
+}
+
+.mypage-event-box {
+  margin-top: 20px;
+  height: 180px;
+  width: 25%;
+  float:left;
+  text-align: center;
+  overflow: hidden;
+}
+
+/*テスト用*/
+.test-event-image {
+  height: 150px;
+  width: 200px;
+  background-image: image-url('20150209_fmPxucNk.jpg');
+  background-size: cover;
+  background-position: left;
+  margin: 0 auto;
+  box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.8);
+  border-radius: 10px 10px 10px 10px;
+}
+p {
+  margin-bottom: 0;
+}

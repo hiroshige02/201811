@@ -1,0 +1,59 @@
+<div class="session-visual">
+  <div class="main-box">
+    <div class="account-box">
+
+
+<h2 class="session-title">主催者ユーザー<br>新規登録</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field column-top">
+    <%= f.label :"名前(本名でお願いします)", class:"session-columns" %><br />
+    <%= f.text_field :regist_name, autofocus: true, autocomplete: "regist_name" %>
+  </div>
+  <div class="field column-top">
+    <%= f.label :"名前(カナ)", class:"session-columns" %><br />
+    <%= f.text_field :regist_name_kana, autofocus: true, autocomplete: "regist_name_kana" %>
+  </div>
+  <div class="field column-top">
+    <%= f.label :生年月日, class:"session-columns" %><br />
+    <%= f.text_field :birthday, autofocus: true, autocomplete: "birthday" %>
+  </div>
+  <div class="field column-top">
+    <%= f.label :ご職業, class:"session-columns" %><br />
+    <%= f.text_field :job, autofocus: true, autocomplete: "job" %>
+  </div>
+
+  <div class="field column-top">
+    <%= f.label :Eメールアドレス, class:"session-columns" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+  <div class="field column-top">
+    <%= f.label :お電話番号, class:"session-columns" %><br />
+    <%= f.text_field :regist_tel_number, autofocus: true, autocomplete: "egist_tel_number" %>
+  </div>
+
+  <div class="field column-top">
+    <%= f.label :パスワード, class:"session-columns" %>
+    <% if @minimum_password_length %>
+    <span class="session-columns">(<%= @minimum_password_length %> 文字以上入力が必要です)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field column-top">
+    <%= f.label :"パスワード(確認用)", class:"session-columns" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="column-top">
+    <%= f.submit "新規登録する", class:"square_btn sign-up"%>
+  </div>
+<% end %>
+
+<%= render "regist_users/shared/links" %>
+
+   </div>
+  </div>
+</div>

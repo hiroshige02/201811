@@ -1,0 +1,2 @@
+module RegistUser::EquipmentEventsHelper
+end

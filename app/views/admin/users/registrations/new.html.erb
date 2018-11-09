@@ -1,0 +1,49 @@
+<div class="session-visual">
+  <div class="main-box">
+    <div class="account-box">
+
+<h2 class="session-title">一般ユーザー<br>新規登録</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+  
+  <div class="field column-top">
+    <%= f.label :"名前 (ニックネーム可)", class:"session-columns" %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+  </div>
+
+  <div class="field column-top">
+    <%= f.label :Eメールアドレス, class:"session-columns" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field column-top">
+    <%= f.label :パスワード, class:"session-columns" %>
+    <% if @minimum_password_length %>
+    <span class="session-columns">(<%= @minimum_password_length %> 文字以上入力が必要です)</span>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field column-top">
+    <%= f.label :"パスワード 確認用", class:"session-columns" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="column-top">
+    <%= f.submit "新規登録", class:"square_btn sign-up" %>
+  </div>
+
+<% end %>
+
+<div class="button-top">
+ <%= link_to new_regist_user_session_path do %>
+ <button class="square_btn">ログインの方はこちら</button>
+ <% end %>
+</div>
+
+<%#= render "users/shared/links" %>
+
+    </div>
+  </div>
+</div>

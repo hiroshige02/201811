@@ -1,0 +1,101 @@
+<html>
+  <head>
+    <title>Himaraya</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+
+
+
+
+
+  <% if admin_signed_in? %>
+
+  <ul class="nav">
+    <li><a href="#">サイトトップ</a></li>
+    <li><a href="#">開催イベント</a></li>
+    <li><a href="#">イベント履歴</a></li>
+    <li><a href="#">登録ユーザー</a></li>
+    <li><a href="#">ログアウト</a></li>
+  </ul>
+  
+
+  <% elsif regist_user_signed_in? %>
+    <ul class="nav">
+    <li><a href="#">サイトトップ</a></li>
+    <li><a href="#">開催イベント</a></li>
+    <li><a href="#">イベント履歴</a></li>
+    <li><a href="#">登録ユーザー</a></li>
+    <li><a href="#">ログアウト</a></li>
+  </ul>
+  
+  <% elsif user_signed_in? %>
+  <ul class="nav">
+    <li><a href="#">開催イベント</a></li>
+    <li><a href="#">イベント履歴</a></li>
+    <li><a href="#">登録ユーザー</a></li>
+    <li><a href="#">ログアウト</a></li>
+  </ul>
+
+　<% else %>
+  <ul class="nav">
+    <li><a href="#">サイトトップ</a></li>
+    <li><a href="#">初めての方へ</a></li>
+    <li><a href="#">開催イベント履歴</a></li>
+    <li><a href="#">アクセス</a></li>
+    <li><a href="#">サインイン</a></li>
+  </ul>
+
+<!--nav--></ul>
+
+<% end %>
+
+
+
+
+
+
+
+
+
+
+<!-- <ul class="nav">
+
+  <li><a href="#">Home</a></li>
+
+  <li><a href="#">Strategy</a>
+    <ul>
+      <li><a href="#">b1</a></li>
+      <li><a href="#">b1</a>
+        <ul>
+          <li><a href="#">b2</a></li>
+          <li><a href="#">b2</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+
+  <li><a href="#">About</a>
+    <ul>
+      <li><a href="#">c1</a>
+        <ul>
+          <li><a href="#">c2</a></li>
+          <li><a href="#">c2</a></li>
+        </ul>
+      </li>
+      <li><a href="#">c1</a></li>
+    </ul>
+  </li>
+
+</ul> -->
+
+
+    <main>
+    <%= yield %>
+    </main>
+  </body>
+</html>
