@@ -1,54 +1,26 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Start time:</strong>
-  <%= @event.start_time %>
-</p>
+<div class="session-visual3">
+  <!-- <div class="message-main-box"> -->
+  
+  <div class="baloon center">
 
-<p>
-  <strong>Finish time:</strong>
-  <%= @event.finish_time %>
-</p>
+    <h4 class="session-title"><日時></h4>
+    <%= @event.start_time.year %>/<%= @event.start_time.month %>/<%= @event.start_time.day %>
+    <%= @event.start_time.hour %>時<%= @event.start_time.min %><span>〜</span><%= @event.finish_time.hour %>時<%= @event.finish_time.min %>分<br><br>
+    <h4 class="session-title"><タイトル></h4>
+    <h2 class="session-title"><%= @event.title %></h2><br>
+    <h4 class="session-title"><主催></h4>
+    <p><%= @event.regist_user.regist_name %>さん</p><br>
+    <h4 class="session-title"><詳細></h4>
+    <%= @event.content %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @event.title %>
-</p>
+    <div class="column-top center">
+      <%= link_to "戻る", :back, class:"square_btn" %>
+      <%= link_to "変更する", :back, class:"square_btn left navy" %>
+      <%= link_to "削除する", :back, class:"square_taikai_btn left" %>
+    </div>
 
-<p>
-  <strong>Regist user:</strong>
-  <%= @event.regist_user_id %>
-</p>
+  </div>
 
-<p>
-  <strong>Content:</strong>
-  <%= @event.content %>
-</p>
-
-<p>
-  <strong>Admin ok:</strong>
-  <%= @event.admin_ok %>
-</p>
-
-<p>
-  <strong>Admin message:</strong>
-  <%= @event.admin_message %>
-</p>
-
-<p>
-  <strong>Admin no:</strong>
-  <%= @event.admin_no %>
-</p>
-
-<p>
-  <strong>Participand:</strong>
-  <%= @event.participand %>
-</p>
-
-<p>
-  <strong>Event image:</strong>
-  <%= @event.event_image_id %>
-</p>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+  <!-- </div> -->
+</div>

@@ -12,52 +12,47 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :start_time %>
+    <%= form.label :使用開始時間 %>
     <%= form.datetime_select :start_time %>
   </div>
 
   <div class="field">
-    <%= form.label :finish_time %>
+    <%= form.label :使用終了時間 %>
     <%= form.datetime_select :finish_time %>
   </div>
 
   <div class="field">
-    <%= form.label :title %>
+    <%= form.label :イベントタイトル %>
     <%= form.text_field :title %>
   </div>
 
   <div class="field">
-    <%= form.label :regist_user_id %>
-    <%= form.number_field :regist_user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :content %>
+    <%= form.label :詳細 %>
     <%= form.text_area :content %>
   </div>
 
-  <div class="field">
-    <%= form.label :admin_ok %>
-    <%= form.check_box :admin_ok %>
-  </div>
+ <!--  <div class="field">
+    <%#= form.label :admin_ok %>
+    <%#= form.check_box :admin_ok %>
+  </div> -->
+
+  <!-- <div class="field">
+    <%#= form.label :admin_message %>
+    <%#= form.text_area :admin_message %>
+  </div> -->
+
+  <!-- <div class="field">
+    <%#= form.label :admin_no %>
+    <%#= form.check_box :admin_no %>
+  </div> -->
 
   <div class="field">
-    <%= form.label :admin_message %>
-    <%= form.text_area :admin_message %>
-  </div>
-
-  <div class="field">
-    <%= form.label :admin_no %>
-    <%= form.check_box :admin_no %>
-  </div>
-
-  <div class="field">
-    <%= form.label :participand %>
+    <%= form.label :参加人数 %>
     <%= form.number_field :participand %>
   </div>
 
   <div class="field">
-    <%= form.label :event_image_id %>
+    <%= form.label :"画像、チラシ添付" %>
     <%= form.number_field :event_image_id %>
   </div>
 

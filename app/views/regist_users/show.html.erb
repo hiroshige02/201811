@@ -1,18 +1,66 @@
-<div class="non-visual-box">
+<div class="session-visual">
+  <div class="message-main-box">
 
-<div class="edit-account-box1">
-  <div class="test-event-image">
+
+<div class="name-area clearfix">
+  <div class="test-regist-image">
   </div>
-  <div class='arrow_box'><%= current_regist_user.introduction %></div>
+  <!-- <div class='arrow_box'><%%= current_regist_user.introduction %></div> -->
+  <div class="name-area-text">
+    <h1 class=""><%= current_regist_user.regist_name %>さん</h1>
+    <h3 class=""><%= link_to "スペースを予約する", new_regist_user_event_path %></h3>
+    <a class="">管理者に連絡をとる</a>
+  </div>
 </div>
 
-<div class="edit-account-box2">
-  <h1 class=""><%= current_regist_user.regist_name %>さん</h1>
-  <h3 class=""><%= link_to "スペースを予約する", new_regist_user_event_path %></h3>
-  <p class="">管理者に連絡をとる</p>
+  <div class="edit_account-box2-kid clearfix">
+    <h3 class="session-title center">開催確定</h3>
+    <div class="mypage-event-box">
+      <div class="mypage-event-image">
+      </div>
+    <%#= @events.each do |event| %>
+    <%# end %>
+      <p>イベントタイトル</p>
+      <p>イベント詳細はこちらイベント将来はこちら</p>
+    </div>
+
+
+    <div class="mypage-event-box">
+      <div class="mypage-event-image">
+      </div>
+      <p>イベントタイトル</p>
+      <p>イベント詳細はこちらイベント将来はこちら</p>
+    </div>
+  
+
+    <div class="mypage-event-box">
+      <div class="mypage-event-image">
+      </div>
+      <p>イベントタイトル</p>
+      <p>イベント詳細はこちらイベント将来はこちら</p>
+    </div>
+  
+
+    <div class="mypage-event-box">
+      <div class="mypage-event-image">
+      </div>
+      <p>イベントタイトル</p>
+      <p>イベント詳細はこちらイベント将来はこちら</p>
+    </div>
+
+    <div class="mypage-event-box">
+      <div class="mypage-event-image">
+      </div>
+      <p>イベントタイトル</p>
+      <p>イベント詳細はこちらイベント将来はこちら</p>
+    </div>
+
+  </div>
+
+
 
   <div class="edit_account-box2-kid clearfix">
-    <h4 class="center">開催確定</h4>
+    <h3 class="session-title center">審査中</h3>
     <div class="mypage-event-box">
       <div class="mypage-event-image">
       </div>
@@ -29,73 +77,39 @@
       <p>イベントタイトル</p>
       <p>イベント詳細はこちらイベント将来はこちら</p>
     </div>
-  
 
-    <div class="mypage-event-box">
-      <div class="mypage-event-image">
-      </div>
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
-  
-
-    <div class="mypage-event-box">
-      <div class="mypage-event-image">
-      </div>
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
-  
-
-    <div class="mypage-event-box">
-      <div class="mypage-event-image">
-      </div>
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
-  
-
-
-
-
-
-
-  </div>
-  
-
-   <div class="edit_account-box2-kid">
-    <h4 class="center">審査中</h4>
-    <div class="mypage-event-box">
-      <div class="mypage-event-image">
-      </div>
-    <%#= @events.each do |event| %>
-    <%# end %>
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
-
-    </div>
-
-  <div class="edit_account-box2-kid">
-    <h4 class="center">開催実績</h4>
-    <div class="mypage-event-box">
-      <div class="mypage-event-image">
-      </div>
-    <%#= @events.each do |event| %>
-    <%# end %>
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
-   
-    <div class="mypage-event-box">
-      <div class="mypage-event-image">
-      </div>
-    <%#= @events.each do |event| %>
-    <%# end %>
-      <p>イベントタイトル</p>
+     <div class="mypage-event-box">
+      <p style="padding-top:30px;">イベントタイトル</p>
       <p>イベント詳細はこちらイベント将来はこちら</p>
     </div>
 
   </div>
 
+  <div class="edit_account-box2-kid clearfix">
+    <h4 class="session-title center">開催履歴</h4>
+    <div class="mypage-event-past-box">
+      <p>イベントタイトル</p>
+      <p>イベント詳細はこちらイベント将来はこちら</p>
+    </div>
+    <div class="mypage-event-past-box">
+      <p>イベントタイトル</p>
+      <p>イベント詳細はこちらイベント将来はこちら</p>
+    </div>
+    <div class="mypage-event-past-box">
+      <p>イベントタイトル</p>
+      <p>イベント詳細はこちらイベント将来はこちら</p>
+    </div>
+    <div class="mypage-event-past-box">
+      <p>イベントタイトル</p>
+      <p>イベント詳細はこちらイベント将来はこちら</p>
+    </div>
+    <a class="center">詳細はこちら</a>
+
+
+
+  </div>
+
+
+    </div>
+  </div>
 </div>

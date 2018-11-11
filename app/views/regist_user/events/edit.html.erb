@@ -1,3 +1,128 @@
+<div class="session-visual2">
+  <div class="message-main-box">
+
+  	<div class="edit_account-box2-kid clearfix">
+      <h2 class="session-title center">スペース使用変更<br>許可申請</h2>
+
+      <%= form_with(model: @event, local: true) do |form| %>
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+      <% @event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field column-top">
+    <h4 class="session-title center"><%= form.label :start_time, "使用時間" %></h4>
+    <div class="center"><%= form.datetime_select :start_time %><span>〜</span> <%= form.datetime_select :finish_time %>
+    </div>
+  </div>
+
+  <div class="field column-top center">
+    <h4 class="session-title"><%= form.label :title, "タイトル" %></h4>
+    <%= form.text_field :title, class:"input-size" %>
+  </div>
+
+  <div class="field column-top center">
+    <h4 class="session-title"><%= form.label :content, "イベントの詳細を説明してください" %></h4>
+    <%= form.text_area :content, class:"input-size" %>
+  </div>
+
+  <div class="field column-top center">
+    <h4 class="session-title center"><%= form.label :participant, "参加人数" %></h4>
+    <%= form.number_field :participant %>
+  </div>
+
+  <div class="field column-top center">
+    <h4 class="session-title center"><%= form.label :event_image_id, "画像、チラシ添付" %></h4>
+    <%= form.number_field :event_image_id %>
+  </div>
+
+  
+
+
+
+<div class="column-top"></div>
+
+  <ul class="nav nav-tabs center" role="tablist">
+    <li class="active" role="presentation">
+      <a aria-controls="tab_a" data-toggle="tab" href="#tab_a" role="tab">一階</a>
+    </li>
+    <li role="presentation">
+      <a aria-controls="tab_b" data-toggle="tab" href="#tab_b" role="tab">二階</a>
+    </li>
+  </ul>
+
+  
+
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab_a" role="tabpanel">
+      <div id="first-floor">
+        <div id="desk1">
+          <div class="desk-number">1</div>
+        </div>
+        <div id="desk2">
+          <div class="desk-number">2</div>
+        </div>
+        <div id="desk3">
+          <div class="desk-number">3</div>
+        </div>
+        <div id="desk4">
+          <div class="desk-number">4</div>
+        </div>
+        <div id="desk5">
+          <div class="desk-number">5</div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane" id="tab_b" role="tabpanel">
+        <!-- 2階のコンテンツ -->
+      <div id="second-floor">
+        <div id="desk6">
+          <div class="desk-number">6</div>
+        </div>
+        <div id="desk7">
+          <div class="desk-number">7</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>
+
+  <div class="column-top center">
+
+    <%= form.submit "変更申請をする", :class=>"square_btn navy" %>
+    <%= form.submit "この申請をキャンセルする", :class=>"square_taikai_btn taikai left" %>
+<% end %>
+    <%= link_to "戻る", :back, class:"square_btn left" %>
+
+
+  </div>
+
+
+
+  </div>
+</div>
+
+
+  <%#= form_with(model: @past_event, local: true) do |form| %>
+
+
+
+
+
+
+
+
+
 <h1>Editing Event</h1>
 
 <%= render 'form', event: @event %>

@@ -1,0 +1,29 @@
+<div class="session-visual3">
+  <!-- <div class="message-main-box"> -->
+  
+  <div class="baloon center">
+
+    <h4 class="session-title"><日時></h4>
+    <%= @event.start_time.hour %>時<%= @event.start_time.min %><span>〜</span><%= @event.finish_time.hour %>時<%= @event.finish_time.min %>分<br><br>
+    <h4 class="session-title"><タイトル></h4>
+    <h2 class="session-title"><%= @event.title %></h2><br>
+    <h4 class="session-title"><主催></h4>
+    <p><%= @event.regist_user.regist_name %>さん</p><br>
+    <h4 class="session-title"><詳細></h4>
+    <%= @event.content %>
+
+
+    <%= form_for [:admin, @event] do |f| %>
+      <%= f.text_area :admin_message %>
+　　 <% end %>
+    <div class="column-top center">
+      <%= link_to "承認する", :back, class:"square_btn green" %>
+      <%= link_to "否認する", :back, class:"square_btn left red" %>
+      <%= link_to "戻る", :back, class:"square_btn left" %>
+    <!--ラジオボタン で承認とか否認してsubmitボタンは1個にするか？-->
+    </div>
+
+  </div>
+
+  <!-- </div> -->
+</div>

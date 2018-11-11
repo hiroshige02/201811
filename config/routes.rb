@@ -23,21 +23,23 @@ devise_for :admins, controllers: {
       #resources :attendances
      # resources :desks
       resources :desk_events
-      resources :events
-      resources :regist_users
+      resources :events do
+         member do
+           get 'check'
+         end
+       end
       resources :regist_users
   end
 
     namespace :regist_user do
     resources :board_messages
-    resources :past_events
+    resources :past_events, only: [:show, :index]
    # resources :equipment_events
     #resources :attendances
     #resources :desks
     resources :desk_events
-    resources :events
-    resources :users, only: [:show]
-    resources :regist_users, only: [:show, :index]
+    resources :events, only: [:new, :create, :edit, :show, :destroy]
+    #esources :users, only: [:show]
   end
 
   #resources :board_messages
@@ -50,12 +52,12 @@ devise_for :admins, controllers: {
     collection do
       get 'first'
       get 'top'
+      get 'next_month'
     end
   end
 
   resources :regist_users, :only => [:index, :show]
-
-  get '/users/:id/taikai', to: 'users#taikai', as: 'taikai'
+  resources :admins, :only => [:show]
   get '/regist_users/:id/taikai', to: 'regist_users#taikai', as: 'regist_user_taikai'
   # get '/events/top', to: 'events#top', as: 'top'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
