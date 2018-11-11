@@ -15,6 +15,7 @@ class RegistUser::EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    # ↑テスト用
   end
 
   # GET /events/1/edit

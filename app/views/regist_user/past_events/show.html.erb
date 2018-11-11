@@ -1,44 +1,22 @@
-<p id="notice"><%= notice %></p>
+<div class="session-visual3">
+  <!-- <div class="message-main-box"> -->
+  
+  <div class="baloon center">
 
-<p>
-  <strong>Past start time:</strong>
-  <%= @past_event.past_start_time %>
-</p>
+    <h4 class="session-title"><日時></h4>
+    <%= @past_event.past_start_time %><span>〜</span><%= @past_event.past_start_time %><br>
+    <h4 class="session-title"><タイトル></h4>
+    <h2 class="session-title"><%= @past_event.past_title %></h2>
+    <h4 class="session-title"><主催></h4><br>
+    <p><%= @past_event.past_name %></p><br>
+    <h4 class="session-title"><詳細></h4>
+    <%= @past_event.past_content %>
 
-<p>
-  <strong>Past finish time:</strong>
-  <%= @past_event.past_finish_time %>
-</p>
+    <div class="column-top center">
+      <%= link_to "戻る", :back, class:"square_btn" %>
+    </div>
 
-<p>
-  <strong>Past title:</strong>
-  <%= @past_event.past_title %>
-</p>
+  </div>
 
-<p>
-  <strong>Past content:</strong>
-  <%= @past_event.past_content %>
-</p>
-
-<p>
-  <strong>Past name:</strong>
-  <%= @past_event.past_name %>
-</p>
-
-<p>
-  <strong>Past user mail address:</strong>
-  <%= @past_event.past_user_mail_address %>
-</p>
-
-<p>
-  <strong>Past participant:</strong>
-  <%= @past_event.past_participant %>
-</p>
-
-<p>
-  <strong>Past event image:</strong>
-  <%= @past_event.past_event_image_id %>
-</p>
-
-<%= link_to 'Edit', edit_past_event_path(@past_event) %> |
-<%= link_to 'Back', past_events_path %>
+  <!-- </div> -->
+</div>

@@ -1,6 +1,30 @@
-<h1>Editing Past Event</h1>
+<div class="session-visual3">
+  <!-- <div class="message-main-box"> -->
 
-<%= render 'form', past_event: @past_event %>
+  <div class="baloon center">
 
-<%= link_to 'Show', @past_event %> |
-<%= link_to 'Back', past_events_path %>
+   <%= form_for [:admin, @past_event] do |f| %>
+    <h4 class="session-title"><日時></h4>
+    <%= f.text_field :past_start_time %><span>〜</span><%= f.text_field :past_finish_time %>
+    <h4 class="session-title"><タイトル></h4>
+    <h2 class="session-title"><%= f.text_field :past_title %></h2><br>
+    <h4 class="session-title"><主催></h4>
+    <p><%= f.text_field :past_name %>さん</p><br>
+    <h4 class="session-title"><詳細></h4>
+    <%= f.text_area :past_content %><br>
+    <%#= f.attachment_tag %>
+    <!-- 画像添付ができるようにする -->
+    <div class="column-top">
+      <%= f.submit "更新", class:"square_btn green" %>
+　　   <%= link_to "削除", admin_past_events_path(@past_event.id), class:"square_taikai_btn left", method: :delete, "data-confirm" => "本当に削除しますか?" %>
+      <%= link_to "戻る", :back, class:"square_btn left" %>
+　　 <% end %>
+    </div>
+
+    <!--ラジオボタン で承認とか否認してsubmitボタンは1個にするか？-->
+    </div>
+
+  </div>
+
+  <!-- </div> -->
+</div>

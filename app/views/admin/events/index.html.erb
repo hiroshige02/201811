@@ -1,45 +1,46 @@
-<p id="notice"><%= notice %></p>
+<div class="session-visual3">
+   <div class="message-main-box">
+     <div class="months-box">
+      <p>2018<br>11月<br>12月<br><br>2019<br>1月
 
-<h1>Events</h1>
+    </div>
+    <div class="account-box">
+      <h2 class="session-title center">管理者　開催予定一覧</h2>
+      <div class="clearfix">
+      <div class="mypage-event-past-box">
+        <p>2018/12/1</p>
+        <p>イベントタイトル</p>
+        <p>葛木さん</p>
+      </div>
+      <div class="mypage-event-past-box">
+        <p>2018/12/1</p>
+        <p>イベントタイトル</p>
+        <p>葛木さん</p>
+      </div>
+      <div class="mypage-event-past-box">
+        <p>2018/12/1</p>
+        <p>イベントタイトル</p>
+        <p>葛木さん</p>
+      </div>
+      <div class="mypage-event-past-box">
+        <p>2018/12/1</p>
+        <p>イベントタイトル</p>
+        <p>葛木さん</p>
+      </div>
+      <div class="mypage-event-past-box">
+        <p>2018/12/1</p>
+        <p>イベントタイトル</p>
+        <p>葛木さん</p>
+      </div>
+      </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Start time</th>
-      <th>Finish time</th>
-      <th>Title</th>
-      <th>Regist user</th>
-      <th>Content</th>
-      <th>Admin ok</th>
-      <th>Admin message</th>
-      <th>Admin no</th>
-      <th>Participand</th>
-      <th>Event image</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <div class="column-top center block">
+      <%= link_to "戻る", :back, class:"square_btn" %>
+    </div>
 
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.start_time %></td>
-        <td><%= event.finish_time %></td>
-        <td><%= event.title %></td>
-        <td><%= event.regist_user_id %></td>
-        <td><%= event.content %></td>
-        <td><%= event.admin_ok %></td>
-        <td><%= event.admin_message %></td>
-        <td><%= event.admin_no %></td>
-        <td><%= event.participand %></td>
-        <td><%= event.event_image_id %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
+  </div>
+  </div>
+</div>
 
-<%= link_to 'New Event', new_event_path %>
+

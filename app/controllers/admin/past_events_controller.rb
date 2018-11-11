@@ -10,6 +10,7 @@ class Admin::PastEventsController < ApplicationController
   # GET /past_events/1
   # GET /past_events/1.json
   def show
+    @past_event =PastEvent.find(params[:id])
   end
 
   # GET /past_events/new

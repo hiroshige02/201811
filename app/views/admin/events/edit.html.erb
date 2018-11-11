@@ -1,6 +1,32 @@
-<h1>Editing Event</h1>
 
-<%= render 'form', event: @event %>
+<div class="session-visual3">
+  <!-- <div class="message-main-box"> -->
 
-<%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>
+  <div class="baloon center">
+
+   <%= form_for [:admin, @event] do |f| %>
+    <h4 class="session-title"><日時></h4>
+    <%= f.text_field :start_time %><span>〜</span><%= f.text_field :finish_time %>
+    <h4 class="session-title"><タイトル></h4>
+    <h2><%= f.text_field :title %></h2><br>
+    <h4 class="session-title"><主催></h4>
+    <p><%= @event.regist_user.regist_name %>さん</p><br>
+    <h4 class="session-title"><詳細></h4>
+    <%= f.text_area :content %><br>
+    
+    <%#= f.attachment_tag %>
+    <!-- 画像添付ができるようにする -->
+    <div class="column-top">
+    <%= f.submit "更新", class:"square_btn green" %>
+    <%= link_to "削除", admin_events_path(@event.id), class: "square_taikai_btn left", method: :delete, "data-confirm" => "本当に削除しますか?" %>
+    <%= link_to "戻る", :back, class:"square_btn left" %>
+　　 <% end %>
+    </div>
+
+    <!--ラジオボタン で承認とか否認してsubmitボタンは1個にするか？-->
+    </div>
+
+  </div>
+
+  <!-- </div> -->
+</div>

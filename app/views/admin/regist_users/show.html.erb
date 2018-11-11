@@ -1,0 +1,114 @@
+
+ <div class="session-visual">
+  <div class="message-main-box">
+
+
+  <div class="name-area clearfix">
+    <div class="test-regist-image">
+    </div>
+  <!-- <div class='arrow_box'><%%= current_regist_user.introduction %></div> -->
+    <div class="name-area-text">
+      <h1 class=""><%= @regist_user.regist_name %>さん</h1>
+      <h4 class=""><%= link_to "このユーザーに連絡をする", new_regist_user_event_path %></h4>
+      <%= link_to "このユーザーを退会させる", admin_regist_user_path(@regist_user), data: { confirm: "本当によろしいですか?" }, class:"square_taikai_btn button-top", method: :delete %>
+    </div>
+  </div>
+
+    <div class="edit_account-box2-kid clearfix">
+  
+      <h3 class="session-title center" style="display:block;">開催確定</h3>
+      <div class="mypage-event-box">
+        <div class="mypage-event-image">
+        </div>
+    <%#= @events.each do |event| %>
+    <%# end %>
+        <p>イベントタイトル</p>
+        <p>イベント詳細はこちらイベント将来はこちら</p>
+      </div>
+
+
+    <div class="mypage-event-box">
+      <div class="mypage-event-image">
+      </div>
+      <p>イベントタイトル</p>
+      <p>イベント詳細はこちらイベント将来はこちら</p>
+    </div>
+  
+
+    <div class="mypage-event-box">
+      <div class="mypage-event-image">
+      </div>
+      <p>イベントタイトル</p>
+      <p>イベント詳細はこちらイベント将来はこちら</p>
+    </div>
+  
+
+    <div class="mypage-event-box">
+      <div class="mypage-event-image">
+      </div>
+      <p>イベントタイトル</p>
+      <p>イベント詳細はこちらイベント将来はこちら</p>
+    </div>
+
+    <div class="mypage-event-box">
+      <div class="mypage-event-image">
+      </div>
+      <p>イベントタイトル</p>
+      <p>イベント詳細はこちらイベント将来はこちら</p>
+    </div>
+
+  </div>
+
+
+
+  <div class="edit_account-box2-kid clearfix">
+    <h3 class="session-title center">審査中</h3>
+    <div class="mypage-event-box">
+      <div class="mypage-event-image">
+      </div>
+    <%#= @events.each do |event| %>
+    <%# end %>
+      <p>イベントタイトル</p>
+      <p>イベント詳細はこちらイベント将来はこちら</p>
+    </div>
+
+
+    <div class="mypage-event-box">
+      <div class="mypage-event-image">
+      </div>
+      <p>イベントタイトル</p>
+      <p>イベント詳細はこちらイベント将来はこちら</p>
+    </div>
+
+    <div class="mypage-event-box">
+      <p style="padding-top:30px;">イベントタイトル</p>
+      <p>イベント詳細はこちらイベント将来はこちら</p>
+    </div>
+
+  </div>
+
+  <div class="edit_account-box2-kid clearfix">
+    <h4 class="session-title center">開催履歴</h4>
+    <div class="mypage-event-past-box">
+      <p>イベントタイトル</p>
+      <p>イベント詳細はこちらイベント将来はこちら</p>
+    </div>
+    <div class="mypage-event-past-box">
+      <p>イベントタイトル</p>
+      <p>イベント詳細はこちらイベント将来はこちら</p>
+    </div>
+    <div class="mypage-event-past-box">
+      <p>イベントタイトル</p>
+      <p>イベント詳細はこちらイベント将来はこちら</p>
+    </div>
+    <div class="mypage-event-past-box">
+      <p>イベントタイトル</p>
+      <p>イベント詳細はこちらイベント将来はこちら</p>
+    </div>
+    <a class="center">詳細はこちら</a>
+  </div>
+
+
+    </div>
+  </div>
+</div>

@@ -1,41 +1,38 @@
-<p id="notice"><%= notice %></p>
+<div class="session-visual">
+  <div class="message-main-box">
+    <div class="account-box">
 
-<h1>Past Events</h1>
+  <table class="table table-hover">
+        <thead>
+          <h2 class="session-title center">
+  <%#= @regist_user.regist_name %>dさんの開催実績
+</h2>
+        </thead>
+        <tbody class="center">
+          <%# @regist_user.past_events each do |past_event| %>
+            <!-- <tr>
+              <td><%#= past_event.title %></td>
+            </tr> -->
+          <%#end %>
+         
 
-<table>
-  <thead>
-    <tr>
-      <th>Past start time</th>
-      <th>Past finish time</th>
-      <th>Past title</th>
-      <th>Past content</th>
-      <th>Past name</th>
-      <th>Past user mail address</th>
-      <th>Past participant</th>
-      <th>Past event image</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+          <tr>
+            <td>ああああああああああああ</td>
+          </tr>
+          <tr>
+            <td>ああああああああああああ</td>
+          </tr>
+          <tr>
+            <td>ああああああああああああ</td>
+          </tr>
 
-  <tbody>
-    <% @past_events.each do |past_event| %>
-      <tr>
-        <td><%= past_event.past_start_time %></td>
-        <td><%= past_event.past_finish_time %></td>
-        <td><%= past_event.past_title %></td>
-        <td><%= past_event.past_content %></td>
-        <td><%= past_event.past_name %></td>
-        <td><%= past_event.past_user_mail_address %></td>
-        <td><%= past_event.past_participant %></td>
-        <td><%= past_event.past_event_image_id %></td>
-        <td><%= link_to 'Show', past_event %></td>
-        <td><%= link_to 'Edit', edit_past_event_path(past_event) %></td>
-        <td><%= link_to 'Destroy', past_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
   </tbody>
 </table>
 
-<br>
+<div class="column-top center">
+    <%= link_to "戻る", :back, class:"square_btn" %>
+  </div>
 
-<%= link_to 'New Past Event', new_past_event_path %>
+    </div>
+  </div>
+</div>
