@@ -21,6 +21,27 @@
     <h4 class="session-title center"><%= form.label :start_time, "使用時間" %></h4>
     <div class="center"><%= form.datetime_select :start_time %><span>〜</span> <%= form.datetime_select :finish_time %>
     </div>
+
+
+
+
+<div class="center"><%= form.time_field :start_time %></div>
+
+<div class="center"><%= form.date_field :start_time %></div>
+
+<div class="center"><%= form.date_field :start_time %></div>
+
+<div class="center"><%= form.datetime_field :start_time %></div>
+
+<div class="center"><%= form.week_field :start_time %></div>
+
+<div class="center"><%= form.datetime_local_field :start_time %></div>
+
+<div class="center"><%= form.month_field :start_time %></div>
+
+
+
+
   </div>
 
   <div class="field column-top center">
@@ -35,7 +56,7 @@
 
   <div class="field column-top center">
     <h4 class="session-title center"><%= form.label :participant, "参加人数" %></h4>
-    <%= form.number_field :participant %>
+    <%= form.number_field :participant %> 人
   </div>
 
   <div class="field column-top center">

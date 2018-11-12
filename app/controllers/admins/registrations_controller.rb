@@ -5,7 +5,7 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   before_action :configure_account_update_params, only: [:update]
 
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:admin_name, :admin_name_kana, :admin_profile_image_id, :admin_tel_number])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:admin_name, :admin_name_kana, :admin_tel_number])
   end
   # GET /resource/sign_up
   # def new
@@ -62,4 +62,6 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+
 end

@@ -2,7 +2,7 @@
   <div class="message-main-box clearfix">
 　　
   <div class="column-top">
-  <%= link_to "来月の予定はこちら", regist_user_taikai_path(current_regist_user.id), class:"square_btn" %>
+  <%= link_to "来月の予定はこちら", next_month_events_path, class:"square_btn" %>
   </div>
     <div class="account-box">
 
@@ -65,5 +65,10 @@
 </div>
   
   </div>
-</div>
+
+  <div class="column-top block center">
+    <%= link_to "戻る", :back, class:"square_btn center" %>
+  </div>
+
+  </div>
 </div>

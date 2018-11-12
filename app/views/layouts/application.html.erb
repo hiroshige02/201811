@@ -10,47 +10,49 @@
 
 
 
-
-
-
   <% if admin_signed_in? %>
 
   <ul class="nav">
-    <li><a href="#">サイトトップ</a></li>
-    <li><a href="#">開催イベント</a></li>
-    <li><a href="#">イベント履歴</a></li>
-    <li><a href="#">登録ユーザー</a></li>
-    <li><a href="#">ログアウト</a></li>
+    <li><%= link_to "サイトトップ", top_events_path %></li>
+    <li><%= link_to "管理者ページ", admin_path(current_admin.id) %></li>
+    <li><%= link_to "開催予定" %>
+      <ul>
+        <li><%= link_to "ユーザー向け", events_path %></li>
+        <li><%= link_to "管理者用", admin_events_path %></li>
+      </ul>
+    </li>
+    <li><%= link_to "開催履歴" %>
+      <ul>
+        <li><%= link_to "ユーザー向け", past_events_path %></li>
+        <li><%= link_to "管理者用", admin_past_events_path %></li>
+      </ul>
+    </li>
+    <li><%= link_to "ユーザー一覧", regist_users_path %></li>
+
+    <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
   </ul>
-  
 
   <% elsif regist_user_signed_in? %>
-    <ul class="nav">
-    <li><a href="#">サイトトップ</a></li>
-    <li><a href="#">開催イベント</a></li>
-    <li><a href="#">イベント履歴</a></li>
-    <li><a href="#">登録ユーザー</a></li>
-    <li><a href="#">ログアウト</a></li>
-  </ul>
-  
-  <% elsif user_signed_in? %>
   <ul class="nav">
-    <li><a href="#">開催イベント</a></li>
-    <li><a href="#">イベント履歴</a></li>
-    <li><a href="#">登録ユーザー</a></li>
-    <li><a href="#">ログアウト</a></li>
+    <li><%= link_to "サイトトップ", top_events_path %></li>
+    <li><%= link_to "マイページ", regist_user_path(current_regist_user.id) %></li>
+    <li><%= link_to "ログアウト", destroy_regist_user_session_path, method: :delete %></li>
+    <li></li>
   </ul>
 
 　<% else %>
   <ul class="nav">
-    <li><a href="#">サイトトップ</a></li>
-    <li><a href="#">初めての方へ</a></li>
-    <li><a href="#">開催イベント履歴</a></li>
-    <li><a href="#">アクセス</a></li>
-    <li><a href="#">サインイン</a></li>
+    <li><%= link_to "サイトトップ", top_events_path %></li>
+    <li><%= link_to "初めての方へ", first_events_path %></li>
+    <li><%= link_to "開催予定", events_path %></li>
+    <li><%= link_to "開催履歴", past_events_path %></li>
+    <li><%= link_to "ログイン", new_regist_user_session_path %>
+      <ul>
+          <li><%= link_to "主催の方はこちら", new_regist_user_session_path %></li>
+          <li><%= link_to "管理者はこちら", new_admin_session_path %></li>
+      </ul>
+    </li>
   </ul>
-
-<!--nav--></ul>
 
 <% end %>
 
