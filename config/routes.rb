@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+
+root 'events#top'
 devise_for :admins, controllers: {
     sessions:       'admins/sessions',
     passwords:      'admins/passwords',
@@ -11,13 +13,8 @@ devise_for :admins, controllers: {
     registrations: 'regist_users/registrations'
   }
 
-  devise_for :users, controllers: {
-    sessions:      'users/sessions',
-    passwords:     'users/passwords',
-    registrations: 'users/registrations'
-  }
+
     namespace :admin do
-      resources :board_messages
       resources :past_events
       #resources :equipment_events
       #resources :attendances
@@ -32,11 +29,10 @@ devise_for :admins, controllers: {
   end
 
     namespace :regist_user do
-    resources :board_messages
     resources :past_events, only: [:show, :index]
    # resources :equipment_events
     #resources :attendances
-    #resources :desks
+    resources :desks
     resources :desk_events
     resources :events, only: [:new, :create, :edit, :show, :destroy]
     #esources :users, only: [:show]

@@ -49,13 +49,11 @@
 
   <div class="column-top">
     <%= f.submit "更新する", class:"square_btn" %>
-    <%= link_to "戻る", :back, class:"square_btn" %>
+    <%= link_to "戻る", :back, class:"square_btn left" %>
   </div>
 <% end %>
 
 <div class="column-top">
- <%= link_to "ログアウト(メンテ用)", destroy_admin_session_path, method: :delete  %>
-
 <%= link_to "退会の方はこちら", admin_registration_path, class:"square_taikai_btn", method: :delete, "data-confirm" => "本当に退会しますか？" %>
 </div>
 

@@ -1,2 +1,0 @@
-class BoardMessage < ApplicationRecord
-end

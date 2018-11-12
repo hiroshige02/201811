@@ -1,2 +1,0 @@
-class EquipmentEvent < ApplicationRecord
-end
