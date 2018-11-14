@@ -34,7 +34,11 @@ devise_for :admins, controllers: {
     #resources :attendances
     resources :desks
     resources :desk_events
-    resources :events, only: [:new, :create, :edit, :show, :destroy]
+    resources :events do
+      collection do
+        get 'pulldown'
+      end
+    end
     #esources :users, only: [:show]
   end
 
