@@ -4,67 +4,183 @@
   	<div class="edit_account-box2-kid clearfix">
       <h2 class="session-title center">スペース使用申請</h2>
 
-      <%= form_with(model: @event, local: true) do |form| %>
-  <% if @event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+      <%= form_for([:regist_user, @event]) do |f| %>
+        <% if @event.errors.any? %>
+          <div id="error_explanation">
+          <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
-      <ul>
-      <% @event.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+          <ul>
+            <% @event.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+          </div>
+        <% end %>
 
-  <div class="field column-top">
-    <h4 class="session-title center"><%= form.label :start_time, "使用時間" %></h4>
-    <div class="center"><%= form.datetime_select :start_time %><span>〜</span> <%= form.datetime_select :finish_time %>
-    </div>
+        <div class="field column-top">
+          <h4 class="session-title center"><%= f.label :start_time, "使用時間" %></h4>
+    <!-- <div class="center"><%#= form.datetime_select :start_time %><span>〜</span> <%#= form.datetime_select :finish_time %> -->
+        </div>
 
+    <%# d = Date.new(2015, 2, 2, 0) %>
+<%#binding. pry%>
+　　     <% today = Date.today %>
+        <% month = today.month %>
+        <% n_month = month + 1 %>
+        <% n_n_month = month + 2 %>
 
+    <% if month = 11 %>
+      <% n_n_month = 1 %>
+      <%# today.year = 1 %>
+      <% elsif month = 12 %>
+        <% n_month = 1 %>
+        <% n_n_month = 2 %>
+    <% end %>
 
-
-<div class="center"><%= form.time_field :start_time %></div>
-
-<div class="center"><%= form.date_field :start_time %></div>
-
-<div class="center"><%= form.date_field :start_time %></div>
-
-<div class="center"><%= form.datetime_field :start_time %></div>
-
-<div class="center"><%= form.week_field :start_time %></div>
-
-<div class="center"><%= form.datetime_local_field :start_time %></div>
-
-<div class="center"><%= form.month_field :start_time %></div>
-
-
+    <%# x = @x.to_i; %>
 
 
+   <%= select_tag 'a', options_for_select(["", month, n_month, n_n_month]), class:"a", :selected =>"" %>月
+   <%#= select_tag 'b', options_for_select(((1..x).to_a)), class:"b", :selected => "" %>
+   <%= select_tag 'c', options_for_select(((10..21).to_a)), class:"c" %>時 〜
+   <%= select_tag 'd', options_for_select(((11..22.to_i).to_a)), class:"c" %>時
+　　
+    <p class="moji"></p>
+
+
+
+
+
+
+      <script>
+        $(function(){
+          $('.a').change(function() {
+
+          var a = $(this).val();
+          alert(a)
+
+             $.ajax({
+               url: "/regist_user/events/pulldown",
+               type: "GET",
+               data: {"month": a},
+               success: function(data) {
+               // success: function(data) {
+                alert("success!");
+                alert(data);
+                <% x = @x.to_i; %>
+                <%= select_tag 'b', options_for_select(((1..x).to_a)), class:"b", :selected => "" %>
+               },
+               error: function(data) {
+                alert("failed!");
+               }
+             // });
+
+
+            // var x = $(this).val();
+            //  $('.moji').text(x);
+              });
+        });
+        });
+      </script>
+
+
+
+
+
+
+
+
+
+
+      <%#= select_tag 'b', options_for_select(((1..x).to_a)), class:"b", :selected => ""  %>
+
+   <!--  <p>jQuery稼働テスト(未稼働)</p>
+      <script type="text/javascript">
+      $(document).ready(function() {
+          $("p").text("jQUery稼働テスト(稼働中)");
+         });
+
+    </script> -->
+
+
+<!-- //         (function($){
+//   function formSetDay(){
+//     var lastday = formSetLastDay($('.js-changeYear').val(), $('.js-changeMonth').val());
+//     var option = '';
+//     for (var i = 1; i <= lastday; i++) {
+//       if (i === $('.js-changeDay').val()){
+ //         option += '<option value="' + i + '" selected="selected">' + i + '</option>\n';
+//       }else{
+//         option += '<option value="' + i + '">' + i + '</option>\n';
+//       }
+//     }
+//     $('.js-changeDay').html(option);
+//   }
+
+//   function formSetLastDay(year, month){
+//     var lastday = new Array('', 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+//     if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0){
+//       lastday[2] = 29;
+//     }
+//     return lastday[month];
+//   }
+
+//   $('.js-changeYear, .js-changeMonth').change(function(){
+//     formSetDay();
+//   });
+// })(jQuery); -->
+
+
+
+<!--
+      <script>
+        $(function(){
+          $('#a').change(function(
+            var y = $(' option:selected');
+            )
+        })
+      </script>
+
+
+
+
+
+<div class="center"><%#= form.time_field :start_time %></div>
+
+<div class="center"><%#= form.date_field :start_time %></div>
+
+<div class="center"><%#= form.date_field :start_time %></div>
+
+<div class="center"><%#= form.datetime_field :start_time %></div>
+
+<div class="center"><%#= form.week_field :start_time %></div>
+
+<div class="center"><%#= form.datetime_local_field :start_time %></div> -->
+
+
+
+
+
+  <div class="field column-top center">
+    <h4 class="session-title"><%= f.label :title, "タイトル" %></h4>
+    <%= f.text_field :title, class:"input-size" %>
   </div>
 
   <div class="field column-top center">
-    <h4 class="session-title"><%= form.label :title, "タイトル" %></h4>
-    <%= form.text_field :title, class:"input-size" %>
+    <h4 class="session-title"><%= f.label :content, "イベントの詳細を説明してください" %></h4>
+    <%= f.text_area :content, class:"input-size" %>
   </div>
 
   <div class="field column-top center">
-    <h4 class="session-title"><%= form.label :content, "イベントの詳細を説明してください" %></h4>
-    <%= form.text_area :content, class:"input-size" %>
+    <h4 class="session-title center"><%= f.label :participant, "参加人数" %></h4>
+    <%= f.number_field :participant %> 人
   </div>
 
   <div class="field column-top center">
-    <h4 class="session-title center"><%= form.label :participant, "参加人数" %></h4>
-    <%= form.number_field :participant %> 人
+    <h4 class="session-title"><%= f.label :event_image, "画像、チラシ添付" %></h4>
+     <%#= attachment_image_tag @regist_user, :profile_image, :fill, 150, 150, class:"test-regist-image" %>
+    <%= f.attachment_field :event_image, class:"margin", placeholder:"宣伝用画像" %>
   </div>
-
-  <div class="field column-top center">
-    <h4 class="session-title center"><%= form.label :event_image_id, "画像、チラシ添付" %></h4>
-    <%= form.number_field :event_image_id %>
-  </div>
-
-  
 
 
 
@@ -79,7 +195,6 @@
     </li>
   </ul>
 
-  
 
   <div class="tab-content">
     <div class="tab-pane active" id="tab_a" role="tabpanel">
@@ -119,18 +234,17 @@
 </div>
 
   <div class="column-top center">
-
-    <%= form.submit "使用申請をする", :class=>"square_btn navy" %>
-<% end %>
+    <%= f.submit "使用申請をする", :class=>"square_btn navy" %>
     <%= link_to "戻る", :back, class:"square_btn left" %>
-
-
   </div>
 
 
 
+<% end %>
   </div>
 </div>
+
+
 
 
   <%#= form_with(model: @past_event, local: true) do |form| %>
