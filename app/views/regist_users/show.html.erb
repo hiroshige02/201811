@@ -3,8 +3,7 @@
 
 
 <div class="name-area clearfix">
-  <div class="test-regist-image">
-  </div>
+    <%= attachment_image_tag @regist_user, :profile_image, fallback: "no_image.jpg", class:"test-regist-image" %>
   <!-- <div class='arrow_box'><%%= current_regist_user.introduction %></div> -->
   <div class="name-area-text">
     <h1 class=""><%= current_regist_user.regist_name %>さん</h1>
@@ -39,7 +38,6 @@
       <p>イベントタイトル</p>
       <p>イベント詳細はこちらイベント将来はこちら</p>
     </div>
-  
 
     <div class="mypage-event-box">
       <div class="mypage-event-image">
@@ -60,14 +58,14 @@
 
 
   <div class="edit_account-box2-kid clearfix">
-    <h3 class="session-title center">審査中</h3>
+    <h3 class="session-title center">承認待ち</h3>
     <div class="mypage-event-box">
       <div class="mypage-event-image">
       </div>
-    <%#= @events.each do |event| %>
+    <%= @events.each do |event| %>
     <%# end %>
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
+      <%= event.title %><br>
+      <%= event.content %><br>
     </div>
 
 

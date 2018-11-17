@@ -20,7 +20,7 @@
         <% end %>
 
         <div class="field column-top">
-          <h4 class="session-title center"><%= f.label :start_time, "使用時間" %></h4>
+          <h4 class="session-title center"><%= f.label :start_time, "使用日時" %></h4>
     <!-- <div class="center"><%#= form.datetime_select :start_time %><span>〜</span> <%#= form.datetime_select :finish_time %> -->
         </div>
 
@@ -41,12 +41,12 @@
 
     <%# x = @x.to_i; %>
 
-
+  <div class="center">
    <%= select_tag 'a', options_for_select(["", month, n_month, n_n_month]), class:"a", :selected =>"" %>月
    <%= select_tag 'b', options_for_select(((1..31).to_a)), class:"b", :selected => "" %>日
    <%= select_tag 'c', options_for_select(((10..21).to_a)), class:"c" %>時 〜
    <%= select_tag 'd', options_for_select(((11..22.to_i).to_a)), class:"c" %>時
-　　
+　</div>
     <p class="moji"></p>
     <div id="render"></div>
 
@@ -220,7 +220,13 @@
           <%= f.radio_button :desk, 5 %>
           <div class="desk-number">5</div>
         </div>
+
+        <%= f.radio_button :desk, 8 %>
+        <p>テーブル1と2を借りる</p>
+
       </div>
+
+
     </div>
     <div class="tab-pane" id="tab_b" role="tabpanel">
         <!-- 2階のコンテンツ -->
