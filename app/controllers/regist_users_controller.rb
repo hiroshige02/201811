@@ -12,5 +12,6 @@ class RegistUsersController < ApplicationController
 
   def show
   	@regist_user = RegistUser.find(params[:id])
+    @events = Event.where(regist_user_id: @regist_user.id)
   end
 end
