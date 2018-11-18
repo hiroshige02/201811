@@ -1,5 +1,5 @@
 <div class="session-visual">
-  <div class="message-main-box">
+  <div class="message-main-box clearfix">
 
 
 
@@ -7,49 +7,38 @@
 
   <div class="edit_account-box2-kid clearfix">
     <h3 class="session-title center">新規起案</h3>
-    <div class="mypage-event-box">
+     <% @events.each do |event| %>
+     <%= link_to check_admin_event_path(event.id) do %>
+      <div class="mypage-event-box">
 
-    <%#= @events.each do |event| %>
-    <%# end %>
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
+        <%= attachment_image_tag event, :event_image, class:"mypage-event-image" %>
+        <div class="non-deco">
+        <%= event.title %><br>
+        <%= event.content %><br>
+        </div>
 
-
-    <div class="mypage-event-box">
-      <div class="mypage-event-image">
       </div>
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
-  
-
-    <div class="mypage-event-box">
-      <div class="mypage-event-image">
-      </div>
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
-  
-
-    <div class="mypage-event-box">
-      <div class="mypage-event-image">
-      </div>
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
-
-    <div class="mypage-event-box">
-      <div class="mypage-event-image">
-      </div>
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
-
+      <% end %>
+    <% end %>
   </div>
-
   <div class="edit_account-box2-kid clearfix">
     <h4 class="session-title center">開催予定</h4>
+     <% @eventsOK.each do |eventOK| %>
+     <%= link_to admin_event_path(eventOK.id) do %>
+      <div class="mypage-event-box">
+
+        <%= attachment_image_tag eventOK, :event_image, class:"mypage-event-image" %>
+        <div class="non-deco">
+        <%= eventOK.title %><br>
+        <%= eventOK.content %><br>
+        </div>
+
+      </div>
+     <% end %>
+     <% end %>
+
+
+
   </div>
 
   <div class="edit_account-box2-kid clearfix">
@@ -57,6 +46,6 @@
   </div>
 
 
-    </div>
+    
   </div>
 </div>

@@ -3,55 +3,33 @@
 
 
 <div class="name-area clearfix">
+  <%= link_to edit_regist_user_registration_path do %>
     <%= attachment_image_tag @regist_user, :profile_image, fallback: "no_image.jpg", class:"test-regist-image" %>
   <!-- <div class='arrow_box'><%%= current_regist_user.introduction %></div> -->
-  <div class="name-area-text">
-    <h1 class=""><%= current_regist_user.regist_name %>さん</h1>
-    <h3 class=""><%= link_to "スペースを予約する", new_regist_user_event_path %></h3>
-    <a class="">管理者に連絡をとる</a>
-  </div>
+    <div class="name-area-text">
+      <h1 class=""><%= @regist_user.regist_name %>さん</h1>
+  <% end %>
+      <h3 class=""><%= link_to "スペースを予約する", new_regist_user_event_path %></h3>
+      <%= mail_to "#{@admin.email}", "管理者に連絡をとる", :cc => "", :subject => "test mail" %>
+    </div>
 </div>
 
   <div class="edit_account-box2-kid clearfix">
     <h3 class="session-title center">開催確定</h3>
-    <div class="mypage-event-box">
-      <div class="mypage-event-image">
-      </div>
-    <%#= @events.each do |event| %>
-    <%# end %>
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
+
+    <% @eventsOK.each do |eventOK| %>
+      <%= link_to regist_user_event_path(eventOK.id) do %>
+      <div class="mypage-event-box">
+        <%= attachment_image_tag eventOK, :event_image, class:"mypage-event-image" %>
+          <div class="non-deco">
+          <%= eventOK.title %><br>
+          <%= eventOK.content %><br>
+          </div>
+          </div>
+      <% end %>
+    <% end %>
 
 
-    <div class="mypage-event-box">
-      <div class="mypage-event-image">
-      </div>
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
-  
-
-    <div class="mypage-event-box">
-      <div class="mypage-event-image">
-      </div>
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
-
-    <div class="mypage-event-box">
-      <div class="mypage-event-image">
-      </div>
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
-
-    <div class="mypage-event-box">
-      <div class="mypage-event-image">
-      </div>
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
 
   </div>
 
@@ -59,27 +37,17 @@
 
   <div class="edit_account-box2-kid clearfix">
     <h3 class="session-title center">承認待ち</h3>
-    <div class="mypage-event-box">
-      <div class="mypage-event-image">
-      </div>
-    <%= @events.each do |event| %>
-    <%# end %>
-      <%= event.title %><br>
-      <%= event.content %><br>
-    </div>
-
-
-    <div class="mypage-event-box">
-      <div class="mypage-event-image">
-      </div>
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
-
-     <div class="mypage-event-box">
-      <p style="padding-top:30px;">イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
+    <% @events.each do |event| %>
+      <%= link_to regist_user_event_path(event.id) do %>
+          <div class="mypage-event-box">
+          <%= attachment_image_tag event, :event_image, class:"mypage-event-image" %>
+          <div class="non-deco">
+          <%= event.title %><br>
+          <%= event.content %><br>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
 
   </div>
 
@@ -101,7 +69,7 @@
       <p>イベントタイトル</p>
       <p>イベント詳細はこちらイベント将来はこちら</p>
     </div>
-    <a class="center">詳細はこちら</a>
+    <a class="center block">詳細はこちら</a>
 
 
 

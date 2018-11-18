@@ -12,6 +12,10 @@ class RegistUsersController < ApplicationController
 
   def show
   	@regist_user = RegistUser.find(params[:id])
-    @events = Event.where(regist_user_id: @regist_user.id)
+    @admin = Admin.find(1)
+
+    @events = Event.where(regist_user_id: @regist_user.id, admin_ok: false) && Event.where(regist_user_id: @regist_user.id, admin_no: true)
+    @eventsOK = Event.where(regist_user_id: @regist_user.id, admin_ok: true)
   end
+
 end

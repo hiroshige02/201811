@@ -6,8 +6,11 @@
   </div>
 
     <div class="account-box">
+       <% x = Time.now %>
+       <%# a = x.year %>
+       <% b = x.next_month.month %>
 
-<h2 class="session-title center">○月のイベント</h2>
+<h2 class="session-title center"><%= b %>月のイベント</h2>
 <!-- #月が自動計算で出るようにする -->
 
 <div class="index-line-box1">
@@ -19,13 +22,17 @@
           </tr>
         </thead>
         <tbody>
-          <%# @events.each do |event| %>
-          <!-- <tr> -->
-              
-          <tr><th>あああああああああ</th></tr>
-          <tr><th>あああああああああ</th></tr>
-          <tr><th>あああああああああ</th></tr>
-          <tr><th>あああああああああ</th></tr>
+          <% @events.each do |event| %>
+            <tr><td>
+              <%= link_to event_path(event.id) do %>
+              <div class="non-deco">
+              <%= event.day %>日<%= event.start_time.hour %>:00〜
+              <%= event.finish_time.hour %>:00<br>
+              <%= event.title %>
+              </div>
+              <% end %>
+            </td></tr>
+          <% end %>
   </tbody>
 </table>
 
@@ -36,35 +43,18 @@
 
 
 <div class="index-line-box2">
-
-  <%#= attachment_image_tag regist_user, :profile_image, fallback: "no_image.jpg",size: '100x40' %>
-  <div class="test-event-image">
-  </div>
-  <div class="column-top center bottom-border">
-    <p>クラリネット四十奏</p>
-    <p>内容</p>
-    <p>〜〜〜〜〜〜〜〜〜〜〜〜
-    〜〜〜〜〜〜〜〜〜〜〜〜
-    </p>
-   <日時>
-   <p>11/1 11:00~13:00</p>
-  </div>
-
-  <div class="test-event-image">
-  </div>
-  <div class="column-top center bottom-border">
-    <p>クラリネット四十奏</p>
-    <p>内容</p>
-    <p>〜〜〜〜〜〜〜〜〜〜〜〜
-    〜〜〜〜〜〜〜〜〜〜〜〜
-    </p>
-   <日時>
-   <p>11/1 11:00~13:00</p>
-  </div>
-
-
+  <% @events2.each do |event2| %>
+    <div class="column-top center bottom-border">
+    <%= attachment_image_tag event2, :event_image, class:"event-image" %><br>
+      <h4><%= event2.title %></h4>
+      <p><日時></p>
+      <p><%= event2.month %>/<%= event2.day %>&nbsp;&nbsp;<%= event2.start_time.hour %>:00 〜 <%= event2.finish_time.hour %>:00</p>
+      <p><内容></p>
+      <%= event2.content %>
+    </div>
+  <% end %>
 </div>
-  
+
   </div>
 
   <div class="column-top block center">

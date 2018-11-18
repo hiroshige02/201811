@@ -1,49 +1,78 @@
+
 <div class="session-visual2">
   <div class="message-main-box">
 
-  	<div class="edit_account-box2-kid clearfix">
-      <h2 class="session-title center">スペース使用変更<br>許可申請</h2>
+    <div class="edit_account-box2-kid clearfix">
+      <h2 class="session-title center">スペース使用申請</h2>
 
-      <%= form_with(model: @event, local: true) do |form| %>
-  <% if @event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+      <p class="alert"><%= alert %></p>
 
-      <ul>
-      <% @event.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+      <%= form_for([:regist_user, @event]) do |f| %>
+        <% if @event.errors.any? %>
+          <div id="error_explanation">
+          <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
-  <div class="field column-top">
-    <h4 class="session-title center"><%= form.label :start_time, "使用時間" %></h4>
-    <div class="center"><%= form.datetime_select :start_time %><span>〜</span> <%= form.datetime_select :finish_time %>
-    </div>
+          <ul>
+            <% @event.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+          </div>
+        <% end %>
+
+        <div class="field column-top">
+          <h4 class="session-title center"><%= f.label :start_time, "使用日時" %></h4>
+        </div>
+
+　　     <% today = Date.today %>
+        <% month = today.month %>
+        <% n_month = month + 1 %>
+        <% n_n_month = month + 2 %>
+
+    <% if month = 11 %>
+      <% n_n_month = 1 %>
+      <%# today.year = 1 %>
+      <% elsif month = 12 %>
+        <% n_month = 1 %>
+        <% n_n_month = 2 %>
+    <% end %>
+
+
+
+
+
+  <div class="center">
+   <%= select_tag 'a', options_for_select(["", month, n_month, n_n_month]), class:"a", :selected => @event.month %>月
+   <%= select_tag 'b', options_for_select(((1..31).to_a)), class:"b", :selected => @event.day %>日
+   <%= select_tag 'c', options_for_select(((10..21).to_a)), class:"c" %>時 〜
+   <%= select_tag 'd', options_for_select(((11..22.to_i).to_a)), class:"c" %>時
+　</div>
+    <p class="moji"></p>
+    <div id="render"></div>
+
+
+
+<div class="field column-top center">
+    <h4 class="session-title"><%= f.label :title, "タイトル" %></h4>
+    <%= f.text_field :title, class:"input-size" %>
   </div>
 
   <div class="field column-top center">
-    <h4 class="session-title"><%= form.label :title, "タイトル" %></h4>
-    <%= form.text_field :title, class:"input-size" %>
+    <h4 class="session-title"><%= f.label :content, "イベントの詳細を説明してください" %></h4>
+    <%= f.text_area :content, class:"input-size" %>
   </div>
 
   <div class="field column-top center">
-    <h4 class="session-title"><%= form.label :content, "イベントの詳細を説明してください" %></h4>
-    <%= form.text_area :content, class:"input-size" %>
+    <h4 class="session-title center"><%= f.label :participant, "参加人数" %></h4>
+    <%= f.number_field :participant %> 人
   </div>
 
   <div class="field column-top center">
-    <h4 class="session-title center"><%= form.label :participant, "参加人数" %></h4>
-    <%= form.number_field :participant %>
+    <h4 class="session-title"><%= f.label :event_image, "画像、チラシ添付" %></h4>
+     <%= attachment_image_tag @event, :event_image, :fill, 150, 150, class:"test-regist-image" %>
+    <%= f.attachment_field :event_image, class:"margin", placeholder:"宣伝用画像" %>
   </div>
 
-  <div class="field column-top center">
-    <h4 class="session-title center"><%= form.label :event_image_id, "画像、チラシ添付" %></h4>
-    <%= form.number_field :event_image_id %>
-  </div>
-
-  
 
 
 
@@ -58,39 +87,51 @@
     </li>
   </ul>
 
-  
-
   <div class="tab-content">
     <div class="tab-pane active" id="tab_a" role="tabpanel">
       <div id="first-floor">
+
         <div id="desk1">
+          <%= radio_button "c", "d", 1, {:checked => @desk1 }%>
           <div class="desk-number">1</div>
         </div>
         <div id="desk2">
+          <%= radio_button "c", "d", 2, {:checked => @desk2 } %>
           <div class="desk-number">2</div>
         </div>
         <div id="desk3">
+          <%= radio_button "c", "d", 3, {:checked => @desk3 } %>
           <div class="desk-number">3</div>
         </div>
         <div id="desk4">
+          <%= radio_button "c", "d", 4, {:checked => @desk4 } %>
           <div class="desk-number">4</div>
         </div>
         <div id="desk5">
+          <%= radio_button "c", "d", 5, {:checked => @desk5 } %>
           <div class="desk-number">5</div>
         </div>
+
+        <%= radio_button "c", "d", 8, {:checked => @desk8 } %>
+        <p>テーブル1と2を借りる</p>
+
       </div>
+
+
     </div>
     <div class="tab-pane" id="tab_b" role="tabpanel">
         <!-- 2階のコンテンツ -->
       <div id="second-floor">
         <div id="desk6">
+          <%= radio_button "c", "d", 6, {:checked => @desk6 } %>
           <div class="desk-number">6</div>
         </div>
         <div id="desk7">
+          <%= radio_button "c", "d", 7, {:checked => @desk7 } %>
+           %>
           <div class="desk-number">7</div>
         </div>
       </div>
-
     </div>
   </div>
 
@@ -99,8 +140,8 @@
 
   <div class="column-top center">
 
-    <%= form.submit "変更申請をする", :class=>"square_btn navy" %>
-    <%= form.submit "この申請をキャンセルする", :class=>"square_taikai_btn taikai left" %>
+    <%= f.submit "変更申請をする", :class=>"square_btn navy" %>
+    <%#= f.submit "この申請をキャンセルする", :class=>"square_taikai_btn taikai left" %>
 <% end %>
     <%= link_to "戻る", :back, class:"square_btn left" %>
 
@@ -114,18 +155,3 @@
 
 
   <%#= form_with(model: @past_event, local: true) do |form| %>
-
-
-
-
-
-
-
-
-
-<h1>Editing Event</h1>
-
-<%= render 'form', event: @event %>
-
-<%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>

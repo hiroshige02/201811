@@ -25,7 +25,7 @@
       </div>
 
       </div>
-      <%= link_to "退会する", regist_user_registration_path(current_user.id), data: { confirm: "本当によろしいですか?" }, class:"square_taikai_btn button-top", method: :delete %>
+      <%= link_to "退会する", regist_user_registration_path(current_regist_user.id), data: { confirm: "本当によろしいですか?" }, class:"square_taikai_btn button-top", method: :delete %>
 
     </div>
   </div>

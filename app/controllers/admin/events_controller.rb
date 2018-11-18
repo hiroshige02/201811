@@ -4,7 +4,7 @@ class Admin::EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @events = Event.where(admin_ok: true)
   end
 
   # GET /events/1
@@ -15,6 +15,22 @@ class Admin::EventsController < ApplicationController
 
   def check
     @event = Event.find(params[:id])
+  end
+
+  def approve
+    @event = Event.find(params[:id])
+    if @event.update(admin_ok: true)
+      binding.pry
+      redirect_to admin_path(current_admin.id)
+    end
+  end
+
+  def sayno
+    @event = Event.find(params[:id])
+    if @event.update(admin_no: true)
+      binding.pry
+      redirect_to admin_path(current_admin.id)
+    end
   end
 
   # GET /events/new

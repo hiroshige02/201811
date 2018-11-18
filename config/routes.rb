@@ -23,6 +23,8 @@ devise_for :admins, controllers: {
       resources :events do
          member do
            get 'check'
+           get 'approve'
+           get 'sayno'
          end
        end
       resources :regist_users

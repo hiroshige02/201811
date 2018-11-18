@@ -4,7 +4,8 @@
   <div class="baloon center">
 
     <h4 class="session-title"><日時></h4>
-    <%= @event.start_time.hour %>時<%= @event.start_time.min %><span>〜</span><%= @event.finish_time.hour %>時<%= @event.finish_time.min %>分<br><br>
+    <%= @event.year %>年<%= @event.month %>月<%= @event.start_time.day %>日
+    <%= @event.start_time.hour %>：<%= @event.start_time.min %><span>〜</span><%= @event.finish_time.hour %>：<%= @event.finish_time.min %><br><br>
     <h4 class="session-title"><タイトル></h4>
     <h2 class="session-title"><%= @event.title %></h2><br>
     <h4 class="session-title"><主催></h4>
@@ -17,8 +18,8 @@
       <%= f.text_area :admin_message %>
 　　 <% end %>
     <div class="column-top center">
-      <%= link_to "承認する", :back, class:"square_btn green" %>
-      <%= link_to "否認する", :back, class:"square_btn left red" %>
+      <%= link_to "承認する", approve_admin_event_path, class:"square_btn green" %>
+      <%= link_to "否認する", sayno_admin_event_path, class:"square_btn left red" %>
       <%= link_to "戻る", :back, class:"square_btn left" %>
     <!--ラジオボタン で承認とか否認してsubmitボタンは1個にするか？-->
     </div>

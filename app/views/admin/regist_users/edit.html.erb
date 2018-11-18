@@ -1,0 +1,64 @@
+<div class="session-visual">
+  <div class="edit-main-box clearfix">
+    <h2 class="session-title center bottom">管理者 ユーザー登録情報変更 </h2>
+    <%= form_for @regist_user, url: admin_regist_user_path do |f| %>
+      <% if @regist_user.errors.any? %>
+        <% @regist_user.errors.full_messages each do |message| %>
+          <p class=""><%= message %></p>
+        <% end %>
+      <% end %>
+
+  <div class="edit-account-box1 center">
+
+    <%= attachment_image_tag @regist_user, :profile_image, :fill, 150, 150, class:"test-regist-image" %><br>
+          <%= f.attachment_field :profile_image, placeholder:"主催者プロフィール画像" %>
+
+        </div>
+
+
+
+        <div class="edit-account-box2 center">
+        <div class="field column-top">
+          <%= f.label :"名前(本名でお願いします)", class:"session-columns" %><br />
+          <%= f.text_field :regist_name, autofocus: true, autocomplete: "regist_name" %>
+        </div>
+  <div class="field column-top">
+    <%= f.label :"名前(カナ)", class:"session-columns" %><br />
+    <%= f.text_field :regist_name_kana, autofocus: true, autocomplete: "regist_name_kana" %>
+  </div>
+  <div class="field column-top">
+    <%= f.label :生年月日, class:"session-columns" %><br />
+    <%= f.text_field :birthday, autofocus: true, autocomplete: "birthday" %>
+  </div>
+  <div class="field column-top">
+    <%= f.label :ご職業, class:"session-columns" %><br />
+    <%= f.text_field :job, autofocus: true, autocomplete: "job" %>
+  </div>
+  <div class="field column-top">
+    <%= f.label :お電話番号, class:"session-columns" %><br />
+    <%= f.text_field :regist_tel_number, autofocus: true, autocomplete: "regist_tel_number" %>
+  </div>
+
+
+  <div class="field column-top">
+    <%= f.label :Eメールアドレス %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+
+
+
+  <div class="column-top">
+    <%= f.submit "更新する", class:"square_btn" %>
+    <%= link_to "戻る", :back, class:"square_btn left" %>
+  </div>
+
+  <% end %>
+
+  <div class="column-top">
+    <%= link_to "このユーザーを退会させる", admin_regist_user_path(@regist_user), data: { confirm: "本当によろしいですか?" }, class:"square_taikai_btn button-top", method: :delete %>
+</div>
+
+  </div>
+</div>
+</div>
