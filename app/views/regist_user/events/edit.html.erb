@@ -48,12 +48,46 @@
         <% end %>
 
         <div class="center">
-          <%= select_tag 'a', options_for_select(["", month, n_month, n_n_month]), class:"a", :selected => @event.month %>月
-          <%= select_tag 'b', options_for_select(((1..31).to_a)), class:"b", :selected => @event.day %>日
+          <%= select_tag 'a', options_for_select(["", month, n_month, n_n_month]), id:"a", :selected => @event.month %>月
+          <%= select_tag 'b', options_for_select(((1..31).to_a)), id:"b", :selected => @event.day %>日
           <%= select_tag 'c', options_for_select(((10..21).to_a)), class:"c" %>時 〜
           <%= select_tag 'd', options_for_select(((11..22.to_i).to_a)), class:"c" %>時
 　      </div>
-    <p class="moji"></p>
+  
+
+       <script>
+        $(function(){
+          $('#a').change(function() {
+
+             var a = $(this).val();
+
+             $.ajax({
+               url: "/regist_user/events/pulldown",
+               type: "GET",
+               data: {"month": a},
+               success: function(data) {
+
+                 if (data > 28) {
+                   diff = data - 28;
+
+                   for (var i = 1; i <= diff; i++) {
+                     k = 28 + i;
+
+                     var option = document.createElement('option');
+                     option.textContent = k;
+                     document.getElementById('b').appendChild(option);
+
+                   }
+                }
+
+               },
+               error: function(data) {
+                alert("failed!");
+               }
+              });
+        });
+        });
+      </script>
 
 
 
