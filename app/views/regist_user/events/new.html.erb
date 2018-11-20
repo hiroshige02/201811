@@ -132,30 +132,16 @@
 
 
 
-<!--
+<!-- 
       <script>
         $(function(){
           $('#a').change(function(
             var y = $(' option:selected');
             )
         })
-      </script>
+      </script> -->
 
 
-
-
-
-<div class="center"><%#= form.time_field :start_time %></div>
-
-<div class="center"><%#= form.date_field :start_time %></div>
-
-<div class="center"><%#= form.date_field :start_time %></div>
-
-<div class="center"><%#= form.datetime_field :start_time %></div>
-
-<div class="center"><%#= form.week_field :start_time %></div>
-
-<div class="center"><%#= form.datetime_local_field :start_time %></div> -->
 
 
 
@@ -178,7 +164,6 @@
 
   <div class="field column-top center">
     <h4 class="session-title"><%= f.label :event_image, "画像、チラシ添付" %></h4>
-     <%#= attachment_image_tag @regist_user, :profile_image, :fill, 150, 150, class:"test-regist-image" %>
     <%= f.attachment_field :event_image, class:"margin", placeholder:"宣伝用画像" %>
   </div>
 
@@ -239,6 +224,9 @@
           <%= f.radio_button :desk, 7 %>
           <div class="desk-number">7</div>
         </div>
+
+        <%= f.radio_button :desk, 9 %>
+        <p>2階を貸し切る</p>
       </div>
     </div>
   </div>

@@ -19,18 +19,12 @@ class Admin::EventsController < ApplicationController
 
   def approve
     @event = Event.find(params[:id])
-    if @event.update(admin_ok: true)
-      binding.pry
-      redirect_to admin_path(current_admin.id)
+    if params[:sayno] == nil
+      @event.update(admin_ok: true, admin_message: params[:event][:admin_message])
+    else
+      @event.update(admin_no: true, admin_message: params[:event][:admin_message])
     end
-  end
-
-  def sayno
-    @event = Event.find(params[:id])
-    if @event.update(admin_no: true)
-      binding.pry
       redirect_to admin_path(current_admin.id)
-    end
   end
 
   # GET /events/new
@@ -38,12 +32,9 @@ class Admin::EventsController < ApplicationController
     @event = Event.new
   end
 
-  # GET /events/1/edit
   def edit
   end
 
-  # POST /events
-  # POST /events.json
   def create
     @event = Event.new(event_params)
 

@@ -38,8 +38,11 @@
   <div class="edit_account-box2-kid clearfix">
     <h3 class="session-title center">承認待ち</h3>
     <% @events.each do |event| %>
-      <%= link_to regist_user_event_path(event.id) do %>
+        <%= link_to regist_user_event_path(event.id) do %>
           <div class="mypage-event-box">
+          <% if event.admin_no == true %>
+            <div class="no-sign">！</div>
+          <% end %>
           <%= attachment_image_tag event, :event_image, class:"mypage-event-image" %>
           <div class="non-deco">
           <%= event.title %><br>

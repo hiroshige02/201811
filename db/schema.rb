@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_16_124321) do
+ActiveRecord::Schema.define(version: 2018_11_20_082609) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -32,13 +32,6 @@ ActiveRecord::Schema.define(version: 2018_11_16_124321) do
     t.text "admin_profile_image_id"
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
-  end
-
-  create_table "desk_events", force: :cascade do |t|
-    t.integer "event_id"
-    t.integer "desk_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "desk_numbers", force: :cascade do |t|
@@ -92,7 +85,6 @@ ActiveRecord::Schema.define(version: 2018_11_16_124321) do
     t.string "regist_name_kana"
     t.date "birthday"
     t.string "regist_tel_number"
-    t.text "introduction"
     t.datetime "regist_deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -3,11 +3,21 @@
   <div class="message-main-box">
 
     <div class="edit_account-box2-kid clearfix">
-      <h2 class="session-title center">スペース使用申請</h2>
+      <h2 class="session-title center">スペース使用予定<br>変更申請</h2>
 
       <p class="alert"><%= alert %></p>
 
+      <% if @event.event_image != nil %>
+      <div class="center">
+      <%= attachment_image_tag @event, :event_image, :fill, 150, 150, class:"event-image" %>
+      <%= form_for(@event, url: no_image_regist_user_event_path) do |f| %>
+        <%=f.submit "画像を外す" %>
+      <% end %>
+      </div>
+      <% end %>
+
       <%= form_for([:regist_user, @event]) do |f| %>
+
         <% if @event.errors.any? %>
           <div id="error_explanation">
           <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
@@ -29,30 +39,26 @@
         <% n_month = month + 1 %>
         <% n_n_month = month + 2 %>
 
-    <% if month = 11 %>
-      <% n_n_month = 1 %>
+        <% if month = 11 %>
+          <% n_n_month = 1 %>
       <%# today.year = 1 %>
-      <% elsif month = 12 %>
-        <% n_month = 1 %>
-        <% n_n_month = 2 %>
-    <% end %>
+        <% elsif month = 12 %>
+          <% n_month = 1 %>
+          <% n_n_month = 2 %>
+        <% end %>
 
-
-
-
-
-  <div class="center">
-   <%= select_tag 'a', options_for_select(["", month, n_month, n_n_month]), class:"a", :selected => @event.month %>月
-   <%= select_tag 'b', options_for_select(((1..31).to_a)), class:"b", :selected => @event.day %>日
-   <%= select_tag 'c', options_for_select(((10..21).to_a)), class:"c" %>時 〜
-   <%= select_tag 'd', options_for_select(((11..22.to_i).to_a)), class:"c" %>時
-　</div>
+        <div class="center">
+          <%= select_tag 'a', options_for_select(["", month, n_month, n_n_month]), class:"a", :selected => @event.month %>月
+          <%= select_tag 'b', options_for_select(((1..31).to_a)), class:"b", :selected => @event.day %>日
+          <%= select_tag 'c', options_for_select(((10..21).to_a)), class:"c" %>時 〜
+          <%= select_tag 'd', options_for_select(((11..22.to_i).to_a)), class:"c" %>時
+　      </div>
     <p class="moji"></p>
-    <div id="render"></div>
 
 
 
-<div class="field column-top center">
+
+  <div class="field column-top center">
     <h4 class="session-title"><%= f.label :title, "タイトル" %></h4>
     <%= f.text_field :title, class:"input-size" %>
   </div>
@@ -68,15 +74,14 @@
   </div>
 
   <div class="field column-top center">
-    <h4 class="session-title"><%= f.label :event_image, "画像、チラシ添付" %></h4>
-     <%= attachment_image_tag @event, :event_image, :fill, 150, 150, class:"test-regist-image" %>
+    <h4 class="session-title"><%= f.label :event_image, "画像、チラシ添付 or 変更" %></h4>
+    
     <%= f.attachment_field :event_image, class:"margin", placeholder:"宣伝用画像" %>
+   
   </div>
 
 
-
-
-<div class="column-top"></div>
+  <div class="column-top"></div>
 
   <ul class="nav nav-tabs center" role="tablist">
     <li class="active" role="presentation">
@@ -87,33 +92,36 @@
     </li>
   </ul>
 
-  <div class="tab-content">
+   <div class="tab-content">
     <div class="tab-pane active" id="tab_a" role="tabpanel">
       <div id="first-floor">
 
         <div id="desk1">
-          <%= radio_button "c", "d", 1, {:checked => @desk1 }%>
+          <%= radio_button "z", "t", 1, {:checked => @desk1 }%>
           <div class="desk-number">1</div>
         </div>
-        <div id="desk2">
-          <%= radio_button "c", "d", 2, {:checked => @desk2 } %>
+         <div id="desk2">
+          <%= radio_button "z", "t", 2, {:checked => @desk2 } %>
           <div class="desk-number">2</div>
         </div>
         <div id="desk3">
-          <%= radio_button "c", "d", 3, {:checked => @desk3 } %>
+          <%= radio_button "z", "t", 3, {:checked => @desk3 } %>
           <div class="desk-number">3</div>
         </div>
         <div id="desk4">
-          <%= radio_button "c", "d", 4, {:checked => @desk4 } %>
+          <%= radio_button "z", "t", 4, {:checked => @desk4 } %>
           <div class="desk-number">4</div>
         </div>
         <div id="desk5">
-          <%= radio_button "c", "d", 5, {:checked => @desk5 } %>
+          <%= radio_button "z", "t", 5, {:checked => @desk5 } %>
           <div class="desk-number">5</div>
         </div>
 
-        <%= radio_button "c", "d", 8, {:checked => @desk8 } %>
+        <div class="column-top left">
+        <%= radio_button "z", "t", 8, {:checked => @desk8 } %>
         <p>テーブル1と2を借りる</p>
+      </div>
+
 
       </div>
 
@@ -122,21 +130,31 @@
     <div class="tab-pane" id="tab_b" role="tabpanel">
         <!-- 2階のコンテンツ -->
       <div id="second-floor">
+　　　　　
         <div id="desk6">
-          <%= radio_button "c", "d", 6, {:checked => @desk6 } %>
+          <%= radio_button "z", "t", 6, {:checked => @desk6 } %>
           <div class="desk-number">6</div>
         </div>
         <div id="desk7">
-          <%= radio_button "c", "d", 7, {:checked => @desk7 } %>
+          <%= radio_button "z", "t", 7, {:checked => @desk7 } %>
            %>
           <div class="desk-number">7</div>
         </div>
+        <div class="left">
+        <%= radio_button "z", "t", 9, {:checked => @desk9 } %>
+        <p>2階を貸し切る</p>
+        </div>
       </div>
+
     </div>
   </div>
 
 
 </div>
+
+
+
+
 
   <div class="column-top center">
 

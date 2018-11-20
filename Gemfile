@@ -70,4 +70,4 @@ gem 'kaminari'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'font-awesome-rails'
-# gem 'whenever', :require => false
+gem 'whenever', :require => false

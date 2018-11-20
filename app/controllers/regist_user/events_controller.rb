@@ -29,6 +29,14 @@ class RegistUser::EventsController < ApplicationController
   # POST /events
   # POST /events.json
 
+
+  def no_image
+    @event = Event.find(params[:id])
+    @event.update(event_image: nil)
+    redirect_to edit_regist_user_event_path(@event.id)
+  end
+
+
   def pulldown
     m = params[:month]
     puts m
@@ -86,6 +94,10 @@ class RegistUser::EventsController < ApplicationController
           g = 1
           h = 2
           binding.pry
+        elsif @event.desk == 9
+          binding.pry
+          g = 6
+          h = 7
         end
           @event.start_time = x
           @event.finish_time = y
@@ -115,6 +127,10 @@ class RegistUser::EventsController < ApplicationController
           binding.pry
           g = 1
           h = 2
+        elsif @event.desk == 9
+          binding.pry
+          g = 6
+          h = 7
         end
 
         if event_exists.exists?
@@ -214,7 +230,6 @@ class RegistUser::EventsController < ApplicationController
 
 
   def update
-    binding.pry
     @event = Event.find(params[:id])
     @event.regist_user_id = current_regist_user.id
     a = params[:a].to_i
@@ -224,7 +239,7 @@ class RegistUser::EventsController < ApplicationController
     binding.pry
     h = Time.now
     j = h.month
-    dd = params[:c][:d]
+    dd = params[:z][:t].to_i
     # @event.month = a
     # @event.day = b
 
@@ -240,15 +255,24 @@ class RegistUser::EventsController < ApplicationController
     end
     binding.pry
     # @event.year = i
-    x = Time.mktime(i, a, b, c + 9, 0, 0)
-    y = Time.mktime(i, a, b, d + 9, 0, 0)
+    x = Time.mktime(i, a, b, c, 0, 0)
+    y = Time.mktime(i, a, b, d, 0, 0)
 
 
     if x > h && y > x
-      binding.pry
-  #ここまでで予約時間内での比較は終了。
+    #ここまでで予約時間内での比較は終了。
 
       event_exists = Event.where(year: i, month: a, day: b)
+
+      event_exist_stock = []
+        event_exists.each do |event_exist|
+          if event_exist.id != @event.id
+            event_exist_stock << event_exist
+          end
+        end
+
+
+
 
       if dd.in?(1..7)
         binding.pry
@@ -259,16 +283,19 @@ class RegistUser::EventsController < ApplicationController
         binding.pry
         g = 1
         h = 2
-      end
-
-      if event_exists.exists?
-        event_exists.each do |event_exist|
+      elsif dd == 9
         binding.pry
+        g = 6
+        h = 7
+      end
+      binding.pry
+      unless event_exist_stock.blank?
+        binding.pry
+        event_exist_stock.each do |event_exist|
+        # binding.pry
             # if event_exist.start_time.to_date == x.to_date
             # 同じ日付の時はこちらに流れるのでここから時間の比較演算を行う
             # まず子テーブルのテーブル番号が重複していないか調べる
-
-
           event_exist.desk_numbers.each do |desk_number|
             for o in g..h
               binding.pry
@@ -278,27 +305,27 @@ class RegistUser::EventsController < ApplicationController
                 if desk_number.start >= x && desk_number.start < y
                    binding.pry
                    flash[:alert] = "予約時間が重複しています"
-                   render :new and return
+                   render :edit and return
                 end
 
                 if desk_number.start < x && desk_number.finish >= y
                   puts "lll"
                   flash[:alert] = "予約時間が重複しています"
-                  render :new and return
+                  render :edit and return
                   binding.pry
                 end
 
                 if desk_number.finish > x && desk_number.finish <= y
                   puts "mmm"
                   flash[:alert] = "予約時間が重複しています"
-                  render :new and return
+                  render :edit and return
                   binding.pry
                 end
 
                 if desk_number.start > x && desk_number.finish < y
                   puts "nnn"
                   flash[:alert] = "予約時間が重複しています"
-                  render :new and return
+                  render :edit and return
                   binding.pry
                 end
               else
@@ -306,71 +333,90 @@ class RegistUser::EventsController < ApplicationController
               end
             end #forのend
 
-          end  #each desk_number
+          end  #each desk_numberのend
 
         end #event_exists.each do |event_exist|のend
-            @event.start_time = x
-            @event.finish_time = x
-            @event.save
-            for o in g..h
+          @event.update(event_params)
+          @event.update(admin_ok: false, admin_no: false, admin_message: "", start_time: x, finish_time: y, year: i, month: a, day: b )
+
+          if dd != @event.desk
+            @event.update(desk: dd)
+            kk = DeskNumber.where(event_id: @event.id)
+            kk.delete_all
+            #別にdestroyしなくてもいいが単数デスク➡︎複数デスク またその逆の時が面倒
             binding.pry
-            @desk_number = DeskNumber.new
-            @desk_number.start = x
-            @desk_number.finish = y
-            @desk_number.event_id  = @event.id
-            @desk_number.desk_number = o
-            @desk_number.save
+            for o in g..h
+              binding.pry
+              @desk_number = DeskNumber.new
+              @desk_number.start = x
+              @desk_number.finish = y
+              @desk_number.event_id  = @event.id
+              @desk_number.desk_number = o
+              if @desk_number.save
+                redirect_to regist_user_path(current_regist_user.id) and return
+              else render :edit and return
+              end
             end
-            redirect_to regist_user_path(current_regist_user.id) and return
+          else
+          #元の@event.deskが今回選択した机と同じだったら
+            binding.pry
+            @event.desk_numbers.each do |desk_number|
+              desk_number.update(start: x, finish: y)
+            end
 
-
+            if @event.update(start_time: x, finish_time: y)
+              binding.pry
+              redirect_to regist_user_path(current_regist_user.id) and return
+            else render :edit and return
+            end
+          end
 
       else #event_exists.exists?で、同じ日付のデータが無い場合
         @event.update(event_params)
-
+        # binding.pry
+        @event.update(admin_ok: false, admin_no: false, admin_message: "", start_time: x, finish_time: y, year: i, month: a, day: b)
+        binding.pry
         if dd != @event.desk
+          @event.update(desk: dd)
           #別にdestroyしなくてもいいが単数デスク➡︎複数デスク またその逆の時が面倒
-          @event.desk_numbers.destroy
+          kk = DeskNumber.where(event_id: @event.id)
+          kk.delete_all
+          binding.pry
           for o in g..h
-            binding.pry
+            # binding.pry
             @desk_number = DeskNumber.new
             @desk_number.start = x
             @desk_number.finish = y
             @desk_number.event_id  = @event.id
             @desk_number.desk_number = o
             @desk_number.save
-            @event.update(start_time: x, finish_time: y, desk: dd)
           end
         else
-          binding.pry
+          #元の@event.deskが今回選択した机と同じだったら
+          # binding.pry
           @event.desk_numbers.each do |desk_number|
             desk_number.update(start: x, finish: y)
           end
           @event.update(start_time: x, finish_time: y)
-          binding.pry
+          # binding.pry
         end
         redirect_to regist_user_path(current_regist_user.id) and return
       end
 
-
-
-
     else
-      binding.pry
+      # binding.pry
       #時間設定がそもそもおかしい
       flash[:alert] = "設定日時を確認してください"
-      render :new and return
+      render :edit and return
     end
   end
 
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
+    @event = Event.find(params[:id])
     @event.destroy
-    respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to regist_user_path(current_regist_user.id)
   end
 
   private
