@@ -19,7 +19,7 @@
 
 
 *{
-	margin: 0;
+  margin: 0;
 	padding: 0;
 	box-sizing: border-box;
   font-family: inherit;
@@ -404,7 +404,10 @@ footer {
   padding: 20px 30px;
   border-radius: 30px;
 }
-
+.baloon-contents {
+  width: 70%;
+  margin: 0 auto;
+}
 
 /*以下マイページコマ割りなど*/
 .bottom-border {
@@ -479,10 +482,12 @@ footer {
 /*↑コメントボックス現状不使用*/
 
 
+.mypage-event-content{
+  padding: 20px auto;
+}
 .mypage-event-image {
   height: 100px;
-  width: 150px;
-  background-image: image-url('20150209_fmPxucNk.jpg');
+  width: 140px;
   background-size: cover;
   background-position: left;
   margin: 0 auto;
@@ -491,18 +496,32 @@ footer {
 }
 
 .mypage-event-box {
-  margin-top: 20px;
   height: 180px;
-  width: 25%;
-  float:left;
+  width: 20%;
+  margin: 20px 0 0 3%;
+  float: left;
   text-align: center;
   overflow: hidden;
+  position: relative;
+}
+
+.no-sign {
+  position: absolute;
+  top: 5px;
+  left: 15px;
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  border-radius: 10px;
+  color: red;
+  font-size: 40px;
+  font-weight: bold;
 }
 
 .mypage-event-past-box {
-  margin-top: 20px;
+  margin: 20px 0 0 4%;
   height: 80px;
-  width: 25%;
+  width: 21%;
   float:left;
   text-align: center;
   overflow: hidden;
@@ -532,12 +551,6 @@ footer {
 .calender {
   line-height: 20px;
 }
-
-
-
-
-
-
 
 
 
@@ -621,7 +634,7 @@ footer {
   background-color: #8B4513;
   border-radius: 10px;
   position: absolute;
-  top: 50px;
+  top: 70px;
   left: 30px;
 }
 
@@ -631,7 +644,7 @@ footer {
   background-color: #8B4513;
   border-radius: 10px;
   position: absolute;
-  top: 50px;
+  top: 70px;
   left: 380px;
 }
 
@@ -648,23 +661,20 @@ footer {
 
 
 /*テスト用*/
-.test-event-image {
-  line-height: 200px;
+.event-image {
+  margin:25px auto;
   height: 150px;
   width: 200px;
-  background-image: image-url('20150209_fmPxucNk.jpg');
   background-size: cover;
-  background-position: left;
-  margin: 0 auto;
+  background-position: center;
   box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.8);
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 15px;
 }
 .test-regist-image {
   float: left;
   margin:25px auto;
   height: 150px;
   width: 200px;
-  background-image: image-url('20150209_fmPxucNk.jpg');
   background-size: cover;
   background-position: center;
   box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.8);
@@ -697,4 +707,21 @@ p {
   color: red;
   font-size: 20px;
   font-weight: bold;
+}
+.gazou {
+  width: 10%;
+}
+.name {
+  width: 20%;
+}
+.address {
+  width: 30%;
+}
+.list {
+  width: 40%;
+}
+
+.non-deco {
+   color: black;
+   text-decoration: none;
 }

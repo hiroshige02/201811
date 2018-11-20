@@ -4,7 +4,7 @@ class Admin::EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @events = Event.where(admin_ok: true)
   end
 
   # GET /events/1
@@ -17,17 +17,24 @@ class Admin::EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+  def approve
+    @event = Event.find(params[:id])
+    if params[:sayno] == nil
+      @event.update(admin_ok: true, admin_message: params[:event][:admin_message])
+    else
+      @event.update(admin_no: true, admin_message: params[:event][:admin_message])
+    end
+      redirect_to admin_path(current_admin.id)
+  end
+
   # GET /events/new
   def new
     @event = Event.new
   end
 
-  # GET /events/1/edit
   def edit
   end
 
-  # POST /events
-  # POST /events.json
   def create
     @event = Event.new(event_params)
 

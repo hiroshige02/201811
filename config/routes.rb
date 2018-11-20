@@ -16,13 +16,11 @@ devise_for :admins, controllers: {
 
     namespace :admin do
       resources :past_events
-      #resources :equipment_events
-      #resources :attendances
-     # resources :desks
-      resources :desk_events
       resources :events do
          member do
            get 'check'
+           get 'approve'
+           get 'sayno'
          end
        end
       resources :regist_users
@@ -30,24 +28,17 @@ devise_for :admins, controllers: {
 
     namespace :regist_user do
     resources :past_events, only: [:show, :index]
-   # resources :equipment_events
-    #resources :attendances
-    resources :desks
-    resources :desk_events
     resources :events do
       collection do
         get 'pulldown'
       end
+      member do
+        patch 'no_image'
+      end
     end
-    #esources :users, only: [:show]
   end
 
-  #resources :board_messages
   resources :past_events
-  #resources :equipment_events
-  #resources :attendances
-  #resources :desks
-  #resources :desk_events
   resources :events, only: [:show, :index] do
     collection do
       get 'first'

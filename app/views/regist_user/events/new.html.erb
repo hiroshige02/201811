@@ -39,11 +39,11 @@
         <% n_n_month = 2 %>
     <% end %>
 
-    <%# x = @x.to_i; %>
+    <% diff = 28; %>
 
   <div class="center">
-   <%= select_tag 'a', options_for_select(["", month, n_month, n_n_month]), class:"a", :selected =>"" %>月
-   <%= select_tag 'b', options_for_select(((1..31).to_a)), class:"b", :selected => "" %>日
+   <%= select_tag 'a', options_for_select(["", month, n_month, n_n_month]), id:"a", :selected =>"" %>月
+   <%= select_tag 'b', options_for_select(((1..diff).to_a)), class:"b", :selected => "" %>日
    <%= select_tag 'c', options_for_select(((10..21).to_a)), class:"c" %>時 〜
    <%= select_tag 'd', options_for_select(((11..22.to_i).to_a)), class:"c" %>時
 　</div>
@@ -53,7 +53,7 @@
 
 　
 
-     <!--  <script>
+<!--       <script>
         $(function(){
           $('.a').change(function() {
 
@@ -65,22 +65,22 @@
                type: "GET",
                data: {"month": a},
                success: function(data) {
-               // success: function(data) {
                 alert("success!");
                 alert(data);
-                // div.html(data);
-                <%#= x = @x.to_i; %>
+                 if (data > 28) {
+                   diff = data - 28;
+                   alert(diff);
+                 }
                },
                error: function(data) {
                 alert("failed!");
                }
-
-            // var x = $(this).val();不要
-            //  $('.moji').text(x);  不要
               });
         });
         });
       </script> -->
+
+      <!-- 初期値を28にしといて足りない分だけeachで回してoptionタグを増やす -->
 
 
 
@@ -132,30 +132,16 @@
 
 
 
-<!--
+<!-- 
       <script>
         $(function(){
           $('#a').change(function(
             var y = $(' option:selected');
             )
         })
-      </script>
+      </script> -->
 
 
-
-
-
-<div class="center"><%#= form.time_field :start_time %></div>
-
-<div class="center"><%#= form.date_field :start_time %></div>
-
-<div class="center"><%#= form.date_field :start_time %></div>
-
-<div class="center"><%#= form.datetime_field :start_time %></div>
-
-<div class="center"><%#= form.week_field :start_time %></div>
-
-<div class="center"><%#= form.datetime_local_field :start_time %></div> -->
 
 
 
@@ -178,7 +164,6 @@
 
   <div class="field column-top center">
     <h4 class="session-title"><%= f.label :event_image, "画像、チラシ添付" %></h4>
-     <%#= attachment_image_tag @regist_user, :profile_image, :fill, 150, 150, class:"test-regist-image" %>
     <%= f.attachment_field :event_image, class:"margin", placeholder:"宣伝用画像" %>
   </div>
 
@@ -239,6 +224,9 @@
           <%= f.radio_button :desk, 7 %>
           <div class="desk-number">7</div>
         </div>
+
+        <%= f.radio_button :desk, 9 %>
+        <p>2階を貸し切る</p>
       </div>
     </div>
   </div>

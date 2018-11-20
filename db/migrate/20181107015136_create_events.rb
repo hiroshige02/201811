@@ -6,9 +6,9 @@ class CreateEvents < ActiveRecord::Migration[5.2]
       t.string :title
       t.integer :regist_user_id
       t.text :content
-      t.boolean :admin_ok
+      t.boolean :admin_ok, default: false, null: false
       t.text :admin_message
-      t.boolean :admin_no
+      t.boolean :admin_no, default: false, null: false
       t.integer :participand
       t.integer :event_image_id
 
