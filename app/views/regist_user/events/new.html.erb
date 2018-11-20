@@ -21,20 +21,17 @@
 
         <div class="field column-top">
           <h4 class="session-title center"><%= f.label :start_time, "使用日時" %></h4>
-    <!-- <div class="center"><%#= form.datetime_select :start_time %><span>〜</span> <%#= form.datetime_select :finish_time %> -->
         </div>
 
-    <%# d = Date.new(2015, 2, 2, 0) %>
-<%#binding. pry%>
 　　     <% today = Date.today %>
         <% month = today.month %>
         <% n_month = month + 1 %>
         <% n_n_month = month + 2 %>
 
-    <% if month = 11 %>
+    <% if month == 11 %>
       <% n_n_month = 1 %>
       <%# today.year = 1 %>
-      <% elsif month = 12 %>
+      <% elsif month == 12 %>
         <% n_month = 1 %>
         <% n_n_month = 2 %>
     <% end %>
@@ -43,7 +40,7 @@
 
   <div class="center">
    <%= select_tag 'a', options_for_select(["", month, n_month, n_n_month]), id:"a", :selected =>"" %>月
-   <%= select_tag 'b', options_for_select(((1..diff).to_a)), class:"b", :selected => "" %>日
+   <%= select_tag 'b', options_for_select(((1..diff).to_a)), id:"b", :selected =>"" %>日
    <%= select_tag 'c', options_for_select(((10..21).to_a)), class:"c" %>時 〜
    <%= select_tag 'd', options_for_select(((11..22.to_i).to_a)), class:"c" %>時
 　</div>
@@ -53,24 +50,31 @@
 
 　
 
-<!--       <script>
+      <script>
         $(function(){
-          $('.a').change(function() {
+          $('#a').change(function() {
 
-          var a = $(this).val();
-          alert(a)
+             var a = $(this).val();
 
              $.ajax({
                url: "/regist_user/events/pulldown",
                type: "GET",
                data: {"month": a},
                success: function(data) {
-                alert("success!");
-                alert(data);
+
                  if (data > 28) {
                    diff = data - 28;
-                   alert(diff);
-                 }
+
+                   for (var i = 1; i <= diff; i++) {
+                     k = 28 + i;
+
+                     var option = document.createElement('option');
+                     option.textContent = k;
+                     document.getElementById('b').appendChild(option);
+
+                   }
+                }
+
                },
                error: function(data) {
                 alert("failed!");
@@ -78,7 +82,7 @@
               });
         });
         });
-      </script> -->
+      </script>
 
       <!-- 初期値を28にしといて足りない分だけeachで回してoptionタグを増やす -->
 
@@ -94,52 +98,15 @@
 
       <%#= select_tag 'b', options_for_select(((1..x).to_a)), class:"b", :selected => ""  %>
 
-   <!--  <p>jQuery稼働テスト(未稼働)</p>
+    <!--  <p id="jquery">jQuery稼働テスト(未稼働)</p>
       <script type="text/javascript">
       $(document).ready(function() {
-          $("p").text("jQUery稼働テスト(稼働中)");
+          $("#jquery").text("jQUery稼働テスト(稼働中)");
          });
 
     </script> -->
 
 
-<!-- //         (function($){
-//   function formSetDay(){
-//     var lastday = formSetLastDay($('.js-changeYear').val(), $('.js-changeMonth').val());
-//     var option = '';
-//     for (var i = 1; i <= lastday; i++) {
-//       if (i === $('.js-changeDay').val()){
- //         option += '<option value="' + i + '" selected="selected">' + i + '</option>\n';
-//       }else{
-//         option += '<option value="' + i + '">' + i + '</option>\n';
-//       }
-//     }
-//     $('.js-changeDay').html(option);
-//   }
-
-//   function formSetLastDay(year, month){
-//     var lastday = new Array('', 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
-//     if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0){
-//       lastday[2] = 29;
-//     }
-//     return lastday[month];
-//   }
-
-//   $('.js-changeYear, .js-changeMonth').change(function(){
-//     formSetDay();
-//   });
-// })(jQuery); -->
-
-
-
-<!-- 
-      <script>
-        $(function(){
-          $('#a').change(function(
-            var y = $(' option:selected');
-            )
-        })
-      </script> -->
 
 
 
@@ -206,8 +173,10 @@
           <div class="desk-number">5</div>
         </div>
 
+        <div class="column-top left">
         <%= f.radio_button :desk, 8 %>
         <p>テーブル1と2を借りる</p>
+        </div>
 
       </div>
 
@@ -225,8 +194,10 @@
           <div class="desk-number">7</div>
         </div>
 
+        <div class="column-top left">
         <%= f.radio_button :desk, 9 %>
         <p>2階を貸し切る</p>
+        </div>
       </div>
     </div>
   </div>
