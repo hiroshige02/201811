@@ -3,6 +3,7 @@ class Admin::PastEventsController < ApplicationController
 
   # GET /past_events
   # GET /past_events.json
+
   def index
     @past_events = PastEvent.all
   end
