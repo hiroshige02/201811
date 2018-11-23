@@ -7,11 +7,14 @@
     <div class="account-box">
       <h2 class="session-title center">管理者　開催予定一覧</h2>
       <div class="clearfix">
+
+      <% @past_events.each do |past_event| %>
       <div class="mypage-event-past-box">
-        <p>2018/12/1</p>
+        <p><%= past_event.past_start_time.year %>/<%= past_event.past_start_time.month %>/<%= past_event.past_start_time.day %></p>
         <p>イベントタイトル</p>
         <p>葛木さん</p>
       </div>
+      <% end %>
       <div class="mypage-event-past-box">
         <p>2018/12/1</p>
         <p>イベントタイトル</p>

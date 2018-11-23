@@ -3,8 +3,13 @@ class PastEventsController < ApplicationController
 
   # GET /past_events
   # GET /past_events.json
+
   def index
-    @past_events = PastEvent.all
+     @past_events = Event.where(admin_ok: true, finish: true).order(finish_time: :desc)
+     to = Time.now.at_beginning_of_day
+     from = (to - 1.month).at_end_of_day
+     @past_events = Event.where(finish_time: from..to)
+     binding.pry
   end
 
   # GET /past_events/1

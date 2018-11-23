@@ -5,7 +5,7 @@
   <table class="table table-hover">
         <thead>
           <h2 class="session-title center">
-  <%#= @regist_user.regist_name %>dさんの開催実績
+  <%= current_regist_user.regist_name %>さんの開催実績
 </h2>
         </thead>
         <tbody class="center">
@@ -14,18 +14,21 @@
               <td><%#= past_event.title %></td>
             </tr> -->
           <%#end %>
+         <% @past_events.each do |past_event| %>
+          <tr>
+            <td>
+               
+              <%= link_to event_path(past_event.id) do %>
+             <div class="non-deco">
+        <%= past_event.start_time.year %>/<%= past_event.start_time.month %>/<%= past_event.start_time.day %>&nbsp;
+          <%= past_event.start_time.hour %>:00 〜 <%= past_event.finish_time.hour %>:00<br>
+          <%= past_event.title %>
+        </div>
+         <% end %>
          
-
-          <tr>
-            <td>ああああああああああああ</td>
+        </td>
           </tr>
-          <tr>
-            <td>ああああああああああああ</td>
-          </tr>
-          <tr>
-            <td>ああああああああああああ</td>
-          </tr>
-
+<% end %>
   </tbody>
 </table>
 

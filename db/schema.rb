@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_20_082609) do
+ActiveRecord::Schema.define(version: 2018_11_22_093638) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -60,19 +60,7 @@ ActiveRecord::Schema.define(version: 2018_11_20_082609) do
     t.integer "year"
     t.integer "month"
     t.integer "day"
-  end
-
-  create_table "past_events", force: :cascade do |t|
-    t.datetime "past_start_time"
-    t.datetime "past_finish_time"
-    t.string "past_title"
-    t.text "past_content"
-    t.string "past_name"
-    t.string "past_user_mail_address"
-    t.integer "past_participant"
-    t.integer "past_event_image_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean "finish", default: false, null: false
   end
 
   create_table "regist_users", force: :cascade do |t|
@@ -85,6 +73,7 @@ ActiveRecord::Schema.define(version: 2018_11_20_082609) do
     t.string "regist_name_kana"
     t.date "birthday"
     t.string "regist_tel_number"
+    t.text "introduction"
     t.datetime "regist_deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -357,6 +357,7 @@ footer {
 .edit_account-box2-kid{
   width: 100%;
   margin-top: 15px;
+  padding-bottom: 15px;
   border-bottom: 1px solid;
   border-color: rgb(121, 103, 126);
 }
@@ -521,12 +522,21 @@ footer {
 .mypage-event-past-box {
   margin: 20px 0 0 4%;
   height: 80px;
-  width: 21%;
+  width: 20%;
+  margin: 20px 0 0 3%;
   float:left;
   text-align: center;
   overflow: hidden;
 }
-
+/*.mypage-event-box {
+  height: 180px;
+  width: 20%;
+  margin: 20px 0 0 3%;
+  float: left;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}*/
 
 
 /*履歴*/
@@ -724,4 +734,47 @@ p {
 .non-deco {
    color: black;
    text-decoration: none;
+}
+
+
+
+#modal-overlay{
+  z-index:150;
+ /* display:none;*/
+  z-index: 999;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:120%;
+  background-color:rgba(0,0,0,0.75);
+}
+
+#modal-content{
+  width:50%;
+  margin:1.5em auto 0;
+  padding:10px 20px;
+  border:2px solid #aaa;
+  background:#fff;
+  z-index:2;
+  display: none;
+  z-index: 999;
+}
+
+.modal-p{
+  margin-top:1em;
+}
+
+.modal-p:first-child{
+  margin-top:0;
+}
+
+.button-link{
+  color:#00f;
+  text-decoration:underline;
+}
+
+.button-link:hover{
+  cursor:pointer;
+  color:#f00;
 }

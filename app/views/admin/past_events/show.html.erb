@@ -1,21 +1,28 @@
 <div class="session-visual3">
   <!-- <div class="message-main-box"> -->
-  
+
   <div class="baloon center">
+     <div class="baloon-contents">
 
     <h4 class="session-title"><日時></h4>
-    <%= @past_event.past_start_time %><span>〜</span><%= @past_event.past_start_time %><br>
+     <%= @past_event.past_start_time.year %>/<%= @past_event.past_start_time.month %>/<%= @past_event.past_start_time.day %>
+    <%= @past_event.past_start_time.hour %><span>:00 〜 </span><%= @past_event.past_finish_time.hour %>:00
     <h4 class="session-title"><タイトル></h4>
     <h2 class="session-title"><%= @past_event.past_title %></h2>
-    <h4 class="session-title"><主催></h4><br>
-    <p><%= @past_event.past_name %></p><br>
+    <h4 class="session-title"><主催></h4>
+
+    <%= mail_to "#{@past_event.past_user_mail_address}", :cc => "", :subject => "test mail" do %>
+      <div class="non-deco">
+      <p><%= @past_event.past_name %>さん</p><br>
+    </div>
+    <% end %>
     <h4 class="session-title"><詳細></h4>
     <%= @past_event.past_content %>
 
     <div class="column-top center">
       <%= link_to "戻る", :back, class:"square_btn" %>
     </div>
-
+    </div>
   </div>
 
   <!-- </div> -->

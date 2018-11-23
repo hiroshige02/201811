@@ -47,14 +47,14 @@ class RegistUser::EventsController < ApplicationController
   end
 
   def create
-    binding.pry
+    # binding.pry
     @event = Event.new(event_params)
     @event.regist_user_id = current_regist_user.id
     a = params[:a].to_i
     b = params[:b].to_i
     c = params[:c].to_i
     d = params[:d].to_i
-    binding.pry
+    # binding.pry
     h = Time.now
     j = h.month
 
@@ -71,7 +71,7 @@ class RegistUser::EventsController < ApplicationController
     else
       i = h.year
     end
-    binding.pry
+    # binding.pry
     @event.year = i
     x = Time.mktime(i, a, b, c, 0, 0)
     y = Time.mktime(i, a, b, d, 0, 0)
@@ -119,16 +119,12 @@ class RegistUser::EventsController < ApplicationController
         event_exists = Event.where(year: i, month: a, day: b)
 
         if @event.desk.in?(1..7)
-          binding.pry
           g = @event.desk
-          binding.pry
           h = g
         elsif @event.desk == 8
-          binding.pry
           g = 1
           h = 2
         elsif @event.desk == 9
-          binding.pry
           g = 6
           h = 7
         end
@@ -146,12 +142,11 @@ class RegistUser::EventsController < ApplicationController
 
             event_exist.desk_numbers.each do |desk_number|
               for o in g..h
-                binding.pry
                 if desk_number.desk_number == o
                 binding.pry
                 #日付も同じ、机番号も同じであるならば時間比較を行いなさい
                   if desk_number.start >= x && desk_number.start < y
-                    binding.pry
+  
                     flash[:alert] = "予約時間が重複しています"
                     render :new and return
                   end
@@ -344,7 +339,6 @@ class RegistUser::EventsController < ApplicationController
             kk = DeskNumber.where(event_id: @event.id)
             kk.delete_all
             #別にdestroyしなくてもいいが単数デスク➡︎複数デスク またその逆の時が面倒
-            binding.pry
             for o in g..h
               binding.pry
               @desk_number = DeskNumber.new

@@ -11,9 +11,24 @@ class AdminsController < ApplicationController
    end
 
    def show
-     @events = Event.where(admin_ok: false, admin_no: false)
-     @eventsOK = Event.where(admin_ok: true)
+     @events = Event.where(admin_ok: false, admin_no: false, finish: false).order(start_time: :desc)
+     @eventsOK = Event.where(admin_ok: true, finish: false)
+     eventsFinish = Event.where(admin_ok: true, finish: true).order(finish_time: :desc)
+
+     @past_events = []
+     now = Time.now
+
+     eventsFinish.each do |eventFinish|
+       if eventFinish.finish_time < now
+         @past_events << eventFinish
+       end
+    end
+
+       @past_events = @past_events.first(4)
+
    end
+
+
 
    # private
    #   def admin_params

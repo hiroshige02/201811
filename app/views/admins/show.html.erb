@@ -43,9 +43,27 @@
 
   <div class="edit_account-box2-kid clearfix">
     <h4 class="session-title center">開催履歴</h4>
+    <div class="block clearfix">
+    <% @past_events.each do |past_event| %>
+      <%= link_to admin_event_path(past_event.id) do %>
+      <div class="mypage-event-past-box">
+        <div class="non-deco">
+        <%= past_event.title %><br>
+        <%= past_event.start_time.year %>/<%= past_event.start_time.month %>/<%= past_event.start_time.day %><br>
+          <%= past_event.start_time.hour %>:00 〜 <%= past_event.finish_time.hour %>:00<br>
+        <%= past_event.regist_user.regist_name %>さん<br>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="column-top center">
+    <%= link_to "詳細はこちら", admin_past_events_path, class:"square_btn" %>
+  </div>
+
   </div>
 
 
-    
+
   </div>
 </div>

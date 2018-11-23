@@ -1,44 +1,37 @@
-<p id="notice"><%= notice %></p>
+<div class="session-visual3">
+  <!-- <div class="message-main-box"> -->
 
-<p>
-  <strong>Past start time:</strong>
-  <%= @past_event.past_start_time %>
-</p>
+  <div class="baloon center">
+    <div class="baloon-contents">
 
-<p>
-  <strong>Past finish time:</strong>
-  <%= @past_event.past_finish_time %>
-</p>
+    <h4 class="session-title"><日時></h4>
+<%= @event.start_time.year %>/<%= @event.start_time.month %>/<%= @event.start_time.day %>
+    <%= @event.start_time.hour %><span>:00 〜 </span><%= @event.finish_time.hour %>:00
+    <div class="column-top">
+      <h4 class="session-title"><タイトル></h4>
+      <h2 class="session-title"><%= @event.title %></h2>
+    </div>
+    <div class="column-top">
+      <h4 class="session-title"><主催></h4>
 
-<p>
-  <strong>Past title:</strong>
-  <%= @past_event.past_title %>
-</p>
+      <%= mail_to "#{@event.regist_user.email}", "#{@event.regist_user.regist_name}さん", :cc => "", class:"non-deco", :subject => "test mail" %>
 
-<p>
-  <strong>Past content:</strong>
-  <%= @past_event.past_content %>
-</p>
+    </div>
+    <div class="column-top">
+      <h4 class="session-title"><詳細></h4>
+      <% if @event.event_image_id != nil %>
+        <%= attachment_image_tag @event, :event_image, :fill, 150, 150, class:"event-image block" %>
+      <% end %>
+        <%= @event.content %>
+    </div>
 
-<p>
-  <strong>Past name:</strong>
-  <%= @past_event.past_name %>
-</p>
+    <div class="column-top center">
+      <%= link_to "戻る", :back, class:"square_btn" %>
+      <%= link_to "削除する", admin_event_path(@event.id), method: :delete, class:"square_taikai_btn left", "data-confirm" => "この予定を本当に消しますか？" %>
+    </div>
 
-<p>
-  <strong>Past user mail address:</strong>
-  <%= @past_event.past_user_mail_address %>
-</p>
+    </div>
+  </div>
 
-<p>
-  <strong>Past participant:</strong>
-  <%= @past_event.past_participant %>
-</p>
-
-<p>
-  <strong>Past event image:</strong>
-  <%= @past_event.past_event_image_id %>
-</p>
-
-<%= link_to 'Edit', edit_past_event_path(@past_event) %> |
-<%= link_to 'Back', past_events_path %>
+  <!-- </div> -->
+</div>
