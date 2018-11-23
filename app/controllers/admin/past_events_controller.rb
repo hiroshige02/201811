@@ -5,19 +5,19 @@ class Admin::PastEventsController < ApplicationController
   # GET /past_events.json
 
   def index
-    @past_events = PastEvent.all
+    @past_events = Event.where(admin_ok: true, finish: true).order(finish_time: :desc)
+    @first_month = '2018-10-01 15:26:48 +0900'.to_time
+
   end
 
-  # GET /past_events/1
-  # GET /past_events/1.json
   def show
     @past_event =PastEvent.find(params[:id])
   end
 
   # GET /past_events/new
-  def new
-    @past_event = PastEvent.new
-  end
+  # def new
+  #   @past_event = PastEvent.new
+  # end
 
   # GET /past_events/1/edit
   def edit
@@ -26,17 +26,25 @@ class Admin::PastEventsController < ApplicationController
   # POST /past_events
   # POST /past_events.json
   def create
-    @past_event = PastEvent.new(past_event_params)
+    events = Event.where(admin_ok: true, admin_no: false)
+    now = Time.now
 
-    respond_to do |format|
-      if @past_event.save
-        format.html { redirect_to @past_event, notice: 'Past event was successfully created.' }
-        format.json { render :show, status: :created, location: @past_event }
-      else
-        format.html { render :new }
-        format.json { render json: @past_event.errors, status: :unprocessable_entity }
+    events.each do |event|
+      if event.finish_time < now
+        @past_event = PastEvent.new
+        @past_event.past_start_time = event.start_time
+        @past_event.past_finish_time = event.finish_time
+        @past_event.past_title = event.title
+        @past_event.past_content = event.content
+        @past_event.past_name = event.regist_user.regist_name
+        @past_event.past_user_mail_address = event.regist_user.email
+        @past_event.past_participant = event.participant
+        # @past_event.event_id = event.event_image
+        @past_event.save
+        event.destroy
       end
     end
+    redirect_to admin_path(current_admin.id)
   end
 
   # PATCH/PUT /past_events/1
@@ -70,7 +78,7 @@ class Admin::PastEventsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def past_event_params
-      params.require(:past_event).permit(:past_start_time, :past_finish_time, :past_title, :past_content, :past_name, :past_user_mail_address, :past_participant, :past_event_image_id)
-    end
+    # def past_event_params
+    #   params.require(:past_event).permit(:past_start_time, :past_finish_time, :past_title, :past_content, :past_name, :past_user_mail_address, :past_participant, :past_event_image_id)
+    # end
 end

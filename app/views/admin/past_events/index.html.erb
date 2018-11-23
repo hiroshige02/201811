@@ -5,40 +5,40 @@
 
      <div class="past-months-box">
        <div class="half-year-box">
-        <p class="calender">2018<br>1月<br>2月<br>3月<br>4月<br>5月<br>6月<br>7月</p>
+        <p class="calender"><%= @first_month.year %><br>
+
+
+    <% to = Time.now.month
+     from = @first_month.month %>
+
+    <% for o in from..to %>
+       <%= link_to admin_event_path do %>
+        <%= o %>月<br>
+       <% end %>
+    <% end %>
+    <%binding.pry%>
+
+
        </div>
      </div>
 
 
 
     <div class="account-box">
-      <h2 class="session-title center">管理者　開催履歴一覧</h2>
+      <h2 class="session-title center">管理者用　開催履歴一覧</h2>
       <div class="clearfix">
-      <div class="mypage-event-past-box">
-        <p>2018/12/1</p>
-        <p>イベントタイトル</p>
-        <p>葛木さん</p>
-      </div>
-      <div class="mypage-event-past-box">
-        <p>2018/12/1</p>
-        <p>イベントタイトル</p>
-        <p>葛木さん</p>
-      </div>
-      <div class="mypage-event-past-box">
-        <p>2018/12/1</p>
-        <p>イベントタイトル</p>
-        <p>葛木さん</p>
-      </div>
-      <div class="mypage-event-past-box">
-        <p>2018/12/1</p>
-        <p>イベントタイトル</p>
-        <p>葛木さん</p>
-      </div>
-      <div class="mypage-event-past-box">
-        <p>2018/12/1</p>
-        <p>イベントタイトル</p>
-        <p>葛木さん</p>
-      </div>
+      <% @past_events.each do |past_event| %>
+        <%= link_to event_path(past_event.id) do %>
+        <div class="mypage-event-past-box">
+          <div class="non-deco">
+        <%= past_event.start_time.year %>/<%= past_event.start_time.month %>/<%= past_event.start_time.day %><br>
+        <%= past_event.title %><br>
+        <%= past_event.regist_user.regist_name %>さん
+          </div>
+        </div>
+        <% end %>
+      <% end %>
+
       </div>
 
     <div class="column-top center block">

@@ -4,7 +4,7 @@ class RegistUser::PastEventsController < ApplicationController
   # GET /past_events
   # GET /past_events.json
   def index
-    @past_events = PastEvent.all
+    @past_events = Event.where(regist_user_id: current_regist_user.id)
   end
 
   # GET /past_events/1

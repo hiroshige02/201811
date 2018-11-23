@@ -46,7 +46,18 @@
 　</div>
     <p class="moji"></p>
     <div id="render"></div>
+    <div class="modal"></div>
+    <!-- <div id="modal-overlay"></div>
+ -->
 
+
+
+  <div id="modal-content">
+    <p>「閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。「閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。「閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。「閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。「閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。「閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。「閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。</p>
+    <p><a id="modal-close" class="button-link">閉じる</a></p>
+  </div>
+
+  <p><a id="modal-open" class="button-link">クリックするとモーダルウィンドウを開きます。</a></p>
 
 　
 
@@ -74,7 +85,6 @@
 
                    }
                 }
-
                },
                error: function(data) {
                 alert("failed!");
@@ -82,6 +92,31 @@
               });
         });
         });
+
+
+        $(function(){
+          $('#modal-open').click(function(){
+            alert("クリック");
+            $(this).blur() ;  //ボタンからフォーカスを外す
+            if($("#modal-overlay")[0]) return false ;   //新しくモーダルウィンドウを起動しない [下とどちらか選択]
+//if($("#modal-overlay")[0]) $("#modal-overlay").remove() ;   //現在のモーダルウィンドウを削除して新しく起動する [上とどちらか選択]
+
+//オーバーレイ用のHTMLコードを、[body]内の最後に生成する
+            $(".modal").append('<div id="modal-overlay"></div>');
+              
+
+//[$modal-overlay]をフェードインさせる
+            $("#modal-overlay").fadeIn();
+            $("#modal-content").fadeIn("slow");
+          });
+        });
+
+        $("#modal-overlay,#modal-close").unbind().click(function(){
+  //[#modal-overlay]、または[#modal-close]をクリックしたら起こる処理
+          $("#modal-overlay").remove();
+          $("#modal-content").remove();
+        });
+
       </script>
 
       <!-- 初期値を28にしといて足りない分だけeachで回してoptionタグを増やす -->

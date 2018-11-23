@@ -5,69 +5,37 @@
 
   <!-- <div class='arrow_box'><%%= current_regist_user.introduction %></div> -->
 
-  <div class="edit_account-box2-kid clearfix">
-
 
 
   <div class="edit_account-box2-kid clearfix">
     <h3 class="session-title center">開催履歴</h3>
-    <div class="mypage-event-box">
-      <div class="mypage-event-image">
-      </div>
-    <%#= @events.each do |event| %>
-    <%# end %>
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
 
+    <% @past_events.each do |past_event| %>
+      <%= link_to event_path(past_event.id) do %>
+        <div class="mypage-event-box">
+          <% if past_event.event_image_id == nil %>
+            <div class="non-deco column-top">
+              <%= past_event.title %><br>
+              <%= past_event.start_time.year %>/<%= past_event.start_time.month %>/<%= past_event.start_time.day %><br>
+              <%= past_event.content %>
+            </div>
 
-    <div class="mypage-event-box">
-      <div class="mypage-event-image">
-      </div>
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
-  
+           <% else %>
+             <div class="non-deco">
+               <%= attachment_image_tag past_event, :event_image, class:"mypage-event-image" %>
+               <%= past_event.title %><br>
+               <%= past_event.start_time.year %>/<%= past_event.start_time.month %>/<%= past_event.start_time.day %><br>
+               <%= past_event.content %><br>
+             </div>
+          <% end %>
+          </div>
+      <% end %>
 
-    <div class="mypage-event-box">
-      <div class="mypage-event-image">
-      </div>
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
-  
-
-    <div class="mypage-event-box">
-      <div class="mypage-event-image">
-      </div>
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
-
-    <div class="mypage-event-box">
-      <div class="mypage-event-image">
-      </div>
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
+    <% end %>
 
 
 
-    <div class="mypage-event-box">
-      <div class="mypage-event-image">
-      </div>
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
-
-     <div class="mypage-event-box">
-      <p style="padding-top:30px;">イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
-
-
-
-      </div>
+  </div>
 
       <div class="column-top center">
         <%= link_to "戻る", :back, class:"square_btn" %>
@@ -76,6 +44,6 @@
 
 
 
-    </div>
+
   </div>
 </div>

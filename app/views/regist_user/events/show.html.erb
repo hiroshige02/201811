@@ -28,11 +28,14 @@
 
     <div class="column-top center">
       <%= link_to "戻る", :back, class:"square_btn" %>
+
+      <% if @event.start_time > Time.now %>
       <%= link_to "変更する", edit_regist_user_event_path(@event.id), class:"square_btn left navy" %><br>
     </div>
     <div class="column-top center">
       <%= link_to "削除する", regist_user_event_path(@event.id), method: :delete, class:"square_taikai_btn", "data-confirm" => "この予定を本当に消しますか？" %>
     </div>
+    <% end %>
 
     </div>
   </div>

@@ -1,54 +1,40 @@
-<p id="notice"><%= notice %></p>
+<div class="session-visual3">
+  <!-- <div class="message-main-box"> -->
 
-<p>
-  <strong>Start time:</strong>
-  <%= @event.start_time %>
-</p>
+  <div class="baloon center">
+    <div class="baloon-contents">
 
-<p>
-  <strong>Finish time:</strong>
-  <%= @event.finish_time %>
-</p>
+    <h4 class="session-title"><日時></h4>
+<%= @event.start_time.year %>/<%= @event.start_time.month %>/<%= @event.start_time.day %>
+    <%= @event.start_time.hour %><span>:00 〜 </span><%= @event.finish_time.hour %>:00
+    <div class="column-top">
+      <h4 class="session-title"><タイトル></h4>
+      <h2 class="session-title"><%= @event.title %></h2>
+    </div>
+    <div class="column-top">
+      <h4 class="session-title"><主催></h4>
+      
+      
+      <%= mail_to "#{@event.regist_user.email}", "#{@event.regist_user.regist_name}さん", :cc => "", class:"non-deco mail", :subject => "test mail" %>
+      <% if Time.now < @event.start_time %>
+        <br><%= mail_to "#{@event.regist_user.email}", "参加連絡をする", :cc => "", class:"non-deco mail", :subject => "test mail" %>
+      <% end %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @event.title %>
-</p>
+    </div>
+    <div class="column-top">
+      <h4 class="session-title"><詳細></h4>
+      <% if @event.event_image_id != nil %>
+        <%= attachment_image_tag @event, :event_image, :fill, 150, 150, class:"event-image block" %>
+      <% end %>
+        <%= @event.content %>
+    </div>
 
-<p>
-  <strong>Regist user:</strong>
-  <%= @event.regist_user_id %>
-</p>
+    <div class="column-top center">
+      <%= link_to "戻る", :back, class:"square_btn" %>
+    </div>
 
-<p>
-  <strong>Content:</strong>
-  <%= @event.content %>
-</p>
+    </div>
+  </div>
 
-<p>
-  <strong>Admin ok:</strong>
-  <%= @event.admin_ok %>
-</p>
-
-<p>
-  <strong>Admin message:</strong>
-  <%= @event.admin_message %>
-</p>
-
-<p>
-  <strong>Admin no:</strong>
-  <%= @event.admin_no %>
-</p>
-
-<p>
-  <strong>Participant:</strong>
-  <%= @event.participant %>
-</p>
-
-<p>
-  <strong>Event image:</strong>
-  <%= @event.event_image_id %>
-</p>
-
-<%#= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+  <!-- </div> -->
+</div>
