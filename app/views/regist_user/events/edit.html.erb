@@ -55,7 +55,7 @@
 　      </div>
   
 
-       <script>
+      <script>
         $(function(){
           $('#a').change(function() {
 
@@ -66,21 +66,30 @@
                type: "GET",
                data: {"month": a},
                success: function(data) {
-
+                 // alert(data);
                  if (data > 28) {
-                   diff = data - 28;
+                   var select = document.getElementById('b');
+                   var r = select.lastChild.value;
+                   // console.log(r);
+                  if (r > 28) {
+                       $('#b').children('[value="29"]').remove();
+                       $('#b').children('[value="30"]').remove();
+                       $('#b').children('[value="31"]').remove();
+                  }
+                  diff = data - 28;
+                    // alert(diff);
+                   // 初期値を28にしといて足りない分だけeachで回してoptionタグを増やす
+                  for (var i = 1; i <= diff; i++) {
+                    k = 28 + i;
 
-                   for (var i = 1; i <= diff; i++) {
-                     k = 28 + i;
-
-                     var option = document.createElement('option');
-                     option.textContent = k;
-                     document.getElementById('b').appendChild(option);
-
-                   }
-                }
-
-               },
+                    var option = document.createElement('option');
+                    option.setAttribute('value', k);
+                    option.textContent = k;
+                    // option.val = k;
+                    document.getElementById('b').appendChild(option);
+                    }
+                  }
+             },
                error: function(data) {
                 alert("failed!");
                }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_22_093638) do
+ActiveRecord::Schema.define(version: 2018_11_25_065751) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 2018_11_22_093638) do
     t.datetime "admin_deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "admin_profile_image_id"
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
@@ -61,6 +60,7 @@ ActiveRecord::Schema.define(version: 2018_11_22_093638) do
     t.integer "month"
     t.integer "day"
     t.boolean "finish", default: false, null: false
+    t.date "admin_ok_date"
   end
 
   create_table "regist_users", force: :cascade do |t|
@@ -73,7 +73,6 @@ ActiveRecord::Schema.define(version: 2018_11_22_093638) do
     t.string "regist_name_kana"
     t.date "birthday"
     t.string "regist_tel_number"
-    t.text "introduction"
     t.datetime "regist_deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

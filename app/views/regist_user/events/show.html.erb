@@ -8,29 +8,45 @@
     <% if @event.admin_no == true %>
       <div class="alert"><%= @event.admin_message %></div>
     <% end %>
+    <% if @event.admin_ok == true %>
+      <div class="ok-message"><%= @event.admin_message %></div>
+    <% end %>
 
     <h4 class="session-title"><日時></h4>
+    <p class="syousai">
     <%= @event.start_time.year %>/<%= @event.start_time.month %>/<%= @event.start_time.day %>
     <%= @event.start_time.hour %><span>:00 〜 </span><%= @event.finish_time.hour %>:00
+    </p>
     <div class="column-top">
       <h4 class="session-title"><タイトル></h4>
-      <h2 class="session-title"><%= @event.title %></h2>
+      <h2 class="bold"><%= @event.title %></h2>
     </div>
     <div class="column-top">
     <h4 class="session-title"><主催></h4>
-    <p><%= @event.regist_user.regist_name %>さん</p>
+    <p class="syousai"> <%= mail_to "#{@event.regist_user.email}", "#{@event.regist_user.regist_name}さん", :cc => "", class:"non-deco", :subject => "test mail" %></p>
+    </div>
+    <div class="column-top">
+    <h4 class="session-title"><デスクNo></h4>
+    <% if @event.desk.in?(1..7) %>
+      <p class="syousai"><%= @event.desk %>番</p>
+    <% elsif @event.desk = 8 %>
+      <p class="syousai">1番、2番</p>
+    <% elsif @event.desk = 9 %>
+      <p class="syousai">2階貸切</p>
+    <% end %>
+
     </div>
     <div class="column-top">
       <h4 class="session-title"><詳細></h4>
       <%= attachment_image_tag @event, :event_image, :fill, 150, 150, class:"event-image block" %>
-      <%= @event.content %>
+      <p class="syousai"><%= @event.content %></p>
     </div>
 
     <div class="column-top center">
       <%= link_to "戻る", :back, class:"square_btn" %>
 
       <% if @event.start_time > Time.now %>
-      <%= link_to "変更する", edit_regist_user_event_path(@event.id), class:"square_btn left navy" %><br>
+      <%= link_to "変更する", edit_regist_user_event_path(@event.id), class:"square_btn left navy", data: {"turbolinks" => false} %><br>
     </div>
     <div class="column-top center">
       <%= link_to "削除する", regist_user_event_path(@event.id), method: :delete, class:"square_taikai_btn", "data-confirm" => "この予定を本当に消しますか？" %>

@@ -9,15 +9,12 @@ class PastEventsController < ApplicationController
      to = Time.now.at_beginning_of_day
      from = (to - 1.month).at_end_of_day
      @past_events = Event.where(finish_time: from..to)
-     binding.pry
   end
 
-  # GET /past_events/1
-  # GET /past_events/1.json
+
   def show
   end
 
-  # GET /past_events/new
   def new
     @past_event = PastEvent.new
   end
@@ -26,8 +23,7 @@ class PastEventsController < ApplicationController
   def edit
   end
 
-  # POST /past_events
-  # POST /past_events.json
+
   def create
     @past_event = PastEvent.new(past_event_params)
 
@@ -42,8 +38,7 @@ class PastEventsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /past_events/1
-  # PATCH/PUT /past_events/1.json
+
   def update
     respond_to do |format|
       if @past_event.update(past_event_params)

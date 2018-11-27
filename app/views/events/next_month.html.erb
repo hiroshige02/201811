@@ -2,7 +2,7 @@
   <div class="message-main-box clearfix">
 　　
 <div class="column-top">
-  <%= link_to "今月の予定はこちら", events_path, class:"square_btn" %>
+  <%= link_to "今月の予定はこちら", events_path, class:"square_btn left" %>
   </div>
 
     <div class="account-box">
@@ -44,7 +44,9 @@
 
 <div class="index-line-box2">
   <% @events2.each do |event2| %>
-    <div class="column-top center bottom-border">
+    <%= link_to event_path(event2.id) do %>
+
+    <div class="column-top center bottom-border non-deco">
     <%= attachment_image_tag event2, :event_image, class:"event-image" %><br>
       <h4><%= event2.title %></h4>
       <p><日時></p>
@@ -52,6 +54,7 @@
       <p><内容></p>
       <%= event2.content %>
     </div>
+    <% end %>
   <% end %>
 </div>
 

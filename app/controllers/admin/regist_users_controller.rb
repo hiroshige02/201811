@@ -1,4 +1,5 @@
 class Admin::RegistUsersController < ApplicationController
+  before_action :authenticate_admin!
 
   def show
     @regist_user = RegistUser.find(params[:id])
@@ -13,8 +14,11 @@ class Admin::RegistUsersController < ApplicationController
 
   def destroy
     regist_user = RegistUser.find(params[:id])
-    regist_user.destroy
-    redirect_to admin_regist_users_path
+    if regist_user.events.update(regist_user_id: 1)
+       regist_user.destroy
+       redirect_to admin_regist_users_path
+    else
+      render: edit
   end
 
   def update

@@ -5,4 +5,11 @@ class RegistUser < ApplicationRecord
          :recoverable, :rememberable, :validatable
   attachment :profile_image
   has_many :events, dependent: :destroy
+
+  validates :regist_name, length:{ maximum:15 }, presence: true
+  validates :regist_tel_number, numericality:{only_integer: true}
+  validates :birthday, numericality:{only_integer: true}, presence: true
+  validates :regist_name_kana, format: { with:/[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+/}, presence: true
+  validates :job, presence: true
+
 end

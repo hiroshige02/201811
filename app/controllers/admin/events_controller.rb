@@ -1,10 +1,11 @@
 class Admin::EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin!
 
   # GET /events
   # GET /events.json
   def index
-    @events = Event.where(admin_ok: true)
+    @events = Event.where(admin_ok: true, finish:false)
   end
 
   # GET /events/1
@@ -20,7 +21,8 @@ class Admin::EventsController < ApplicationController
   def approve
     @event = Event.find(params[:id])
     if params[:sayno] == nil
-      @event.update(admin_ok: true, admin_message: params[:event][:admin_message])
+      a = Date.today
+      @event.update(admin_ok: true, admin_message: params[:event][:admin_message], admin_ok_date: a)
     else
       @event.update(admin_no: true, admin_message: params[:event][:admin_message])
     end
@@ -29,25 +31,25 @@ class Admin::EventsController < ApplicationController
 
   # GET /events/new
   def new
-    @event = Event.new
+    @events = Event.where(admin_ok: true, finish: false).order(admin_ok_date: :desc).limit(5)
   end
 
   def edit
   end
 
-  def create
-    @event = Event.new(event_params)
+  # def create
+  #   @event = Event.new(event_params)
 
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
-      else
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  #   respond_to do |format|
+  #     if @event.save
+  #       format.html { redirect_to @event, notice: 'Event was successfully created.' }
+  #       format.json { render :show, status: :created, location: @event }
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @event.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
@@ -74,10 +76,6 @@ class Admin::EventsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params

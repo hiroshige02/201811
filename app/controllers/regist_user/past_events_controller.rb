@@ -1,10 +1,11 @@
 class RegistUser::PastEventsController < ApplicationController
   before_action :set_past_event, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_regist_user!
 
   # GET /past_events
   # GET /past_events.json
   def index
-    @past_events = Event.where(regist_user_id: current_regist_user.id)
+    @past_events = Event.where(regist_user_id: current_regist_user.id, finish: true).order(start_time: :desc)
   end
 
   # GET /past_events/1
@@ -16,38 +17,38 @@ class RegistUser::PastEventsController < ApplicationController
   # GET /past_events/new
 
   # GET /past_events/1/edit
-  def edit
-  end
+  # def edit
+  # end
 
   # POST /past_events
   # POST /past_events.json
-  def create
-    @past_event = PastEvent.new(past_event_params)
+  # def create
+  #   @past_event = PastEvent.new(past_event_params)
 
-    respond_to do |format|
-      if @past_event.save
-        format.html { redirect_to @past_event, notice: 'Past event was successfully created.' }
-        format.json { render :show, status: :created, location: @past_event }
-      else
-        format.html { render :new }
-        format.json { render json: @past_event.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  #   respond_to do |format|
+  #     if @past_event.save
+  #       format.html { redirect_to @past_event, notice: 'Past event was successfully created.' }
+  #       format.json { render :show, status: :created, location: @past_event }
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @past_event.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
-  # PATCH/PUT /past_events/1
-  # PATCH/PUT /past_events/1.json
-  def update
-    respond_to do |format|
-      if @past_event.update(past_event_params)
-        format.html { redirect_to @past_event, notice: 'Past event was successfully updated.' }
-        format.json { render :show, status: :ok, location: @past_event }
-      else
-        format.html { render :edit }
-        format.json { render json: @past_event.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # # PATCH/PUT /past_events/1
+  # # PATCH/PUT /past_events/1.json
+  # def update
+  #   respond_to do |format|
+  #     if @past_event.update(past_event_params)
+  #       format.html { redirect_to @past_event, notice: 'Past event was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @past_event }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @past_event.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /past_events/1
   # DELETE /past_events/1.json
