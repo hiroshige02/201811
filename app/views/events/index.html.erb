@@ -2,7 +2,7 @@
   <div class="message-main-box clearfix">
 　　
   <div class="column-top">
-  <%= link_to "来月の予定はこちら", next_month_events_path, class:"square_btn" %>
+  <%= link_to "来月の予定はこちら", next_month_events_path, class:"square_btn left" %>
   </div>
     <div class="account-box">
   <% x = Time.now %>
@@ -24,15 +24,15 @@
             <tr><td>
               <%= link_to event_path(event.id) do %>
               <div class="non-deco">
-              <%= event.day %>日<%= event.start_time.hour %>:00〜
-              <%= event.finish_time.hour %>:00<br>
-              <%= event.title %>
+                <%= event.day %>日<%= event.start_time.hour %>:00〜
+                <%= event.finish_time.hour %>:00<br>
+                <%= event.title %>
               </div>
-              </td></tr>
               <% end %>
+              </td></tr>
           <% end %>
-  </tbody>
-</table>
+        </tbody>
+      </table>
 
 
 </div>
@@ -42,7 +42,8 @@
 
 <div class="index-line-box2">
   <% @events2.each do |event2| %>
-    <div class="column-top center bottom-border">
+    <%= link_to event_path(event2.id) do %>
+    <div class="column-top center bottom-border non-deco">
     <%= attachment_image_tag event2, :event_image, class:"event-image" %><br>
       <h4><%= event2.title %></h4>
       <p><日時></p>
@@ -50,6 +51,7 @@
       <p><内容></p>
       <%= event2.content %>
     </div>
+    <% end %>
   <% end %>
 </div>
 

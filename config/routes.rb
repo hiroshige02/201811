@@ -28,9 +28,11 @@ devise_for :admins, controllers: {
 
     namespace :regist_user do
     resources :past_events, only: [:show, :index]
+    resources :regist_users, only: [:destroy]
     resources :events do
       collection do
         get 'pulldown'
+        get 'modal'
       end
       member do
         patch 'no_image'

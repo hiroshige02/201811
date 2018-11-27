@@ -85,6 +85,7 @@ main {
   overflow: hidden;
   height: 0;
   z-index: 9999;
+  background-color: white;
 }
 .nav li ul li a {
   border-top: 1px solid #eee;
@@ -141,34 +142,32 @@ main {
   box-sizing: border-box;
 }
 
-
-
-
-/*トップページ*/
-
-.main-visual {
-  width: 100%;
-  height: 400px;
-  background-image: image-url('komorebi.jpg');
-  background-size: cover;
-  background-position: bottom;
+#main-title {
+  color: white;
+  font-size: 60px;
+  position: absolute;
+  top: 50px;
+  left: 40px;
+  font-weight: bold;
+  z-index: 9999;
 }
+
 .main-information {
   width: 100%;
-  margin: 0 auto;
-  background-color: rgba(242, 202, 170, 0.2)
+  background-color: rgba(242, 202, 170, 0.2);
 }
 .information-box{
   padding: 0 2%;
   margin-top: 50px;
   width: 20%;
-  height:350px;
+  height:250px;
   float: left;
 }
 
 .news-box {
   width: 95%;
   margin: 0 auto 10px auto;
+  overflow: hidden;
 }
 .event-information-box{
   width: 65%;
@@ -176,11 +175,15 @@ main {
   float: left;
 }
 .sns-box{
-  margin-top: 50px;
+  margin-top: 70px;
   padding: 0 2%;
   width: 15%;
-  height:350px;
+  height:250px;
   float: left;
+}
+
+.sns-span {
+  margin-bottom: 5px;
 }
 .scroll-box {
   margin: 0 auto;
@@ -189,19 +192,19 @@ main {
   height: 200px;
   background-color: rgba(218, 144, 126, 0.4);
   overflow-y: scroll;
+  border-radius: 10px;
+}
+
+#footer{
+  color: white;
 }
 
 footer {
   height: 100px;
   width: 100%;
-  background-color: white;
+  background-color: #b53a88;
+  padding-top: 50px;
 }
-.footer-contents {
-  width: 70%;
-  margin: 0 auto;
-}
-
-
 
 /*イベント一覧*/
 
@@ -216,10 +219,6 @@ footer {
   float:right;
   margin-top: 20px;
 }
-
-
-
-
 
 .square_btn {
     position: relative;
@@ -247,9 +246,11 @@ footer {
 
 .green {
   background-color: #00CC66;
+  border-bottom: solid 2px #669966;
 }
 .red {
   background-color: #CC0000;
+  border-bottom: solid 2px #990000
 }
 .navy {
   background-color: #23439C;
@@ -427,7 +428,7 @@ footer {
   height: 200px;
 }
 .name-area-text {
-  width: 300px;
+  width: 400px;
   height: 200px;
  /* margin: 30px; */
   padding: 30px;
@@ -563,7 +564,6 @@ footer {
 }
 
 
-
 /*イベント登録*/
 .input-size {
   width: 300px;
@@ -574,7 +574,8 @@ footer {
 }
 
 .nav {
-  margin: 0 205px;
+  width: 900px;
+  margin: 0 auto;
   padding-left: 0;
   list-style: none;
 }
@@ -718,6 +719,12 @@ p {
   font-size: 20px;
   font-weight: bold;
 }
+
+.ok-message {
+  color: #FF9900;
+  font-size: 20px;
+  font-weight: bold;
+}
 .gazou {
   width: 10%;
 }
@@ -731,6 +738,13 @@ p {
   width: 40%;
 }
 
+.bold{
+  font-weight: bold;
+}
+.syousai {
+  font-size: 16px;
+}
+
 .non-deco {
    color: black;
    text-decoration: none;
@@ -740,7 +754,7 @@ p {
 
 #modal-overlay{
   z-index:150;
- /* display:none;*/
+  display:none;
   z-index: 999;
   position:fixed;
   top:0;
@@ -777,4 +791,30 @@ p {
 .button-link:hover{
   cursor:pointer;
   color:#f00;
+}
+
+
+#container{
+  width: 100%;
+  height: 500px;
+  background-size: cover;
+  background-position: bottom;
+  position: relative;
+}
+.skip1 {
+  background-image: image-url('Space.jpg');
+}
+.skip2 {
+  background-image: image-url('kara.jpg');
+}
+.skip3 {
+  background-image: image-url('20150209_fmPxucNk.jpg');
+}
+.skip4 {
+  background-image: image-url('second_floor.jpg');
+}
+
+.plan {
+  font-size: 15px;
+  margin-bottom: 5px;
 }

@@ -30,34 +30,27 @@
 
     <% if month == 11 %>
       <% n_n_month = 1 %>
-      <%# today.year = 1 %>
       <% elsif month == 12 %>
         <% n_month = 1 %>
         <% n_n_month = 2 %>
     <% end %>
 
-    <% diff = 28; %>
-
   <div class="center">
    <%= select_tag 'a', options_for_select(["", month, n_month, n_n_month]), id:"a", :selected =>"" %>月
-   <%= select_tag 'b', options_for_select(((1..diff).to_a)), id:"b", :selected =>"" %>日
+   <%= select_tag 'b', options_for_select(((1..28).to_a)), id:"b", :selected =>"" %>日
    <%= select_tag 'c', options_for_select(((10..21).to_a)), class:"c" %>時 〜
    <%= select_tag 'd', options_for_select(((11..22.to_i).to_a)), class:"c" %>時
 　</div>
     <p class="moji"></p>
     <div id="render"></div>
     <div class="modal"></div>
-    <!-- <div id="modal-overlay"></div>
- -->
-
 
 
   <div id="modal-content">
-    <p>「閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。「閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。「閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。「閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。「閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。「閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。「閉じる」か「背景」をクリックするとモーダルウィンドウを終了します。</p>
+    <%#= @event2.title %>
+    <div id="days-event"></div>
     <p><a id="modal-close" class="button-link">閉じる</a></p>
   </div>
-
-  <p><a id="modal-open" class="button-link">クリックするとモーダルウィンドウを開きます。</a></p>
 
 　
 
@@ -72,20 +65,30 @@
                type: "GET",
                data: {"month": a},
                success: function(data) {
-
+                 // alert(data);
                  if (data > 28) {
-                   diff = data - 28;
+                   var select = document.getElementById('b');
+                   var r = select.lastChild.value;
+                   // console.log(r);
+                  if (r > 28) {
+                       $('#b').children('[value="29"]').remove();
+                       $('#b').children('[value="30"]').remove();
+                       $('#b').children('[value="31"]').remove();
+                  }
+                  diff = data - 28;
+                    // alert(diff);
+                   // 初期値を28にしといて足りない分だけeachで回してoptionタグを増やす
+                  for (var i = 1; i <= diff; i++) {
+                    k = 28 + i;
 
-                   for (var i = 1; i <= diff; i++) {
-                     k = 28 + i;
-
-                     var option = document.createElement('option');
-                     option.textContent = k;
-                     document.getElementById('b').appendChild(option);
-
-                   }
-                }
-               },
+                    var option = document.createElement('option');
+                    option.setAttribute('value', k);
+                    option.textContent = k;
+                    // option.val = k;
+                    document.getElementById('b').appendChild(option);
+                    }
+                  }
+             },
                error: function(data) {
                 alert("failed!");
                }
@@ -94,44 +97,73 @@
         });
 
 
-        $(function(){
-          $('#modal-open').click(function(){
-            alert("クリック");
-            $(this).blur() ;  //ボタンからフォーカスを外す
-            if($("#modal-overlay")[0]) return false ;   //新しくモーダルウィンドウを起動しない [下とどちらか選択]
-//if($("#modal-overlay")[0]) $("#modal-overlay").remove() ;   //現在のモーダルウィンドウを削除して新しく起動する [上とどちらか選択]
+        // $(function(){
+        //   $('#b').change(function(){
+        //     if ($('#a').val() !== "") {
 
-//オーバーレイ用のHTMLコードを、[body]内の最後に生成する
-            $(".modal").append('<div id="modal-overlay"></div>');
-              
+        //       var a = $('#a').val();
+              // var b = $(this).val();
+              // alert(a);
 
-//[$modal-overlay]をフェードインさせる
-            $("#modal-overlay").fadeIn();
-            $("#modal-content").fadeIn("slow");
-          });
-        });
 
-        $("#modal-overlay,#modal-close").unbind().click(function(){
-  //[#modal-overlay]、または[#modal-close]をクリックしたら起こる処理
-          $("#modal-overlay").remove();
-          $("#modal-content").remove();
-        });
+             // $.ajax({
+             //   url: "/regist_user/events/modal",
+             //   type: "GET",
+             //   data: {"month": a, "day": b},
+             //   success: function(data) {
+             //     var k = (Object.keys(data).length);
+
+             //     for (var i = 1; i <= k; i++) {
+             //       alert(k);
+             //       $("#days-event").text(data[0]["title"])
+             //       $("#days-event").append('<br>')
+             //       $("#days-event").append(data[0]["start_time"])
+             //       $("#days-event").append('<br>')
+             //       $("#days-event").append(data[0]["finish_time"])
+             //       $("#days-event").append('<br>')
+
+
+             //     }
+             //     alert(k + 1);
+             //     $("#modal-content").fadeIn("slow");
+             //     $("#modal-overlay").fadeIn("slow");
+
+             //   },
+             //   error: function(data) {
+             //     alert("failed!");
+
+             //    }
+             //   });
+
+
+
+//               $(this).blur() ;  //ボタンからフォーカスを外す
+//               if($("#modal-overlay")[0]) return false ;   //新しくモーダルウィンドウを起動しない [下とどちらか選択]
+// //if($("#modal-overlay")[0]) $("#modal-overlay").remove() ;   //現在のモーダルウィンドウを削除して新しく起動する [上とどちらか選択]
+
+//             //オーバーレイ用のHTMLコードを、[.modei]内の最後に生成する
+//             $(".modal").append('<div id="modal-overlay"></div>');
+//             alert("クリック");
+//             $("#modal-content").fadeIn("slow");
+//             $("#modal-overlay").fadeIn("slow");
+//             alert("クリック1");
+        //     }
+        //   };
+        // });
+
+        // $("#modal-overlay,#modal-close").unbind().click(function(){
+        //  //[#modal-overlay]、または[#modal-close]をクリックしたら起こる処理
+        //   $("#modal-overlay").remove();
+        //   $("#modal-content").remove();
+        // });
+
 
       </script>
 
-      <!-- 初期値を28にしといて足りない分だけeachで回してoptionタグを増やす -->
 
 
 
 
-
-
-
-
-
-
-
-      <%#= select_tag 'b', options_for_select(((1..x).to_a)), class:"b", :selected => ""  %>
 
     <!--  <p id="jquery">jQuery稼働テスト(未稼働)</p>
       <script type="text/javascript">
@@ -173,7 +205,8 @@
 
 <div class="column-top"></div>
 
-  <ul class="nav nav-tabs center" role="tablist">
+  <ul class="nav nav-tabs" role="tablist">
+    <!-- <div class="left"> -->
     <li class="active" role="presentation">
       <a aria-controls="tab_a" data-toggle="tab" href="#tab_a" role="tab">一階</a>
     </li>

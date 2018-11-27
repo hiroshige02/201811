@@ -1,3 +1,3 @@
 class DeskNumber < ApplicationRecord
-  belongs_to :event
+  belongs_to :event, dependent: :destroy
 end

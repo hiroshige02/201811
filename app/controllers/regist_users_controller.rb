@@ -1,4 +1,5 @@
 class RegistUsersController < ApplicationController
+  before_action :authenticate_regist_user!
   def taikai
   end
 
@@ -26,13 +27,13 @@ class RegistUsersController < ApplicationController
       end
 
        @past_events = @past_events.first(4)
-  end
+    end
 
-    events = Event.where(regist_user_id: @regist_user.id, admin_ok: false)
-    events1 = Event.where(regist_user_id: @regist_user.id, admin_no: true)
-    @events = events + events1
-
+    @events = Event.where(regist_user_id: @regist_user.id, admin_ok: false, admin_no: false).order(start_time: :desc)
+    @eventsno = Event.where(regist_user_id: @regist_user.id, admin_no: true).order(start_time: :desc)
     @eventsOK = Event.where(regist_user_id: @regist_user.id, admin_ok: true, admin_no: false, finish: false)
   end
+
+
 
 end

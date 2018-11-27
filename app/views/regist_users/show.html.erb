@@ -4,51 +4,66 @@
 
 <div class="name-area clearfix">
   <%= link_to edit_regist_user_registration_path do %>
+    <div class="left">
     <%= attachment_image_tag @regist_user, :profile_image, fallback: "no_image.jpg", class:"test-regist-image" %>
+    </div>
   <!-- <div class='arrow_box'><%%= current_regist_user.introduction %></div> -->
-    <div class="name-area-text">
-      <h1 class=""><%= @regist_user.regist_name %>さん</h1>
+    <div class="name-area-text non-deco">
+      <h1 class="session-title"><%= @regist_user.regist_name %>さん</h1>
   <% end %>
-      <h3 class=""><%= link_to "スペースを予約する", new_regist_user_event_path %></h3>
+      <h3 class=""><%= link_to "スペースを予約する", new_regist_user_event_path, class:"non-deco", data: {"turbolinks" => false} %></h3>
       <%= mail_to "#{@admin.email}", "管理者に連絡をとる", :cc => "", :subject => "test mail" %>
     </div>
 </div>
 
   <div class="edit_account-box2-kid clearfix">
     <h3 class="session-title center">開催確定</h3>
-
     <% @eventsOK.each do |eventOK| %>
       <%= link_to regist_user_event_path(eventOK.id) do %>
+
       <div class="mypage-event-box">
         <%= attachment_image_tag eventOK, :event_image, class:"mypage-event-image" %>
           <div class="non-deco">
+          <%= eventOK.year %>/<%= eventOK.month %>/<%= eventOK.day %><br>
           <%= eventOK.title %><br>
           <%= eventOK.content %><br>
           </div>
-          </div>
+        </div>
+
       <% end %>
     <% end %>
-
-
-
   </div>
 
 
 
   <div class="edit_account-box2-kid clearfix">
     <h3 class="session-title center">承認待ち</h3>
+      <% @eventsno.each do |eventno| %>
+        <%= link_to regist_user_event_path(eventno.id) do %>
+          <div class="mypage-event-box">
+            <div class="no-sign">！</div>
+            <%= attachment_image_tag eventno, :event_image, class:"mypage-event-image" %>
+            <div class="non-deco">
+              <%= eventno.year %>/<%= eventno.month %>/<%= eventno.day %><br>
+              <%= eventno.title %><br>
+              <%= eventno.content %><br>
+              <%# binding.pry %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
     <% @events.each do |event| %>
         <%= link_to regist_user_event_path(event.id) do %>
           <div class="mypage-event-box">
-          <% if event.admin_no == true %>
-            <div class="no-sign">！</div>
-          <% end %>
           <%= attachment_image_tag event, :event_image, class:"mypage-event-image" %>
           <div class="non-deco">
+          <%= event.year %>/<%= event.month %>/<%= event.day %><br>
           <%= event.title %><br>
           <%= event.content %><br>
           </div>
         </div>
+        <%# binding.pry %>
       <% end %>
     <% end %>
 

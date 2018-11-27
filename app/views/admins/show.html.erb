@@ -13,8 +13,9 @@
 
         <%= attachment_image_tag event, :event_image, class:"mypage-event-image" %>
         <div class="non-deco">
+        <%= event.year %>/<%= event.month %>/<%= event.day %><br>
         <%= event.title %><br>
-        <%= event.content %><br>
+        <%= event.content %>
         </div>
 
       </div>
@@ -59,6 +60,8 @@
   </div>
   <div class="column-top center">
     <%= link_to "詳細はこちら", admin_past_events_path, class:"square_btn" %>
+    <%= link_to "メンテ", admin_past_events_path, method: :post, class:"square_btn navy left", "data-confirm" => "メンテしますか？" %>
+
   </div>
 
   </div>

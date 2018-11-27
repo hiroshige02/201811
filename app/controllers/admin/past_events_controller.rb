@@ -1,12 +1,12 @@
 class Admin::PastEventsController < ApplicationController
   before_action :set_past_event, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_admin!
   # GET /past_events
   # GET /past_events.json
 
   def index
     @past_events = Event.where(admin_ok: true, finish: true).order(finish_time: :desc)
-    @first_month = '2018-10-01 15:26:48 +0900'.to_time
+    @first_month = '2018-10-01 0:00:00 +0900'.to_time
 
   end
 
@@ -14,34 +14,18 @@ class Admin::PastEventsController < ApplicationController
     @past_event =PastEvent.find(params[:id])
   end
 
-  # GET /past_events/new
-  # def new
-  #   @past_event = PastEvent.new
-  # end
-
-  # GET /past_events/1/edit
   def edit
   end
 
   # POST /past_events
   # POST /past_events.json
   def create
-    events = Event.where(admin_ok: true, admin_no: false)
+    events = Event.where(admin_ok: true, admin_no: false, finish: false)
     now = Time.now
-
+    a = Date.today
     events.each do |event|
       if event.finish_time < now
-        @past_event = PastEvent.new
-        @past_event.past_start_time = event.start_time
-        @past_event.past_finish_time = event.finish_time
-        @past_event.past_title = event.title
-        @past_event.past_content = event.content
-        @past_event.past_name = event.regist_user.regist_name
-        @past_event.past_user_mail_address = event.regist_user.email
-        @past_event.past_participant = event.participant
-        # @past_event.event_id = event.event_image
-        @past_event.save
-        event.destroy
+        event.update(finish: true)
       end
     end
     redirect_to admin_path(current_admin.id)
