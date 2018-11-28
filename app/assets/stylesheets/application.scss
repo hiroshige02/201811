@@ -12,7 +12,7 @@
  *
  *= require_tree .
  *= require_self
- */
+*/
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
@@ -37,11 +37,11 @@ body {
     background-color: #fff;
 }
 main {
-	width:900px;
+	width: 900px;
 	margin: 50px auto 0 auto;
 }
 
-* ヘッダー
+/* ヘッダー */
 .nav {
   width: 750px;
   height: 40px;
@@ -63,7 +63,7 @@ main {
   font-size: 18px;
   font-weight: bold;
   line-height: 1.5;
-/*  background-color: rgba(122,30,42,0.3);*/
+*  background-color: rgba(122,30,42,0.3);*
   text-decoration: none;
   border-right: 1px solid #eee;
   box-sizing: border-box;
@@ -105,7 +105,7 @@ main {
     top: 15px;
     left: 30px;
     border: 5px solid transparent;
-    border-left: 5px solid #fff;
+    border-left 5px solid #fff;
   }
   .nav li ul li ul li:hover > a {/*layer-3*/
     color: pink;
