@@ -1,98 +1,87 @@
-
- <div class="session-visual">
+<div class="session-visual">
   <div class="message-main-box">
 
+    <div class="name-area clearfix">
+      <%= link_to edit_admin_regist_user_path do %>
+        <div class="left">
+          <%= attachment_image_tag @regist_user, :profile_image, fallback: "no_image.jpg", class:"test-regist-image" %>
+        </div>
 
-  <div class="name-area clearfix">
-    <div class="test-regist-image">
+        <div class="name-area-text non-deco">
+          <h1 class="session-title"><%= @regist_user.regist_name %>さん</h1>
+      <% end %>
+          <h4 class=""><%= link_to "このユーザーに連絡をする", new_regist_user_event_path, class:"non-deco" %></h4>
+          <%= link_to "このユーザーを退会させる", admin_regist_user_path(@regist_user), data: { confirm: "本当によろしいですか?" }, class:"square_taikai_btn button-top non-deco", method: :delete %>
+        </div>
     </div>
-  <!-- <div class='arrow_box'><%%= current_regist_user.introduction %></div> -->
-    <div class="name-area-text">
-      <h1 class=""><%= @regist_user.regist_name %>さん</h1>
-      <h4 class=""><%= link_to "このユーザーに連絡をする", new_regist_user_event_path %></h4>
-      <%= link_to "このユーザーを退会させる", admin_regist_user_path(@regist_user), data: { confirm: "本当によろしいですか?" }, class:"square_taikai_btn button-top", method: :delete %>
-    </div>
-  </div>
 
     <div class="edit_account-box2-kid clearfix">
-      <h3 class="session-title center" style="display:block;">開催確定</h3>
-      <div class="mypage-event-box">
-        <div class="mypage-event-image">
-        </div>
-    <%#= @events.each do |event| %>
-    <%# end %>
-        <p>イベントタイトル</p>
-        <p>イベント詳細はこちらイベント将来はこちら</p>
+      <h3 class="session-title center">開催確定</h3>
+      <% @eventsOK.each do |eventOK| %>
+        <%= link_to regist_user_event_path(eventOK.id) do %>
+          <div class="mypage-event-box">
+            <%= attachment_image_tag eventOK, :event_image, class:"mypage-event-image" %>
+            <div class="non-deco">
+              <%= eventOK.year %>/<%= eventOK.month %>/<%= eventOK.day %><br>
+              <%= eventOK.title %><br>
+              <%= eventOK.content %><br>
+            </div>
+          </div>
+
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="edit_account-box2-kid clearfix">
+      <h3 class="session-title center">審査中</h3>
+
+      <% @eventsno.each do |eventno| %>
+        <%= link_to admin_event_path(eventno.id) do %>
+          <div class="mypage-event-box">
+            <div class="no-sign">！</div>
+            <%= attachment_image_tag eventno, :event_image, class:"mypage-event-image" %>
+            <div class="non-deco">
+              <%= eventno.year %>/<%= eventno.month %>/<%= eventno.day %><br>
+              <%= eventno.title %><br>
+              <%= eventno.content %><br>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+      <% @events.each do |event| %>
+        <%= link_to admin_event_path(event.id) do %>
+           <div class="mypage-event-box">
+             <%= attachment_image_tag event, :event_image, class:"mypage-event-image" %>
+             <div class="non-deco">
+             <%= event.year %>/<%= event.month %>/<%= event.day %><br>
+              <%= event.title %><br>
+              <%= event.content %><br>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="edit_account-box2-kid clearfix">
+       <h4 class="session-title center">開催履歴</h4>
+      <div class="block clearfix">
+        <% @past_events.each do |past_event| %>
+          <%= link_to admin_event_path(past_event.id) do %>
+            <div class="mypage-event-past-box">
+              <div class="non-deco">
+                <%= past_event.title %><br>
+                <%= past_event.start_time.year %>/<%= past_event.start_time.month %>/<%= past_event.start_time.day %><br>
+                <%= past_event.start_time.hour %>:00 〜 <%= past_event.finish_time.hour %>:00<br>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
       </div>
-
-
-
-    <div class="mypage-event-box">
-      <div class="mypage-event-image">
+      <div class="column-top center">
+        <%= link_to "詳細はこちら", events_path, class:"square_btn" %>
       </div>
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
     </div>
 
-    <div class="mypage-event-box">
-      <div class="mypage-event-image">
-      </div>
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
-
-  </div>
-
-
-
-  <div class="edit_account-box2-kid clearfix">
-    <h3 class="session-title center">審査中</h3>
-    <div class="mypage-event-box">
-      <div class="mypage-event-image">
-      </div>
-    <%#= @events.each do |event| %>
-    <%# end %>
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
-
-
-    <div class="mypage-event-box">
-      <div class="mypage-event-image">
-      </div>
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
-
-    <div class="mypage-event-box">
-      <p style="padding-top:30px;">イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
-
-  </div>
-
-  <div class="edit_account-box2-kid clearfix">
-    <h4 class="session-title center">開催履歴</h4>
-    <div class="mypage-event-past-box">
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
-    <div class="mypage-event-past-box">
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
-    <div class="mypage-event-past-box">
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
-    <div class="mypage-event-past-box">
-      <p>イベントタイトル</p>
-      <p>イベント詳細はこちらイベント将来はこちら</p>
-    </div>
-    <a class="center">詳細はこちら</a>
-  </div>
-
-
-    </div>
   </div>
 </div>

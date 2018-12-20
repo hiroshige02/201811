@@ -1,35 +1,28 @@
 <div class="session-visual3">
-   <div class="message-main-box">
+  <div class="message-main-box">
    <!--   <div class="months-box">
       <p>2018<br>11月<br>12月<br><br>2019<br>1月
-
     </div> -->
     <div class="account-box">
       <h2 class="session-title center">管理者　開催予定一覧</h2>
       <div class="clearfix">
-
-
-      <% @events.each do |event| %>
-        <%= link_to event_path(event.id) do %>
-        <div class="mypage-event-past-box">
-          <div class="non-deco">
-        <%= event.start_time.year %>/<%= event.start_time.month %>/<%= event.start_time.day %><br>
-        <%= event.title %><br>
-        <%= event.regist_user.regist_name %>さん
-          </div>
-        </div>
+        <% @events.each do |event| %>
+          <%= link_to event_path(event.id) do %>
+            <div class="mypage-event-past-box">
+              <div class="non-deco">
+                <%= event.start_time.year %>/<%= event.start_time.month %>/<%= event.start_time.day %><br>
+                <%= event.title %><br>
+                <%= event.regist_user.regist_name %>さん
+              </div>
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
-
       </div>
 
-    <div class="column-top center block">
-      <%= link_to "戻る", :back, class:"square_btn" %>
+      <div class="column-top center block">
+        <%= link_to "戻る", :back, class:"square_btn" %>
+      </div>
     </div>
-
-
-
-  </div>
   </div>
 </div>
 

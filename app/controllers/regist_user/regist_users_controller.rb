@@ -12,5 +12,4 @@ class RegistUser::RegistUsersController < ApplicationController
     end
   end
 
-
 end

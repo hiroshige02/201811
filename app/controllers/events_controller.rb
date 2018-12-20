@@ -1,8 +1,6 @@
 class EventsController < ApplicationController
   before_action only: [:show, :edit, :update, :destroy]
 
-  # GET /events
-  # GET /events.json
   def index
     x = Time.now
     a = x.year
@@ -11,7 +9,7 @@ class EventsController < ApplicationController
 
     from = Time.now.at_beginning_of_day
     to = (from + 6.day).at_end_of_day
-    @events2 = Event.where(start_time: from..to, admin_ok: true)
+    @events2 = Event.where(start_time: from..to, admin_ok: true, year: a, month: b)
   end
 
   def next_month
@@ -30,6 +28,7 @@ class EventsController < ApplicationController
 
   end
 
+
   def show
     @event = Event.find(params[:id])
   end
@@ -41,10 +40,7 @@ class EventsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def event_params
-      params.require(:event).permit(:start_time, :finish_time, :title, :regist_user_id, :content, :admin_ok, :admin_message, :admin_no, :participand, :event_image_id)
-    end
+  def event_params
+    params.require(:event).permit(:start_time, :finish_time, :title, :regist_user_id, :content, :admin_ok, :admin_message, :admin_no, :participand, :event_image_id)
+  end
 end

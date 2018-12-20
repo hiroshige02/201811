@@ -91,4 +91,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  #自分で追加
+  config.assets.css_compressor = :sass
+  config.assets.enabled = true
+  config.assets.compile = true
 end

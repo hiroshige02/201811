@@ -12,16 +12,17 @@
  *
  *= require_tree .
  *= require_self
-*/
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import "font-awesome";
+ */
+
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'font-awesome';
 
 
 *{
   margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+  padding: 0;
+  box-sizing: border-box;
   font-family: inherit;
 }
 
@@ -37,11 +38,9 @@ body {
     background-color: #fff;
 }
 main {
-	width: 900px;
-	margin: 50px auto 0 auto;
+    width: 900px;
+    margin: 50px auto 0 auto;
 }
-
-/* ヘッダー */
 .nav {
   width: 750px;
   height: 40px;
@@ -63,16 +62,15 @@ main {
   font-size: 18px;
   font-weight: bold;
   line-height: 1.5;
-*  background-color: rgba(122,30,42,0.3);*
   text-decoration: none;
   border-right: 1px solid #eee;
   box-sizing: border-box;
 }
-.nav > li:hover > a {/*layer-1*/
+.nav > li:hover > a {
   color: orange;
   background: #afc6e2;
 }
-.nav > li li:hover > a {/*layer-2*/
+.nav > li li:hover > a {
   color: olive;
   background: #afc6e2;
 }
@@ -89,59 +87,55 @@ main {
 }
 .nav li ul li a {
   border-top: 1px solid #eee;
-  vertical-align: bottom
+  vertical-align: bottom;
 }
 .nav li:hover > ul > li {
   overflow: visible;
   height: 40px;
 }
-  .nav li ul li ul {
-    top: 0;
-    left: 110px;
-  }
-  .nav li ul li ul:before {/*layer-2▷*/
-    position: absolute;
-    content: "";
-    top: 15px;
-    left: 30px;
-    border: 5px solid transparent;
-    border-left 5px solid #fff;
-  }
-  .nav li ul li ul li:hover > a {/*layer-3*/
-    color: pink;
-    background: #afc6e2;
-  }
-  .nav li ul li ul.left {
-    top: 0;
-    left: -190px;
-  }
-  .nav li ul li ul.left:before,/*layer-2-left▷*/
-  .nav li ul li ul li ul.left:before {/*layer-3-left▷*/
-    position: absolute;
-    content: "";
-    top: 15px;
-    left: 190px;
-    border: 5px solid transparent;
-    border-right: 5px solid #fff;
-  }
-  .nav li ul li ul.left li:hover > a {/*layer-2-left*/
-    color: pink;
-    background: #afc6e2;
-  }
-  .nav li ul li ul li ul.left li:hover > a {/*layer-3-left*/
-    color: purple;
-    background: #afc6e2;
-  }
+.nav li ul li ul {
+  top: 0;
+  left: 110px;
+}
+.nav li ul li ul:before {
+  position: absolute;
+  content: '';
+  top: 15px;
+  left: 30px;
+  border: 5px solid transparent;
+  border-left: 5px solid #fff;
+}
+.nav li ul li ul li:hover > a {
+  color: pink;
+  background: #afc6e2;
+}
+.nav li ul li ul.left {
+  top: 0;
+  left: -190px;
+}
+
+.nav li ul li ul li ul.left:before {
+  position: absolute;
+  content: '';
+  top: 15px;
+  left: 190px;
+  border: 5px solid transparent;
+  border-right: 5px solid #fff;
+}
+.nav li ul li ul.left li:hover > a {
+  color: pink;
+  background: #afc6e2;
+}
+.nav li ul li ul li ul.left li:hover > a {
+  color: purple;
+  background: #afc6e2;
+}
 .content {
   width: 750px;
   height: 200px;
   background: #eee;
-  margin: 0 auto;
-  padding: 10px;
-  text-align: left;
-  box-sizing: border-box;
+  margin: 0;
 }
-
 #main-title {
   color: white;
   font-size: 60px;
@@ -205,9 +199,6 @@ footer {
   background-color: #b53a88;
   padding-top: 50px;
 }
-
-/*イベント一覧*/
-
 .index-line-box1 {
   width: 45%;
   float:left;
@@ -216,23 +207,20 @@ footer {
 }
 .index-line-box2 {
   width: 55%;
-  float:right;
+  float: right;
   margin-top: 20px;
 }
-
 .square_btn {
-    position: relative;
-    display: inline-block;
-    padding: 10px 20px;
-    /*0.25em 0.5em;*/
-    text-decoration: none;
-    color: #FFF;
-    background: #fd9535;/*背景色*/
-    border-bottom: solid 2px #d27d00;/*少し濃い目の色に*/
-    border-radius: 4px;/*角の丸み*/
-    box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
-    font-size: 16px;
-    font-weight: bold;
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #FFF;
+  background: #fd9535;
+  border-bottom: solid 2px #d27d00;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .square_btn:hover {
@@ -250,26 +238,25 @@ footer {
 }
 .red {
   background-color: #CC0000;
-  border-bottom: solid 2px #990000
+  border-bottom: solid 2px #990000;
 }
 .navy {
   background-color: #23439C;
-  border-bottom: solid 2px #000080;/*少し濃い目の色に*/
+  border-bottom: solid 2px #000080;
   box-shadow: inset 0 2px 0 #538AB9, 0 2px;
 }
 
 .square_taikai_btn {
-    position: relative;
-    display: inline-block;
-    padding: 10px 20px;
-    text-decoration: none;
-    color: #FFF;
-    background: #808080;/*背景色*/
-    border-bottom: solid 2px black;/*少し濃い目の色に*/
-    border-radius: 4px;/*角の丸み*/
-    box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
-    font-size: 16px;
-    font-weight: bold;
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #FFF;
+  background: #808080;
+  border-bottom: solid 2px black;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
 }
 .square_taikai_btn:hover {
   text-decoration: none;
@@ -281,7 +268,7 @@ footer {
 }
 
 .button-top {
-	margin-top: 15px;
+  margin-top: 15px;
 }
 #space {
   margin-top: 70px;
@@ -293,13 +280,10 @@ footer {
 .bottom {
   margin-bottom: 30px;
 }
-
-
-/* 新規登録等*/
 .session-visual {
-	width: 100%;
+  width: 100%;
   padding: 50px auto 50px auto;
- 	background-image: image-url('/images/main.jpeg');
+  background-image: image-url('/images/main.jpeg');
   background-size: cover;
   background-position: left;
 }
@@ -331,7 +315,7 @@ footer {
   background-color: rgba(211,211,211,0.7);
   width: 80%;
   margin: 0 auto;
-  padding: 50px
+  padding: 50px;
 }
 .message-main-box {
   background-color: rgba(255,255,255,0.7);
@@ -340,10 +324,9 @@ footer {
   margin: 0 auto;
   padding: 50px 0;
 }
-
 .account-box {
-	width: 80%;
-	margin: 0 auto;
+  width: 80%;
+  margin: 0 auto;
   padding-top: 50px;
   padding-bottom: 50px;
 }
@@ -353,7 +336,7 @@ footer {
 }
 .edit-account-box2 {
   width: 70%;
-  float:left;
+  float: left;
 }
 .edit_account-box2-kid{
   width: 100%;
@@ -372,7 +355,6 @@ footer {
 .session-title {
   color: #4B0082;
   font-weight: bold;
-  /*-webkit-text-stroke: 1px #FFFFEE;*/
 }
 .session-columns{
   color: #4B0082;
@@ -384,7 +366,6 @@ footer {
 .column-top {
   margin-top: 20px;
 }
-
 .sign-up {
   font-size: 20px;
 }
@@ -397,8 +378,6 @@ footer {
   display: block;
 }
 
-
-/*イベントの詳細画面*/
 .baloon {
   background-color: rgba(255,255,255,0.7);
   width: 60%;
@@ -411,7 +390,6 @@ footer {
   margin: 0 auto;
 }
 
-/*以下マイページコマ割りなど*/
 .bottom-border {
   border-bottom: 1px solid;
   margin-bottom: 15px;
@@ -430,60 +408,9 @@ footer {
 .name-area-text {
   width: 400px;
   height: 200px;
- /* margin: 30px; */
   padding: 30px;
   float: left;
 }
-
-/*コメントボックス現状不使用*/
-.arrow_box{
-    position:relative;
-    width:170px;
-    height:80px;
-    background:#FFF5C9;
-    text-align:center;
-    border:6px solid #FFF5C9;
-    color:#707070;
-    font-size:12px;
-    font-weight:bold;
-    border-radius:7px;
-    -webkit-border-radius:7px;
-    -moz-border-radius:7px;
-    margin: 28px auto 0 auto;
-}
-.arrow_box:after,.arrow_box:before{
-    border: solid transparent;
-    content:'';
-    height:0;
-    width:0;
-    pointer-events:none;
-    position:absolute;
-    bottom:100%;
-    left:50%;
-}
-.arrow_box:after{
-    border-color: rgba(255, 245, 201, 0);
-    border-top-width:20px;
-    border-bottom-width:20px;
-    border-left-width:18px;
-    border-right-width:18px;
-    margin-left: -18px;
-    border-bottom-color:#FFF5C9;
-}
-.arrow_box:before{
-    border-color: rgba(255, 245, 201, 0);
-    border-top-width:26px;
-    border-bottom-width:26px;
-    border-left-width:24px;
-    border-right-width:24px;
-    margin-left: -24px;
-    margin-bottom: 6px;
-    border-bottom-color:#FFF5C9;
-}
-
-/*↑コメントボックス現状不使用*/
-
-
 .mypage-event-content{
   padding: 20px auto;
 }
@@ -519,7 +446,6 @@ footer {
   font-size: 40px;
   font-weight: bold;
 }
-
 .mypage-event-past-box {
   margin: 20px 0 0 4%;
   height: 80px;
@@ -529,19 +455,6 @@ footer {
   text-align: center;
   overflow: hidden;
 }
-/*.mypage-event-box {
-  height: 180px;
-  width: 20%;
-  margin: 20px 0 0 3%;
-  float: left;
-  text-align: center;
-  overflow: hidden;
-  position: relative;
-}*/
-
-
-/*履歴*/
-
 .months-box {
   position: absolute;
   top: 20px;
@@ -564,7 +477,6 @@ footer {
 }
 
 
-/*イベント登録*/
 .input-size {
   width: 300px;
 }
@@ -572,7 +484,6 @@ footer {
 .inline-block {
   display: inline-block;
 }
-
 .nav {
   width: 900px;
   margin: 0 auto;
@@ -597,7 +508,7 @@ footer {
   background-color: #8B4513;
   border-radius: 10px;
   position: absolute;
-  top: 50px;
+  top: 100px;
   left: 30px;
 }
 
@@ -608,9 +519,8 @@ footer {
   border-radius: 10px;
   position: absolute;
   top: 50px;
-  left: 320;
+  left: 320px;
 }
-
 #desk3 {
   width: 150px;
   height: 150px;
@@ -645,20 +555,18 @@ footer {
   background-color: #8B4513;
   border-radius: 10px;
   position: absolute;
-  top: 70px;
+  top: 100px;
   left: 30px;
 }
-
 #desk7 {
   width: 200px;
   height: 200px;
   background-color: #8B4513;
   border-radius: 10px;
   position: absolute;
-  top: 70px;
+  top: 100px;
   left: 380px;
 }
-
 
 .desk-number {
   width: 30px;
@@ -669,9 +577,6 @@ footer {
   text-align: center;
 }
 
-
-
-/*テスト用*/
 .event-image {
   margin:25px auto;
   height: 150px;
@@ -683,7 +588,7 @@ footer {
 }
 .test-regist-image {
   float: left;
-  margin:25px auto;
+  margin: 25px auto;
   height: 150px;
   width: 200px;
   background-size: cover;
@@ -693,14 +598,14 @@ footer {
 }
 .regist-image {
   float: left;
-  margin:25px auto 25px;
+  margin: 25px auto 25px;
   height: 150px;
   width: 200px;
   background-image: image-url('/images/20150209_fmPxucNk.jpg');
   background-size: cover;
   background-position: center;
   box-shadow:
-    inset 0 0 20px #fff,/* 背景色と同じ色 */
+    inset 0 0 20px #fff,
     inset 0 0 20px #fff,
     inset 0 0 20px #fff,
     inset 0 0 20px #fff;
@@ -746,35 +651,31 @@ p {
 }
 
 .non-deco {
-   color: black;
-   text-decoration: none;
+  color: black;
+  text-decoration: none;
 }
-
-
-
 #modal-overlay{
-  z-index:150;
-  display:none;
+  z-index: 150;
+  display: none;
   z-index: 999;
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:120%;
-  background-color:rgba(0,0,0,0.75);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  background-color: rgba(0,0,0,0.75);
 }
 
 #modal-content{
   width:50%;
-  margin:1.5em auto 0;
-  padding:10px 20px;
-  border:2px solid #aaa;
-  background:#fff;
-  z-index:2;
+  margin: 1.5em auto 0;
+  padding: 10px 20px;
+  border: 2px solid #aaa;
+  background: #fff;
+  z-index: 2;
   display: none;
   z-index: 999;
 }
-
 .modal-p{
   margin-top:1em;
 }
@@ -789,10 +690,9 @@ p {
 }
 
 .button-link:hover{
-  cursor:pointer;
-  color:#f00;
+  cursor: pointer;
+  color: #f00;
 }
-
 
 #container{
   width: 100%;

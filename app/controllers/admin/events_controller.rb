@@ -2,14 +2,10 @@ class Admin::EventsController < ApplicationController
   before_action only: [:show, :edit, :update, :destroy]
   before_action :authenticate_admin!
 
-  # GET /events
-  # GET /events.json
   def index
     @events = Event.where(admin_ok: true, finish:false)
   end
 
-  # GET /events/1
-  # GET /events/1.json
   def show
     @event = Event.find(params[:id])
   end
@@ -26,33 +22,18 @@ class Admin::EventsController < ApplicationController
     else
       @event.update(admin_no: true, admin_message: params[:event][:admin_message])
     end
-      redirect_to admin_path(current_admin.id)
+    redirect_to admin_path(current_admin.id)
   end
 
-  # GET /events/new
+
   def new
     @events = Event.where(admin_ok: true, finish: false).order(admin_ok_date: :desc).limit(5)
   end
 
   def edit
+    @event = Event.find(params[:id])
   end
 
-  # def create
-  #   @event = Event.new(event_params)
-
-  #   respond_to do |format|
-  #     if @event.save
-  #       format.html { redirect_to @event, notice: 'Event was successfully created.' }
-  #       format.json { render :show, status: :created, location: @event }
-  #     else
-  #       format.html { render :new }
-  #       format.json { render json: @event.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
-
-  # PATCH/PUT /events/1
-  # PATCH/PUT /events/1.json
   def update
     respond_to do |format|
       if @event.update(event_params)
@@ -65,20 +46,15 @@ class Admin::EventsController < ApplicationController
     end
   end
 
-  # DELETE /events/1
-  # DELETE /events/1.json
   def destroy
+    @event = Event.find(params[:id])
     @event.destroy
-    respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to admin_path(current_admin.id)
   end
 
   private
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:start_time, :finish_time, :title, :regist_user_id, :content, :admin_ok, :admin_message, :admin_no, :participand, :event_image_id)
+      params.require(:event).permit(:start_time, :finish_time, :title, :regist_user_id, :content, :admin_ok, :admin_message, :admin_no, :participant, :event_image_id)
     end
-end
+  end

@@ -1,72 +1,62 @@
 <div class="session-visual">
   <div class="message-main-box clearfix">
 
-
-
-  <!-- <div class='arrow_box'><%%= current_regist_user.introduction %></div> -->
-
-  <div class="edit_account-box2-kid clearfix">
-    <h3 class="session-title center">新規起案</h3>
-     <% @events.each do |event| %>
-     <%= link_to check_admin_event_path(event.id) do %>
-      <div class="mypage-event-box">
-
-        <%= attachment_image_tag event, :event_image, class:"mypage-event-image" %>
-        <div class="non-deco">
-        <%= event.year %>/<%= event.month %>/<%= event.day %><br>
-        <%= event.title %><br>
-        <%= event.content %>
-        </div>
-
-      </div>
-      <% end %>
+    <%= link_to edit_admin_registration_path do %>
+      <h1 class="session-title center"><%= current_admin.admin_name %>さん</h1>
     <% end %>
-  </div>
-  <div class="edit_account-box2-kid clearfix">
-    <h4 class="session-title center">開催予定</h4>
-     <% @eventsOK.each do |eventOK| %>
-     <%= link_to admin_event_path(eventOK.id) do %>
-      <div class="mypage-event-box">
 
-        <%= attachment_image_tag eventOK, :event_image, class:"mypage-event-image" %>
-        <div class="non-deco">
-        <%= eventOK.title %><br>
-        <%= eventOK.content %><br>
-        </div>
-
-      </div>
-     <% end %>
-     <% end %>
-
-
-
-  </div>
-
-  <div class="edit_account-box2-kid clearfix">
-    <h4 class="session-title center">開催履歴</h4>
-    <div class="block clearfix">
-    <% @past_events.each do |past_event| %>
-      <%= link_to admin_event_path(past_event.id) do %>
-      <div class="mypage-event-past-box">
-        <div class="non-deco">
-        <%= past_event.title %><br>
-        <%= past_event.start_time.year %>/<%= past_event.start_time.month %>/<%= past_event.start_time.day %><br>
-          <%= past_event.start_time.hour %>:00 〜 <%= past_event.finish_time.hour %>:00<br>
-        <%= past_event.regist_user.regist_name %>さん<br>
-        </div>
-      </div>
+    <div class="edit_account-box2-kid clearfix">
+      <h3 class="session-title center">新規起案</h3>
+      <% @events.each do |event| %>
+        <%= link_to check_admin_event_path(event.id) do %>
+          <div class="mypage-event-box">
+            <%= attachment_image_tag event, :event_image, class:"mypage-event-image" %>
+            <div class="non-deco">
+              <%= event.year %>/<%= event.month %>/<%= event.day %><br>
+              <%= event.title %><br>
+              <%= event.content %>
+            </div>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
-  <div class="column-top center">
-    <%= link_to "詳細はこちら", admin_past_events_path, class:"square_btn" %>
-    <%= link_to "メンテ", admin_past_events_path, method: :post, class:"square_btn navy left", "data-confirm" => "メンテしますか？" %>
+    </div>
 
-  </div>
+    <div class="edit_account-box2-kid clearfix">
+      <h4 class="session-title center">開催予定</h4>
+      <% @eventsOK.each do |eventOK| %>
+        <%= link_to admin_event_path(eventOK.id) do %>
+          <div class="mypage-event-box">
+            <%= attachment_image_tag eventOK, :event_image, class:"mypage-event-image" %>
+            <div class="non-deco">
+              <%= eventOK.title %><br>
+              <%= eventOK.content %><br>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
 
-  </div>
-
-
+    <div class="edit_account-box2-kid clearfix">
+      <h4 class="session-title center">開催履歴</h4>
+      <div class="block clearfix">
+        <% @past_events.each do |past_event| %>
+          <%= link_to admin_event_path(past_event.id) do %>
+            <div class="mypage-event-past-box">
+              <div class="non-deco">
+                <%= past_event.title %><br>
+                <%= past_event.start_time.year %>/<%= past_event.start_time.month %>/<%= past_event.start_time.day %><br>
+                <%= past_event.start_time.hour %>:00 〜 <%= past_event.finish_time.hour %>:00<br>
+                <%= past_event.regist_user.regist_name %>さん<br>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="column-top center">
+        <%= link_to "詳細はこちら", admin_past_events_path, class:"square_btn" %>
+        <%= link_to "メンテ", admin_past_events_path, method: :post, class:"square_btn navy left", "data-confirm" => "メンテしますか？" %>
+      </div>
+    </div>
 
   </div>
 </div>

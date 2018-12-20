@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2018_11_25_065751) do
     t.integer "month"
     t.integer "day"
     t.boolean "finish", default: false, null: false
-    t.date "admin_ok_date"
+    t.datetime "admin_ok_date"
   end
 
   create_table "regist_users", force: :cascade do |t|
