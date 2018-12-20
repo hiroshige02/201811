@@ -8,57 +8,48 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
-
-
   <% if admin_signed_in? %>
-
-  <ul class="nav" style="background-color: white;">
-    <li><%= link_to "サイトトップ", top_events_path %></li>
-    <li><%= link_to "管理者ページ", admin_path(current_admin.id) %></li>
-    <li><%= link_to "開催" %>
-      <ul>
-        <li><%= link_to "開催予定", events_path %></li>
-        <li><%= link_to "管理者用予定", admin_events_path %></li>
-        <li><%= link_to "開催履歴", past_events_path %></li>
-        <li><%= link_to "管理者用履歴", admin_past_events_path %></li>
-      </ul>
-    </li>
-    <li><%= link_to "ユーザー一覧", admin_regist_users_path %></li>
-
-    <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
-  </ul>
+    <ul class="nav" style="background-color: white;">
+      <li><%= link_to "サイトトップ", top_events_path, data: {"turbolinks" => false} %></li>
+      <li><%= link_to "管理者ページ", admin_path(current_admin.id) %></li>
+      <li><%= link_to "開催" %>
+        <ul>
+          <li><%= link_to "開催予定", events_path %></li>
+          <li><%= link_to "管理者用予定", admin_events_path %></li>
+          <li><%= link_to "開催履歴", past_events_path %></li>
+          <li><%= link_to "管理者用履歴", admin_past_events_path %></li>
+        </ul>
+      </li>
+      <li><%= link_to "ユーザー一覧", admin_regist_users_path %></li>
+      <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+    </ul>
 
   <% elsif regist_user_signed_in? %>
-  <ul class="nav">
-    <li><%= link_to "サイトトップ", top_events_path , data: {"turbolinks" => false} %></li>
-    <li><%= link_to "マイページ", regist_user_path(current_regist_user.id) %></li>
-    <li><%= link_to "開催予定", events_path %></li>
-    <li><%= link_to "開催履歴", past_events_path %></li>
-    <li><%= link_to "ログアウト", destroy_regist_user_session_path, method: :delete %></li>
-    <li></li>
-  </ul>
+    <ul class="nav">
+      <li><%= link_to "サイトトップ", top_events_path , data: {"turbolinks" => false} %></li>
+      <li><%= link_to "マイページ", regist_user_path(current_regist_user.id) %></li>
+      <li><%= link_to "開催予定", events_path %></li>
+      <li><%= link_to "開催履歴", past_events_path %></li>
+      <li><%= link_to "ログアウト", destroy_regist_user_session_path, method: :delete %></li>
+      <li></li>
+    </ul>
 
- <% else %>
-  <ul class="nav">
-    <li><%= link_to "サイトトップ", top_events_path %></li>
-    <li><%= link_to "初めての方へ", first_events_path %></li>
-    <li><%= link_to "開催予定", events_path %></li>
-    <li><%= link_to "開催履歴", past_events_path %></li>
-    <li><%= link_to "ログイン", new_regist_user_session_path %>
-      <ul>
+  <% else %>
+    <ul class="nav">
+      <li><%= link_to "サイトトップ", top_events_path, data: {"turbolinks" => false} %></li>
+      <li><%= link_to "初めての方へ", first_events_path %></li>
+      <li><%= link_to "開催予定", events_path %></li>
+      <li><%= link_to "開催履歴", past_events_path %></li>
+      <li><%= link_to "ログイン", new_regist_user_session_path %>
+        <ul>
           <li><%= link_to "主催の方はこちら", new_regist_user_session_path %></li>
           <li><%= link_to "管理者はこちら", new_admin_session_path %></li>
-      </ul>
-    </li>
-  </ul>
-
-<% end %>
-
-
-
+        </ul>
+      </li>
+    </ul>
+  <% end %>
 
 <!-- <ul class="nav">
-
   <li><a href="#">Home</a></li>
 
   <li><a href="#">Strategy</a>
@@ -86,10 +77,7 @@
   </li>
 
 </ul> -->
-
-
-    <main>
+  <main>
     <%= yield %>
-    </main>
-  </body>
+  </main>
 </html>

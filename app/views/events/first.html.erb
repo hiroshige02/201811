@@ -1,34 +1,28 @@
 <div class="session-visual">
   <div class="message-main-box">
     <div class="account-box">
+      <h2 class="session-title center">初めての方へ</h2>
 
-<h2 class="session-title center">初めての方へ</h2>
+      <div class="first-message-box">
+        <p style="font-weight: bold;">CHRONOSはお客様が企画された<br>
+          ライブやパーティを楽しんでいただけるイベントスペースです。<br>
+          2階では照明や音響の設備を準備しております。<br><br>
+          また、公序良俗に反するイベントはお断りすることがございます。<br>
+          会員様同士や参加者様とのトラブルについては一切の責任を負いかねます。
+　　     </p>
+      </div>
 
-<div class="first-message-box">
-
-<p style="font-weight: bold;">CHRONOSはお客様が企画された<br>
-ライブやパーティを楽しんでいただけるイベントスペースです。<br>
-また、2階では照明や音響の設備を準備しております。
-<br><br>
-<
-公序良俗に反するイベントはお断りすることがございます。
-<br>
-また、会員様同士や参加者様とのトラブルについては一切の責任を負いかねます。
-
-</p>
-</div>
-
-  <div id="space">
-  <div class="column-top block center">
-    <%= link_to "スペースを借りてイベントを主催する", new_regist_user_registration_path, class:"square_btn sign-up" %>
-  </div>
-  <div class="column-top block center">
-     <%= link_to "開催予定のイベントを見る", events_path, class:"square_btn sign-up" %>
-  </div>
-  <div class="column-top block center">
-    <%= link_to "戻る", :back, class:"square_btn" %>
-  </div>
-  </div>
+      <div id="space">
+        <div class="column-top block center">
+          <%= link_to "スペースを借りてイベントを主催する", new_regist_user_registration_path, class:"square_btn sign-up" %>
+        </div>
+        <div class="column-top block center">
+          <%= link_to "開催予定のイベントを見る", events_path, class:"square_btn sign-up" %>
+        </div>
+        <div class="column-top block center">
+          <%= link_to "戻る", :back, class:"square_btn", data: {"turbolinks" => false} %>
+        </div>
+      </div>
 
     </div>
   </div>

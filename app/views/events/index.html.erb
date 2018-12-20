@@ -1,65 +1,55 @@
 <div class="session-visual">
   <div class="message-main-box clearfix">
-　　
-  <div class="column-top">
-  <%= link_to "来月の予定はこちら", next_month_events_path, class:"square_btn left" %>
-  </div>
-    <div class="account-box">
-  <% x = Time.now %>
-  <% a = x.year %>
-  <% b = x.month %>
-<h2 class="session-title center"><%= b %>月のイベント</h2>
-<!-- #月が自動計算で出るようにする -->
-
-<div class="index-line-box1">
-
-<table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">開催予定</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @events.each do |event| %>
-            <tr><td>
-              <%= link_to event_path(event.id) do %>
-              <div class="non-deco">
-                <%= event.day %>日<%= event.start_time.hour %>:00〜
-                <%= event.finish_time.hour %>:00<br>
-                <%= event.title %>
-              </div>
-              <% end %>
-              </td></tr>
-          <% end %>
-        </tbody>
-      </table>
-
-
-</div>
-
-
-
-
-<div class="index-line-box2">
-  <% @events2.each do |event2| %>
-    <%= link_to event_path(event2.id) do %>
-    <div class="column-top center bottom-border non-deco">
-    <%= attachment_image_tag event2, :event_image, class:"event-image" %><br>
-      <h4><%= event2.title %></h4>
-      <p><日時></p>
-      <p><%= event2.month %>/<%= event2.day %>&nbsp;&nbsp;<%= event2.start_time.hour %>:00 〜 <%= event2.finish_time.hour %>:00</p>
-      <p><内容></p>
-      <%= event2.content %>
+　　 <div class="column-top">
+      <%= link_to "来月の予定はこちら", next_month_events_path, class:"square_btn left" %>
     </div>
-    <% end %>
-  <% end %>
-</div>
+    <div class="account-box">
+      <% x = Time.now %>
+      <% a = x.year %>
+      <% b = x.month %>
+      <h2 class="session-title center"><%= b %>月のイベント</h2>
 
-  </div>
+      <div class="index-line-box1">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">開催予定</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @events.each do |event| %>
+              <tr><td>
+                <%= link_to event_path(event.id) do %>
+                  <div class="non-deco">
+                    <%= event.day %>日<%= event.start_time.hour %>:00〜
+                    <%= event.finish_time.hour %>:00<br>
+                    <%= event.title %>
+                  </div>
+                <% end %>
+              </td></tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
 
-  <div class="column-top block center">
-    <%= link_to "戻る", :back, class:"square_btn center" %>
-  </div>
+      <div class="index-line-box2">
+        <% @events2.each do |event2| %>
+          <%= link_to event_path(event2.id) do %>
+            <div class="column-top center bottom-border non-deco">
+              <%= attachment_image_tag event2, :event_image, class:"event-image" %><br>
+              <h4><%= event2.title %></h4>
+              <p><日時></p>
+              <p><%= event2.month %>/<%= event2.day %>&nbsp;&nbsp;<%= event2.start_time.hour %>:00 〜 <%= event2.finish_time.hour %>:00</p>
+              <p><内容></p>
+              <%= event2.content %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="column-top block center">
+      <%= link_to "戻る", :back, class:"square_btn center" %>
+    </div>
 
   </div>
 </div>

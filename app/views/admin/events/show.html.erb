@@ -1,40 +1,44 @@
-
 <div class="session-visual3">
-  <!-- <div class="message-main-box"> -->
-
   <div class="baloon center">
     <div class="baloon-contents">
+      <h4 class="session-title"><日時></h4>
+      <p class="syousai"><%= @event.start_time.year %>/<%= @event.start_time.month %>/<%= @event.start_time.day %>
+      <%= @event.start_time.hour %><span>:00 〜 </span><%= @event.finish_time.hour %>:00
+      </p>
+      <div class="column-top">
+        <h4 class="session-title"><タイトル></h4>
+        <h2 class="bold"><%= @event.title %></h2>
+      </div>
+      <div class="column-top">
+        <h4 class="session-title"><主催></h4>
+        <p class="syousai"><%= mail_to "#{@event.regist_user.email}", "#{@event.regist_user.regist_name}さん", :cc => "", class:"non-deco", :subject => "test mail" %>
+        </p>
+      </div>
 
-    <h4 class="session-title"><日時></h4>
-<p class="syousai"><%= @event.start_time.year %>/<%= @event.start_time.month %>/<%= @event.start_time.day %>
-    <%= @event.start_time.hour %><span>:00 〜 </span><%= @event.finish_time.hour %>:00
-  </p>
-    <div class="column-top">
-      <h4 class="session-title"><タイトル></h4>
-      <h2 class="bold"><%= @event.title %></h2>
-    </div>
-    <div class="column-top">
-      <h4 class="session-title"><主催></h4>
+      <div class="column-top">
+        <h4 class="session-title"><デスクNo></h4>
+        <% if @event.desk.in?(1..7) %>
+          <p class="syousai"><%= @event.desk %>番</p>
+        <% elsif @event.desk == 8 %>
+          <p class="syousai">1番、2番</p>
+        <% elsif @event.desk == 9 %>
+          <p class="syousai">2階貸切</p>
+        <% end %>
+      </div>
 
-     <p class="syousai"><%= mail_to "#{@event.regist_user.email}", "#{@event.regist_user.regist_name}さん", :cc => "", class:"non-deco", :subject => "test mail" %>
-     </p>
-
-    </div>
-    <div class="column-top">
-      <h4 class="session-title"><詳細></h4>
-      <% if @event.event_image_id != nil %>
-        <%= attachment_image_tag @event, :event_image, :fill, 150, 150, class:"event-image block" %>
-      <% end %>
+      <div class="column-top">
+        <h4 class="session-title"><詳細></h4>
+        <% if @event.event_image_id != nil %>
+          <%= attachment_image_tag @event, :event_image, :fill, 150, 150, class:"event-image block" %>
+        <% end %>
         <p class="syousai"><%= @event.content %></p>
-    </div>
+      </div>
 
-    <div class="column-top center">
-      <%= link_to "戻る", :back, class:"square_btn" %>
-      <%= link_to "削除する", admin_event_path(@event.id), method: :delete, class:"square_taikai_btn left", "data-confirm" => "この予定を本当に消しますか？" %>
-    </div>
+      <div class="column-top center">
+        <%= link_to "戻る", :back, class:"square_btn" %>
+        <%= link_to "削除する", admin_event_path(@event.id), method: :delete, class:"square_taikai_btn left", "data-confirm" => "この予定を本当に消しますか？" %>
+      </div>
 
     </div>
   </div>
-
-  <!-- </div> -->
 </div>

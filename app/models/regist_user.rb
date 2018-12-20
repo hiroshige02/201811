@@ -8,7 +8,7 @@ class RegistUser < ApplicationRecord
 
   validates :regist_name, length:{ maximum:15 }, presence: true
   validates :regist_tel_number, numericality:{only_integer: true}
-  validates :birthday, numericality:{only_integer: true}, presence: true
+  validates :birthday, numericality:{only_integer: true}, presence: true, length:{is:8}
   validates :regist_name_kana, format: { with:/[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+/}, presence: true
   validates :job, presence: true
 

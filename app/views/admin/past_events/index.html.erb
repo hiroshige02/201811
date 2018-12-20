@@ -1,8 +1,6 @@
 <div class="session-visual3">
   <div class="message-main-box">
 
-
-
  <!--     <div class="past-months-box">
        <div class="half-year-box">
         <p class="calender"><%= @first_month.year %><br>
@@ -21,29 +19,26 @@
      </div> -->
 
 
-
     <div class="account-box">
       <h2 class="session-title center">管理者用　開催履歴一覧</h2>
       <div class="clearfix">
-      <% @past_events.each do |past_event| %>
-        <%= link_to event_path(past_event.id) do %>
-        <div class="mypage-event-past-box">
-          <div class="non-deco">
-        <%= past_event.start_time.year %>/<%= past_event.start_time.month %>/<%= past_event.start_time.day %><br>
-        <%= past_event.title %><br>
-        <%= past_event.regist_user.regist_name %>さん
-          </div>
-        </div>
+        <% @past_events.each do |past_event| %>
+          <%= link_to event_path(past_event.id) do %>
+            <div class="mypage-event-past-box">
+              <div class="non-deco">
+                <%= past_event.start_time.year %>/<%= past_event.start_time.month %>/<%= past_event.start_time.day %><br>
+                <%= past_event.title %><br>
+                <%= past_event.regist_user.regist_name %>さん
+              </div>
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
-
       </div>
 
-    <div class="column-top center block">
-      <%= link_to "戻る", :back, class:"square_btn" %>
+      <div class="column-top center block">
+        <%= link_to "戻る", :back, class:"square_btn" %>
+      </div>
     </div>
 
-
-  </div>
   </div>
 </div>

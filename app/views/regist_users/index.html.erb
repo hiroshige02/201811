@@ -16,24 +16,19 @@
         </thead>
         <tbody>
           <% @regist_users.each do |regist_user| %>
-          <tr>
+            <tr>
               <td><%= attachment_image_tag regist_user, :profile_image, fallback: "no_image.jpg",size: '40x40' %></td>
               <td><%= regist_user.regist_name %></td>
               <td><%= regist_user.email %></td>
               <td></td>
-          </tr>
+            </tr>
           <% end %>
+        </tbody>
+      </table>
 
-
-  </tbody>
-</table>
-
-<div class="column-top center">
-    <%= link_to "戻る", :back, class:"square_btn" %>
-  </div>
-
-
-
+      <div class="column-top center">
+        <%= link_to "戻る", :back, class:"square_btn" %>
+      </div>
 
     </div>
   </div>

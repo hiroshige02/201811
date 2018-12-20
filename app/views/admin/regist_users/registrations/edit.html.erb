@@ -2,67 +2,71 @@
   <div class="main-box">
     <div class="account-box">
 
-<h2 class="session-title">主催者ユーザー<br>登録情報変更 <%#= resource_name.to_s.humanize %></h2>
+      <h2 class="session-title">主催者ユーザー<br>登録情報変更 <%#= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= devise_error_messages! %>
 
-　  <div class="field column-top">
-    <%= f.label :"名前(本名でお願いします)", class:"session-columns" %><br />
-    <%= f.text_field :regist_name, autofocus: true, autocomplete: "regist_name" %>
-  </div>
-  <div class="field column-top">
-    <%= f.label :"名前(カナ)", class:"session-columns" %><br />
-    <%= f.text_field :regist_name_kana, autofocus: true, autocomplete: "regist_name_kana" %>
-  </div>
-  <div class="field column-top">
-    <%= f.label :生年月日, class:"session-columns" %><br />
-    <%= f.text_field :birthday, autofocus: true, autocomplete: "birthday" %>
-  </div>
-  <div class="field column-top">
-    <%= f.label :ご職業, class:"session-columns" %><br />
-    <%= f.text_field :job, autofocus: true, autocomplete: "job" %>
-  </div>
+　      <div class="field column-top">
+          <%= f.label :"名前(本名でお願いします)", class:"session-columns" %><br />
+          <%= f.text_field :regist_name, autofocus: true, autocomplete: "regist_name" %>
+        </div>
 
-  <div class="field column-top">
-    <%= f.label :Eメールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+        <div class="field column-top">
+          <%= f.label :"名前(カナ)", class:"session-columns" %><br />
+          <%= f.text_field :regist_name_kana, autofocus: true, autocomplete: "regist_name_kana" %>
+        </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+        <div class="field column-top">
+          <%= f.label :生年月日, class:"session-columns" %><br />
+          <%= f.text_field :birthday, autofocus: true, autocomplete: "birthday" %>
+        </div>
 
-  <div class="field column-top">
-    <%= f.label :新しいパスワード, class:"session-columns" %> <i class="session-columns">(変更を希望しない場合は空にしてください)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <span class="session-columns"><%= @minimum_password_length %>文字以上入力が必要です</span>
-    <% end %>
-  </div>
+        <div class="field column-top">
+          <%= f.label :ご職業, class:"session-columns" %><br />
+          <%= f.text_field :job, autofocus: true, autocomplete: "job" %>
+        </div>
 
-  <div class="field column-top">
-    <%= f.label :"新しいパスワード(確認用)", class:"session-columns" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+        <div class="field column-top">
+          <%= f.label :Eメールアドレス %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
 
-  <div class="field column-top">
-    <%= f.label :現在お使いのパスワード, class:"session-columns" %> <i class="session-columns">(変更確認のため入力が必要です)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+
+        <div class="field column-top">
+          <%= f.label :新しいパスワード, class:"session-columns" %> <i class="session-columns">(変更を希望しない場合は空にしてください)</i><br />
+          <%= f.password_field :password, autocomplete: "new-password" %>
+          <% if @minimum_password_length %>
+            <br />
+            <span class="session-columns"><%= @minimum_password_length %>文字以上入力が必要です</span>
+          <% end %>
+        </div>
+
+        <div class="field column-top">
+          <%= f.label :"新しいパスワード(確認用)", class:"session-columns" %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        </div>
+
+        <div class="field column-top">
+          <%= f.label :現在お使いのパスワード, class:"session-columns" %> <i class="session-columns">(変更確認のため入力が必要です)</i><br />
+          <%= f.password_field :current_password, autocomplete: "current-password" %>
+        </div>
 
 
-  <div class="column-top">
-    <%= f.submit "更新する", class:"square_btn" %>
-    <%= link_to "戻る", :back, class:"square_btn" %>
-  </div>
-<% end %>
+        <div class="column-top">
+          <%= f.submit "更新する", class:"square_btn" %>
+          <%= link_to "戻る", :back, class:"square_btn" %>
+        </div>
+      <% end %>
 
-<div class="column-top">
- <%= link_to "ログアウト(メンテ用)", destroy_regist_user_session_path, method: :delete  %>
-<%= link_to "退会の方はこちら", regist_user_taikai_path(current_regist_user.id), class:"square_taikai_btn" %>
-</div>
+      <div class="column-top">
+        <%= link_to "ログアウト(メンテ用)", destroy_regist_user_session_path, method: :delete  %>
+        <%= link_to "退会の方はこちら", regist_user_taikai_path(current_regist_user.id), class:"square_taikai_btn" %>
+      </div>
+
     </div>
   </div>
 </div>

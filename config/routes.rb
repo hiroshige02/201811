@@ -16,6 +16,7 @@ devise_for :admins, controllers: {
 
     namespace :admin do
       resources :past_events
+      resources :regist_users
       resources :events do
          member do
            get 'check'
@@ -23,8 +24,7 @@ devise_for :admins, controllers: {
            get 'sayno'
          end
        end
-      resources :regist_users
-  end
+    end
 
     namespace :regist_user do
     resources :past_events, only: [:show, :index]

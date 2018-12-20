@@ -2,39 +2,32 @@
   <div class="message-main-box">
     <div class="account-box">
 
-  <table class="table table-hover">
+      <table class="table table-hover">
         <thead>
           <h2 class="session-title center">
-  <%= current_regist_user.regist_name %>さんの開催実績
-</h2>
+            <%= current_regist_user.regist_name %>さんの開催実績
+          </h2>
         </thead>
         <tbody class="center">
-          <%# @regist_user.past_events each do |past_event| %>
-            <!-- <tr>
-              <td><%#= past_event.title %></td>
-            </tr> -->
-          <%#end %>
-         <% @past_events.each do |past_event| %>
-          <tr>
-            <td>
-               
-              <%= link_to event_path(past_event.id) do %>
-             <div class="non-deco">
-        <%= past_event.start_time.year %>/<%= past_event.start_time.month %>/<%= past_event.start_time.day %>&nbsp;
-          <%= past_event.start_time.hour %>:00 〜 <%= past_event.finish_time.hour %>:00<br>
-          <%= past_event.title %>
-        </div>
-         <% end %>
-         
-        </td>
-          </tr>
-<% end %>
-  </tbody>
-</table>
+          <% @past_events.each do |past_event| %>
+            <tr>
+              <td>
+                <%= link_to event_path(past_event.id) do %>
+                  <div class="non-deco">
+                    <%= past_event.start_time.year %>/<%= past_event.start_time.month %>/<%= past_event.start_time.day %>&nbsp;
+                    <%= past_event.start_time.hour %>:00 〜 <%= past_event.finish_time.hour %>:00<br>
+                    <%= past_event.title %>
+                  </div>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-<div class="column-top center">
-    <%= link_to "戻る", :back, class:"square_btn" %>
-  </div>
+      <div class="column-top center">
+        <%= link_to "戻る", :back, class:"square_btn" %>
+      </div>
 
     </div>
   </div>
