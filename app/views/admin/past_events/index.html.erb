@@ -1,27 +1,60 @@
 <div class="session-visual3">
   <div class="message-main-box">
 
- <!--     <div class="past-months-box">
-       <div class="half-year-box">
+    <div class="past-months-box">
+      <div class="half-year-box">
         <p class="calender"><%= @first_month.year %><br>
 
+          <% to = Time.now.month
+            from = @first_month.month
+            n = 0
+            for o in from..to
+              n += 1 %>
+              <div id=<%= "#{Time.now.year}#{Time.now.month}".to_i %>, class="a"><%= o %>月</div>
+            <% end %>
+        </p>
+      </div>
+    </div>
 
-    <%# to = Time.now.month
-     from = @first_month.month %>
+    <script>
+      $(function(){
+        $('.a').click(function(){
+          var b = $(this).attr('id');
+          alert(b);
+          $.ajax({
+            url: "/admin/past_events/past_month",
+            type: "GET",
+            data: {"time": b},
+            success: function(data) {
+              console.log("success");
+              var c = data.length;
 
-    <%# for o in from..to %>
-       <%#= link_to admin_event_path do %>
-        <%#= o %>月<br>
-       <%# end %>
-    <%# end %>
 
-       </div>
-     </div> -->
+              for (var i = 0; i + 1 <= c; i++) {
+                var div = document.createElement('div');
+                div.setAttribute('class', 'mypage-past-event-box');
+                div.textContent = 'a';
+                document.getElementById('past-event').appendChild(div);
 
+              $('#past-event').text((data[i]["year"])
+                + "/" + (data[i]["month"]) + "/" + (data[i]["day"]))
+              }
+            },
+            error: function(data) {
+              alert("failed!");
+            }
+          });
+        });
+      });
+    </script>
 
     <div class="account-box">
       <h2 class="session-title center">管理者用　開催履歴一覧</h2>
-      <div class="clearfix">
+      <div id="past-event" class="clearfix"></div>
+
+
+
+　　　　<div class="clearfix">
         <% @past_events.each do |past_event| %>
           <%= link_to event_path(past_event.id) do %>
             <div class="mypage-event-past-box">
@@ -33,6 +66,8 @@
             </div>
           <% end %>
         <% end %>
+
+
       </div>
 
       <div class="column-top center block">

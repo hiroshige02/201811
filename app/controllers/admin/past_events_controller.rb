@@ -22,11 +22,27 @@ class Admin::PastEventsController < ApplicationController
     events.each do |event|
       if event.finish_time < now
         event.update(finish: true)
+        event.desk_numbers.destroy
       end
     end
     redirect_to admin_path(current_admin.id)
   end
 
+  def past_month
+    binding.pry
+    time = params[:time].to_i
+    y = time.to_s.first(4).to_i
+
+    if time.to_s.length == 6
+      m = time.to_s.last(2).to_i #
+    else
+      m = time.to_s.last(1).to_i
+    end
+
+    @past_events = Event.where(year: y, month: m)
+    binding.pry
+    render json: @past_events
+  end
 
   def update
     respond_to do |format|

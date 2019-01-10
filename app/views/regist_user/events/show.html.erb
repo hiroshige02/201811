@@ -45,7 +45,7 @@
       <div class="column-top center">
         <%= link_to "戻る", :back, class:"square_btn" %>
 
-        <% if @event.start_time > Time.now %>
+        <% if @event.start_time > Time.now || @event.admin_no == true || @event.admin_ok == false %>
           <%= link_to "変更する", edit_regist_user_event_path(@event.id), class:"square_btn left navy", data: {"turbolinks" => false} %><br>
           </div>
           <div class="column-top center">
