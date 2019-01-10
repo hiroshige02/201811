@@ -17,6 +17,8 @@ module Himaraya3
     # config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += Dir["#{config.root}/lib/tasks/test.rb"]
     config.eager_load_paths += Dir["#{config.root}/lib/**/"]
+    config.i18n.default_locale = :ja
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s]
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

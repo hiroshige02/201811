@@ -1,0 +1,26 @@
+ja:
+  activerecord:
+    models:
+      admin: 管理者
+      regist_user: 主催者ユーザー
+      event: イベント
+      desk_number: テーブル番号
+    attributes:
+        regist_user:
+          email: メールアドレス
+          password: パスワード
+          regist_name: お名前
+          regist_name_kana: お名前(カナ)
+          birthday: 生年月日
+          job: ご職業
+          regist_tel_number: お電話番号
+          current_password: 現在のパスワード
+          password_confirmation: パスワード(確認用)
+        admin:
+          email: メールアドレス
+          password: パスワード
+          admin_name: 管理者名
+          admin_name_kana: 管理者名(カナ)
+          admin_tel_number: 電話番号
+          current_password: 現在のパスワード
+          password_confirmation: パスワード(確認用)
