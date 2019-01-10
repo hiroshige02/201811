@@ -15,7 +15,11 @@ devise_for :admins, controllers: {
 
 
     namespace :admin do
-      resources :past_events
+      resources :past_events do
+        collection do
+          get 'past_month'
+        end
+      end
       resources :regist_users
       resources :events do
          member do
@@ -27,18 +31,18 @@ devise_for :admins, controllers: {
     end
 
     namespace :regist_user do
-    resources :past_events, only: [:show, :index]
-    resources :regist_users, only: [:destroy]
-    resources :events do
-      collection do
-        get 'pulldown'
-        get 'modal'
-      end
-      member do
-        patch 'no_image'
+      resources :past_events, only: [:show, :index]
+      resources :regist_users, only: [:destroy]
+      resources :events do
+        collection do
+          get 'pulldown'
+          get 'modal'
+        end
+        member do
+          patch 'no_image'
+        end
       end
     end
-  end
 
   resources :past_events
   resources :events, only: [:show, :index] do
