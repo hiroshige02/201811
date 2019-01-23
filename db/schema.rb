@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_25_065751) do
+ActiveRecord::Schema.define(version: 2019_01_12_140909) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -42,6 +42,19 @@ ActiveRecord::Schema.define(version: 2018_11_25_065751) do
     t.integer "event_id"
   end
 
+  create_table "dummies", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "equipment", force: :cascade do |t|
+    t.integer "equipment_number"
+    t.string "equipment"
+    t.integer "dummy_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "events", force: :cascade do |t|
     t.datetime "start_time"
     t.datetime "finish_time"
@@ -71,7 +84,7 @@ ActiveRecord::Schema.define(version: 2018_11_25_065751) do
     t.datetime "remember_created_at"
     t.string "regist_name"
     t.string "regist_name_kana"
-    t.date "birthday"
+    t.integer "birthday"
     t.string "regist_tel_number"
     t.datetime "regist_deleted_at"
     t.datetime "created_at", null: false

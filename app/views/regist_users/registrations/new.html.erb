@@ -17,6 +17,7 @@
         </div>
         <div class="field column-top">
           <%= f.label :生年月日, class:"session-columns" %><br />
+          <i>(例: 1980年2月22日であれば19800222と入力)</i><br>
           <%= f.text_field :birthday, autofocus: true, autocomplete: "birthday" %>
         </div>
         <div class="field column-top">
@@ -35,8 +36,8 @@
 
         <div class="field column-top">
           <%= f.label :パスワード, class:"session-columns" %>
-          <% if @minimum_password_length %>
-            <span class="session-columns">(<%= @minimum_password_length %> 文字以上入力が必要です)</em>
+          <% if @minimum_password_length %><br>
+            <i>(<%= @minimum_password_length %> 文字以上入力が必要です)</i>
           <% end %><br />
           <%= f.password_field :password, autocomplete: "new-password" %>
         </div>

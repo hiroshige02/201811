@@ -21,7 +21,7 @@ class RegistUsersController < ApplicationController
 
     if eventsFinish != nil
       eventsFinish.each do |eventFinish|
-        if eventFinish.finish_time < now
+        if eventFinish.finish_time < now && eventFinish.admin_ok == true
           @past_events << eventFinish
         end
       end

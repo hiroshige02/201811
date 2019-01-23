@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  #before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :configure_permitted_parameters, if: :devise_controller?
     # if resource_class == RegistUser
   protected
@@ -43,5 +42,6 @@ class ApplicationController < ActionController::Base
   # def configure_permitted_parameters
   #   devise_parameter_sanitizer.permit(:sign_up, keys: [:admin_name, :admin_name_kana, :admin_tel_number])
   # end
+
 
 end

@@ -1,0 +1,50 @@
+<div class="session-visual3">
+
+  <div class="baloon center" style="width: 100%;">
+    <div class="baloon-contents clearfix" style="width: 100%;">
+
+      <h4 class="session-title"><貸し出し備品></h4>
+
+      <div class="kashidashi-list clearfix">
+      	<span class="session-columns">備品名</span><span class="session-columns">個数</span><br>
+      <% @equipments.each do |equipment| %>
+
+        <%= equipment.equipment %><span class="left"></span>
+        <%= equipment.equipment_number %>個
+        <%= link_to ><br>
+      <% end %>
+      </div>
+
+      <div class="kashidashi-list">
+
+          <div class="">
+          <table>
+            <thead>
+              <tr>
+                <th>備品名</th>
+                <th>個数</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="equipment">
+            <%= form_for @dummy, url:admin_equipments_path do |form| %>
+              <%= form.fields_for :equipments do |eq| %>
+                <%= render 'equipment_fields', f: eq %>
+              <% end %>
+
+            </tbody>
+          </table>
+          <%= link_to_add_association '入力行の追加', form, :equipments,
+            data: {
+              association_insertion_node: '#equipment',
+              association_insertion_method: 'append'
+            }, class:"square_btn navy", style:"height: 30px; font-size: 10px;" %>
+        </div>
+        <%#= f.link_to_remove "削除" %>
+       <%= form.submit "追加する", class:"square_btn hidari" %>
+     <% end %>
+    </div>
+</div>
+  </div>
+
+</div>

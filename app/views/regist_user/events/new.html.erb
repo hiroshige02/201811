@@ -36,10 +36,10 @@
         <% end %>
 
         <div class="center">
-          <%= select_tag 'a', options_for_select(["", month, n_month, n_n_month]), id:"a", :selected =>"" %>月
-          <%= select_tag 'b', options_for_select(((1..28).to_a)), :include_blank => true, id:"b" %>日
-          <%= select_tag 'c', options_for_select(((10..21).to_a)), :include_blank => true, class:"c" %>時 〜
-          <%= select_tag 'd', options_for_select(((11..22.to_i).to_a)), :include_blank => true, class:"c" %>時
+          <%= select_tag 'a', options_for_select(["", month, n_month, n_n_month], @event.month), id:"a", :selected =>"" %>月
+          <%= select_tag 'b', options_for_select(((1..28).to_a), @event.day), :include_blank => true, id:"b" %>日
+          <%= select_tag 'c', options_for_select(((10..21).to_a), @start_hour), :include_blank => true, class:"c" %>時 〜
+          <%= select_tag 'd', options_for_select(((11..22.to_i).to_a), @finish_hour), :include_blank => true, class:"c" %>時
         </div>
         <p class="moji"></p>
         <div id="render"></div>
@@ -54,7 +54,6 @@
         <script>
           $(function(){
             $('#a').change(function() {
-
               var a = $(this).val();
 
               $.ajax({
@@ -62,37 +61,34 @@
                 type: "GET",
                 data: {"month": a},
                 success: function(data) {
-                  // alert(data);
-                  if (data > 28) {
-                    var select = document.getElementById('b');
-                    var r = select.lastChild.value;
-                     // console.log(r);
-                    if (r > 28) {
-                         $('#b').children('[value="29"]').remove();
-                         $('#b').children('[value="30"]').remove();
-                         $('#b').children('[value="31"]').remove();
-                    }
-                    diff = data - 28;
-                      // alert(diff);
-                     // 初期値を28にしといて足りない分だけeachで回してoptionタグを増やす
-                    for (var i = 1; i <= diff; i++) {
-                      k = 28 + i;
+                //renderで返ってきたdataがどの値であってもまず日のせれくとボックスの最後を最小値の28にする。
+                $('#b').children('[value="29"]').remove();
+                $('#b').children('[value="30"]').remove();
+                $('#b').children('[value="31"]').remove();
 
-                      var option = document.createElement('option');
-                      option.setAttribute('value', k);
-                      option.textContent = k;
-                      // option.val = k;
-                      document.getElementById('b').appendChild(option);
+                if (data > 28) {
+                  var select = document.getElementById('b');
+                  var r = select.lastChild.value;
+                // console.log(r);
+                  diff = data - 28;
+                  // alert(diff);
+                  // 初期値を28にしといて足りない分だけeachで回してoptionタグを増やす
+                  for (var i = 1; i <= diff; i++) {
+                    k = 28 + i;
+                    var option = document.createElement('option');
+                    option.setAttribute('value', k);
+                    option.textContent = k;
+                    // option.val = k;
+                    document.getElementById('b').appendChild(option);
                     }
                   }
                 },
-               error: function(data) {
-                alert("failed!");
-               }
+                error: function(data) {
+                  alert("failed!");
+                }
               });
             });
           });
-
 
         // $(function(){
         //   $('#b').change(function(){
