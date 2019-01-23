@@ -1,0 +1,7 @@
+<tr class="nested-fields">
+  <div class="bottom">
+  <td><%= f.text_field :equipment %></td>
+  <td><%= f.select :equipment_number, (1..10) %></td>
+  <td><%= link_to_remove_association '行削除', f %></td>
+</div>
+</tr>

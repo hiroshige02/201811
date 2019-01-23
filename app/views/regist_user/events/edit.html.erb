@@ -45,10 +45,10 @@
         <% end %>
 
         <div class="center">
-          <%= select_tag 'a', options_for_select(["", month, n_month, n_n_month],@event.month), id:"a" %>月
-          <%= select_tag 'b', options_for_select(((1..31).to_a),@event.day), id:"b" %>日
-          <%= select_tag 'c', options_for_select(((10..21).to_a),@event.start_time.hour), class:"c" %>時 〜
-          <%= select_tag 'd', options_for_select(((11..22.to_i).to_a),@event.finish_time.hour), class:"c" %>時
+          <%= select_tag 'a', options_for_select([month, n_month, n_n_month],@event.month), id:"a" %>月
+          <%= select_tag 'b', options_for_select(((1..31).to_a),@event.day), :include_blank => true, id:"b" %>日
+          <%= select_tag 'c', options_for_select(((10..21).to_a),@start_hour), :include_blank => true, class:"c" %>時 〜
+          <%= select_tag 'd', options_for_select(((11..22.to_i).to_a),@finish_hour), :include_blank => true, class:"c" %>時
 　      </div>
 
         <script>
@@ -61,16 +61,15 @@
                 type: "GET",
                 data: {"month": a},
                 success: function(data) {
-                // alert(data);
+                //renderで返ってきたdataがどの値であってもまず日のせれくとボックスの最後を最小値の28にする。
+                $('#b').children('[value="29"]').remove();
+                $('#b').children('[value="30"]').remove();
+                $('#b').children('[value="31"]').remove();
+
                 if (data > 28) {
                   var select = document.getElementById('b');
                   var r = select.lastChild.value;
                 // console.log(r);
-                  if (r > 28) {
-                    $('#b').children('[value="29"]').remove();
-                    $('#b').children('[value="30"]').remove();
-                    $('#b').children('[value="31"]').remove();
-                    }
                   diff = data - 28;
                   // alert(diff);
                   // 初期値を28にしといて足りない分だけeachで回してoptionタグを増やす
@@ -94,17 +93,17 @@
 
         <div class="field column-top center">
           <h4 class="session-title"><%= f.label :title, "タイトル ※" %></h4>
-          <%= f.text_field :title, class:"input-size" %>
+          <%= f.text_field :title, class:"input-size", name:"tentative_title" %>
         </div>
 
         <div class="field column-top center">
           <h4 class="session-title"><%= f.label :content, "イベントの詳細を説明してください ※" %></h4>
-         <%= f.text_area :content, class:"input-size" %>
+         <%= f.text_area :content, class:"input-size", name:"tentative_content" %>
         </div>
 
         <div class="field column-top center">
           <h4 class="session-title center"><%= f.label :participant, "参加人数 ※" %></h4>
-          <%= f.number_field :participant %> 人
+          <%= f.number_field :participant, name:"tentative_participant" %> 人
         </div>
 
         <div class="field column-top center">

@@ -20,6 +20,7 @@ devise_for :admins, controllers: {
           get 'past_month'
         end
       end
+      resources :equipments
       resources :regist_users
       resources :events do
          member do
